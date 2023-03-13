@@ -5,29 +5,36 @@ using UnityEngine.InputSystem;
 
 public class Player_Controll : MonoBehaviour
 {
+    public Animator animator;
+    public float JumpPower;
+    public Rigidbody rb;
     [SerializeField]
     private Vector3 MoveDirection;
     [SerializeField]
     private float MoveSpeed;
-    public float JumpPower;
-    public Rigidbody rb;
 
     bool isGrounded;
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
+        animator = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         bool hascontrol = (MoveDirection != Vector3.zero);
-
         if(hascontrol)
         {
             transform.Translate(new Vector3(MoveDirection.x,0,MoveDirection.z) * MoveSpeed * Time.deltaTime);
+            if(isGrounded) animator.SetBool("isMove",true);
+            else animator.SetBool("isMove",false);
             OnFlip();
             OnJump(MoveDirection.y);
+        }
+        else if(!hascontrol)        
+        {
+            animator.SetBool("isMove",false);
         }
     }
     public void OnFlip()
@@ -36,9 +43,9 @@ public class Player_Controll : MonoBehaviour
         bool flipStay = MoveDirection.x == 0; // 좌우 반전을 유지하기 위해
         if(isflip && !flipStay)
         {
-            transform.localScale = new Vector3(-3,3,3);
+            transform.localScale = new Vector3(1,1,1);
         }
-        else if(!isflip && !flipStay) transform.localScale = new Vector3(3,3,3);
+        else if(!isflip && !flipStay) transform.localScale = new Vector3(-1,1,1);
     }
     public void OnMove(InputAction.CallbackContext value)
     {
@@ -47,11 +54,13 @@ public class Player_Controll : MonoBehaviour
         {
             MoveDirection = new Vector3(input.x,input.y,input.z);
         }
+
     }
     public void OnJump(float value)
     {
         if(value == 1 && isGrounded) 
         {
+            animator.SetTrigger("isJump");
             rb.AddForce(Vector3.up * JumpPower,ForceMode.Impulse);
             isGrounded = false;
         }
@@ -59,5 +68,11 @@ public class Player_Controll : MonoBehaviour
     private void OnCollisionEnter(Collision other) 
     {
         isGrounded = true;
+        animator.SetBool("isGrounded",true);
+    }
+    private void OnCollisionExit(Collision other) 
+    {
+        isGrounded = false;
+        animator.SetBool("isGrounded",false);
     }
 }
