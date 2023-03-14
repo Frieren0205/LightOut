@@ -70,9 +70,4 @@ public class Player_Controll : MonoBehaviour
         isGrounded = true;
         animator.SetBool("isGrounded",true);
     }
-    private void OnCollisionExit(Collision other) 
-    {
-        isGrounded = false;
-        animator.SetBool("isGrounded",false);
-    }
 }
