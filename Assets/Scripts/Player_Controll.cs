@@ -21,7 +21,7 @@ public class Player_Controll : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         bool hascontrol = (MoveDirection != Vector3.zero);
         if(hascontrol)
