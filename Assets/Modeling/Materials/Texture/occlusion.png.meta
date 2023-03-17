@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< Updated upstream:Assets/Modeling/Materials/Texture/Tex2/plan2_DefaultMaterial_SpecularSmoothness.png.meta
-guid: d487ad264649cdf429ecb04e073eeb50
-========
-guid: 8d5973e288dcace469a3e64befad37aa
->>>>>>>> Stashed changes:Assets/Modeling/Materials/Texture/occlusion.png.meta
+guid: b09d3a10d2e32ff44a76d1192d82ca32
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

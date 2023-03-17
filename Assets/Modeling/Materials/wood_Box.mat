@@ -7,57 +7,32 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<<< Updated upstream:Assets/Modeling/Materials/Texture/Materials/Test_2.mat
-  m_Name: Test_2
-========
   m_Name: wood_Box
->>>>>>>> Stashed changes:Assets/Modeling/Materials/wood_Box.mat
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-<<<<<<<< Updated upstream:Assets/Modeling/Materials/Texture/Materials/Test_2.mat
-  - _ALPHAPREMULTIPLY_ON
-  - _SPECULAR_SETUP
-  - _SURFACE_TYPE_TRANSPARENT
-========
   - _METALLICSPECGLOSSMAP
   - _NORMALMAP
   - _OCCLUSIONMAP
->>>>>>>> Stashed changes:Assets/Modeling/Materials/wood_Box.mat
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap:
-<<<<<<<< Updated upstream:Assets/Modeling/Materials/Texture/Materials/Test_2.mat
-    RenderType: Transparent
-  disabledShaderPasses:
-  - DepthOnly
-  - SHADOWCASTER
-========
     RenderType: Opaque
   disabledShaderPasses: []
->>>>>>>> Stashed changes:Assets/Modeling/Materials/wood_Box.mat
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-<<<<<<<< Updated upstream:Assets/Modeling/Materials/Texture/Materials/Test_2.mat
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 8b2cbb607319acc428e339282f4af915, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 0}
-========
-        m_Texture: {fileID: 2800000, guid: 63a6be0b0d5d37d45bd0c3292f5103ee, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: a5114a970f64e1e4784fe31bcc85c98a, type: 3}
->>>>>>>> Stashed changes:Assets/Modeling/Materials/wood_Box.mat
+        m_Texture: {fileID: 2800000, guid: 3f46b2f90177f4547832a277a9668961, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -77,19 +52,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-<<<<<<<< Updated upstream:Assets/Modeling/Materials/Texture/Materials/Test_2.mat
-        m_Texture: {fileID: 0}
-========
-        m_Texture: {fileID: 2800000, guid: 63a6be0b0d5d37d45bd0c3292f5103ee, type: 3}
->>>>>>>> Stashed changes:Assets/Modeling/Materials/wood_Box.mat
+        m_Texture: {fileID: 2800000, guid: 8b2cbb607319acc428e339282f4af915, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 7462d078fd7845840a6b627a45ef4074, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7ff9691a90fcf2d4b9865d44677751d4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 8d5973e288dcace469a3e64befad37aa, type: 3}
+        m_Texture: {fileID: 2800000, guid: b09d3a10d2e32ff44a76d1192d82ca32, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
@@ -125,13 +96,8 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-<<<<<<<< Updated upstream:Assets/Modeling/Materials/Texture/Materials/Test_2.mat
-    - _DstBlend: 10
-    - _DstBlendAlpha: 10
-========
     - _DstBlend: 0
     - _DstBlendAlpha: 0
->>>>>>>> Stashed changes:Assets/Modeling/Materials/wood_Box.mat
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -146,26 +112,16 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
-<<<<<<<< Updated upstream:Assets/Modeling/Materials/Texture/Materials/Test_2.mat
-    - _Surface: 1
-    - _WorkflowMode: 0
-    - _ZWrite: 0
-========
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
->>>>>>>> Stashed changes:Assets/Modeling/Materials/wood_Box.mat
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
-<<<<<<<< Updated upstream:Assets/Modeling/Materials/Texture/Materials/Test_2.mat
---- !u!114 &1997059277483051299
-========
---- !u!114 &3262413557812759874
->>>>>>>> Stashed changes:Assets/Modeling/Materials/wood_Box.mat
+--- !u!114 &341348071218151719
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

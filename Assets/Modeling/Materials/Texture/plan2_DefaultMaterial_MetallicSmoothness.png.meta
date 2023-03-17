@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< Updated upstream:Assets/Modeling/Materials/Texture/Tex3/plan2_DefaultMaterial_OcclusionRoughnessMetallic.png.meta
-guid: 8dcb45d5d066ea34f85f4ee72d1957bd
-========
-guid: 7462d078fd7845840a6b627a45ef4074
->>>>>>>> Stashed changes:Assets/Modeling/Materials/Texture/plan2_DefaultMaterial_MetallicSmoothness.png.meta
+guid: 7ff9691a90fcf2d4b9865d44677751d4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

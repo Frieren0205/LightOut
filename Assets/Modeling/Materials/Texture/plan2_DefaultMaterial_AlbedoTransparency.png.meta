@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< Updated upstream:Assets/Modeling/Materials/Texture/Tex2/plan2_DefaultMaterial_AlbedoTransparency.png.meta
-guid: 5fc07a49d8c670c439e4e8635cd93053
-========
-guid: 63a6be0b0d5d37d45bd0c3292f5103ee
->>>>>>>> Stashed changes:Assets/Modeling/Materials/Texture/plan2_DefaultMaterial_AlbedoTransparency.png.meta
+guid: 8b2cbb607319acc428e339282f4af915
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

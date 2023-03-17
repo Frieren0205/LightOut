@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< Updated upstream:Assets/Modeling/Materials/Texture/Tex3/plan2_DefaultMaterial_Normal.png.meta
-guid: b161d241a6b03e6409f3c4d99bbdfd90
-========
-guid: a5114a970f64e1e4784fe31bcc85c98a
->>>>>>>> Stashed changes:Assets/Modeling/Materials/Texture/plan2_DefaultMaterial_Normal.png.meta
+guid: 3f46b2f90177f4547832a277a9668961
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

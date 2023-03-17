@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< Updated upstream:Assets/Modeling/Materials/Texture/Materials/Test_2.mat.meta
-guid: c9097f10913721547b37a6496c036382
-========
-guid: 17b58efb714fe7449b5e7de2ab7012f8
->>>>>>>> Stashed changes:Assets/Modeling/Materials/wood_Box.mat.meta
+guid: c12fde5bbafeaf940ac18f3d2b8ef078
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
