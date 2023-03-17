@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class Player_Controll : MonoBehaviour
 {
     public Animator animator;
+    public GameObject spriteObject;
     public float JumpPower;
     public Rigidbody rb;
     [SerializeField]
@@ -16,8 +17,8 @@ public class Player_Controll : MonoBehaviour
     bool isGrounded;
     void Start()
     {
-        rb = this.GetComponent<Rigidbody>();
-        animator = this.GetComponent<Animator>();
+        //rb = this.GetComponent<Rigidbody>();
+        //animator = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -43,9 +44,9 @@ public class Player_Controll : MonoBehaviour
         bool flipStay = MoveDirection.x == 0; // 좌우 반전을 유지하기 위해
         if(isflip && !flipStay)
         {
-            transform.localScale = new Vector3(1,1,1);
+            spriteObject.transform.localScale = new Vector3(1,1,1);
         }
-        else if(!isflip && !flipStay) transform.localScale = new Vector3(-1,1,1);
+        else if(!isflip && !flipStay) spriteObject.transform.localScale = new Vector3(-1,1,1);
     }
     public void OnMove(InputAction.CallbackContext value)
     {
