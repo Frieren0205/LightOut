@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class Enemy_Test2 : MonoBehaviour
 {
     public Transform target_Transform;
+<<<<<<< Updated upstream
     [SerializeField]
     private Rigidbody rb;
     private NavMeshPath path;
@@ -16,6 +17,22 @@ public class Enemy_Test2 : MonoBehaviour
     void Start()
     {
         path = new NavMeshPath();
+=======
+    private Rigidbody rb;
+    private EnemySight sight; 
+    private NavMeshPath path;
+    private float PathRefreshTime = 0.0f;
+    public float MovementSpeed = 5;
+
+    public Vector3[] WayPoints;
+    private int currentWayPoints = 0;
+    private float WayPointsArrivalDistance = 1.5f;
+
+    void Start()
+    {
+        path = new NavMeshPath();
+        sight = this.gameObject.GetComponentInChildren<EnemySight>();
+>>>>>>> Stashed changes
         //target_Transform = gameObject.GetComponent<Player_Controll>().transform;
     }
 
@@ -46,16 +63,42 @@ public class Enemy_Test2 : MonoBehaviour
 
     public void UpdateFollwingPath_Navigate()
     {
+<<<<<<< Updated upstream
        Speed += Time.deltaTime;
        if(Speed > 1.0f)
        {
             Speed -= 1.0f;
             NavMesh.CalculatePath(transform.position, target_Transform.position, NavMesh.AllAreas, path);
+=======
+       // 갱신 주기 
+       PathRefreshTime += Time.deltaTime;
+       if(PathRefreshTime > 1.0f)
+       {
+            PathRefreshTime -= 1.0f;
+            // 경로 재계산
+            NavMesh.CalculatePath(transform.position, target_Transform.position, NavMesh.AllAreas, path);
+            if(path.status == NavMeshPathStatus.PathComplete)
+            {
+                WayPoints = path.corners;
+            }
+            else 
+                WayPoints = null;
+                currentWayPoints = 0;
+       }
+       if(WayPoints != null)
+       {
+            float TonextCorner = Vector3.Distance(transform.position, WayPoints[currentWayPoints]);
+            if(TonextCorner <= )
+            {
+                currentWayPoints++;
+            }
+>>>>>>> Stashed changes
        }
        for(int i = 0; i < path.corners.Length -1; i++)
        {
             Debug.DrawLine(path.corners[i], path.corners[i+1], Color.red);
        }
+<<<<<<< Updated upstream
        if(path.status == NavMeshPathStatus.PathPartial)
        {
          //TODO 정지
@@ -68,5 +111,7 @@ public class Enemy_Test2 : MonoBehaviour
        {
             //TODO 저장된 마지막 경로로
        }
+=======
+>>>>>>> Stashed changes
     }
 }
