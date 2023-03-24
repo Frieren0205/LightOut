@@ -7,17 +7,6 @@ using UnityEngine.AI;
 public class Enemy_Test2 : MonoBehaviour
 {
     public Transform target_Transform;
-<<<<<<< Updated upstream
-    [SerializeField]
-    private Rigidbody rb;
-    private NavMeshPath path;
-    private float Speed = 0.0f;
-    public float MovementSpeed = 5;
-
-    void Start()
-    {
-        path = new NavMeshPath();
-=======
     private Rigidbody rb;
     private EnemySight sight; 
     private NavMeshPath path;
@@ -32,7 +21,6 @@ public class Enemy_Test2 : MonoBehaviour
     {
         path = new NavMeshPath();
         sight = this.gameObject.GetComponentInChildren<EnemySight>();
->>>>>>> Stashed changes
         //target_Transform = gameObject.GetComponent<Player_Controll>().transform;
     }
 
@@ -63,13 +51,6 @@ public class Enemy_Test2 : MonoBehaviour
 
     public void UpdateFollwingPath_Navigate()
     {
-<<<<<<< Updated upstream
-       Speed += Time.deltaTime;
-       if(Speed > 1.0f)
-       {
-            Speed -= 1.0f;
-            NavMesh.CalculatePath(transform.position, target_Transform.position, NavMesh.AllAreas, path);
-=======
        // 갱신 주기 
        PathRefreshTime += Time.deltaTime;
        if(PathRefreshTime > 1.0f)
@@ -92,26 +73,10 @@ public class Enemy_Test2 : MonoBehaviour
             {
                 currentWayPoints++;
             }
->>>>>>> Stashed changes
        }
        for(int i = 0; i < path.corners.Length -1; i++)
        {
             Debug.DrawLine(path.corners[i], path.corners[i+1], Color.red);
        }
-<<<<<<< Updated upstream
-       if(path.status == NavMeshPathStatus.PathPartial)
-       {
-         //TODO 정지
-       }
-       else if(path.status == NavMeshPathStatus.PathComplete)
-       {
-        //TODO 움직이게 하기
-       }
-       else if(path.status == NavMeshPathStatus.PathInvalid)
-       {
-            //TODO 저장된 마지막 경로로
-       }
-=======
->>>>>>> Stashed changes
     }
 }
