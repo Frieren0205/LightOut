@@ -7,20 +7,21 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
 
-    public Animator EnemyAnimator;
-    public GameObject SpriteObject;
-    public Player_Controll target;
-    public float Distance; 
-    private NavMeshAgent agent;
 
     // 플레이어와의 거리
-    enum State
+    private enum State
     {
         idle,
         Chase,
         Move,
         Attack
     }
+
+    public Animator EnemyAnimator;
+    public GameObject SpriteObject;
+    public Player_Controll target;
+    public float Distance; 
+    private NavMeshAgent agent;
     State state;
     // Start is called before the first frame update
     void Start()
