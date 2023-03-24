@@ -223,7 +223,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -689611135, guid: b400efb276ba84848aa8ecb11de35ca3, type: 3}
+  m_Sprite: {fileID: -33302451, guid: 6b8420cca10770249b3c773cf945f7be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 2131179700318788345}
   spriteObject: {fileID: 7991882071821812985}
-  JumpPower: 7.5
+  JumpPower: 10
   rb: {fileID: 6429005941708711513}
   MoveDirection: {x: 0, y: 0, z: 0}
   MoveSpeed: 5

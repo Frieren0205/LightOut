@@ -11,7 +11,6 @@ public class Enemy_Test2 : MonoBehaviour
     private Rigidbody rb;
     private NavMeshPath path;
     private float Speed = 0.0f;
-    private float Distance = 0;
     public float MovementSpeed = 5;
 
     void Start()
@@ -45,7 +44,7 @@ public class Enemy_Test2 : MonoBehaviour
         throw new NotImplementedException();
     }
 
-    private void UpdateFollwingPath_Navigate()
+    public void UpdateFollwingPath_Navigate()
     {
        Speed += Time.deltaTime;
        if(Speed > 1.0f)
