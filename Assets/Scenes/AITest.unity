@@ -611,6 +611,18 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &1746243578 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7991882071821812985, guid: 59ef4050b108e5f4b9763dee768a3723,
+    type: 3}
+  m_PrefabInstance: {fileID: 1935806406}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1746243580 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2131179700318788345, guid: 59ef4050b108e5f4b9763dee768a3723,
+    type: 3}
+  m_PrefabInstance: {fileID: 1935806406}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1770461174
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,6 +962,26 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4183615275893863729, guid: 59ef4050b108e5f4b9763dee768a3723,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1746243580}
+    - target: {fileID: 4183615275893863729, guid: 59ef4050b108e5f4b9763dee768a3723,
+        type: 3}
+      propertyPath: JumpPower
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4183615275893863729, guid: 59ef4050b108e5f4b9763dee768a3723,
+        type: 3}
+      propertyPath: MoveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4183615275893863729, guid: 59ef4050b108e5f4b9763dee768a3723,
+        type: 3}
+      propertyPath: spriteObject
+      value: 
+      objectReference: {fileID: 1746243578}
     - target: {fileID: 6595877803991912906, guid: 59ef4050b108e5f4b9763dee768a3723,
         type: 3}
       propertyPath: m_RootOrder
