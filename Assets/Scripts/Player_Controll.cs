@@ -17,8 +17,8 @@ public class Player_Controll : MonoBehaviour
     bool isGrounded;
     void Start()
     {
-        rb = this.GetComponent<Rigidbody>();
-        animator = this.gameObject.GetComponentInChildren<Animator>().GetComponent<Animator>();
+        //rb = this.GetComponent<Rigidbody>();
+        //animator = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame

@@ -9959,12 +9959,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1605006003}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1620296837 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7991882071821812985, guid: 59ef4050b108e5f4b9763dee768a3723,
-    type: 3}
-  m_PrefabInstance: {fileID: 8726597322581299294}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1730019518
 GameObject:
   m_ObjectHideFlags: 0
@@ -11935,11 +11929,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 789161738938491577, guid: 59ef4050b108e5f4b9763dee768a3723,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -33302451, guid: 6b8420cca10770249b3c773cf945f7be,
+        type: 3}
     - target: {fileID: 4183615275893863729, guid: 59ef4050b108e5f4b9763dee768a3723,
         type: 3}
-      propertyPath: spriteObject
-      value: 
-      objectReference: {fileID: 1620296837}
+      propertyPath: JumpPower
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6595877803991912906, guid: 59ef4050b108e5f4b9763dee768a3723,
         type: 3}
       propertyPath: m_RootOrder
