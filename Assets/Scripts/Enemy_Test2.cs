@@ -68,11 +68,12 @@ public class Enemy_Test2 : MonoBehaviour
        }
        if(WayPoints != null)
        {
+        /*
             float TonextCorner = Vector3.Distance(transform.position, WayPoints[currentWayPoints]);
             if(TonextCorner <= )
             {
                 currentWayPoints++;
-            }
+            }*/
        }
        for(int i = 0; i < path.corners.Length -1; i++)
        {
