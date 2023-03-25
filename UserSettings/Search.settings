@@ -7,16 +7,6 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"picker_window_position_offset.74AD8FDB" = "762;150;320;550"
-	"picker_search_text.74AD8FDB" = ""
-	"last_search.74AD8FDB" = ""
-	"OpenInspectorPreview.74AD8FDB" = "0"
-	"currentGroup.74AD8FDB" = "all"
-	"picker_window_position_offset.7E63D72B" = "624;243;320;550"
-	"picker_search_text.7E63D72B" = ""
-	"last_search.7E63D72B" = ""
-	"OpenInspectorPreview.7E63D72B" = "0"
-	"currentGroup.7E63D72B" = "all"
 }
 providers = {
 	adb = {
