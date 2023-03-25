@@ -302,10 +302,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8731548563580095230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d65641bb46b6a354d9ee1fa4244caae9, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e4e3265414587c47a72f8836ff3f534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 2131179700318788345}
+  animator: {fileID: 0}
   spriteObject: {fileID: 7991882071821812985}
   JumpPower: 10
   rb: {fileID: 6429005941708711513}

@@ -18,7 +18,7 @@ public class EnemySight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemy = GetComponent<Enemy_Test2>();
+        enemy = FindObjectOfType<Enemy_Test2>().GetComponent<Enemy_Test2>();
     }
 
     // Update is called once per frame
@@ -42,7 +42,7 @@ public class EnemySight : MonoBehaviour
         Debug.DrawRay(transform.position + transform.up, _rightBoundary, Color.cyan);
 
         Collider[] _target = Physics.OverlapSphere(transform.position, viewDistance, targetMask);
-
+        
         for (int i = 0; i < _target.Length; i++)
         {
             Transform _targetTf = _target[i].transform;
@@ -58,9 +58,11 @@ public class EnemySight : MonoBehaviour
                     {
                         if (_hit.transform.name == "Player")
                         {
-                            Debug.Log("플레이어가 AI 시야 내에 있습니다.");
                             Debug.DrawRay(transform.position + transform.up, _direction, Color.blue);
+                            enemy.state = Enemy_Test2.State.Chase;
+                            enemy.UpdateFollwingPath();
                         }
+
                     }
                 }
             }
