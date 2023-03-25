@@ -21,7 +21,7 @@ public class Enemy_Test2 : MonoBehaviour
     {
         path = new NavMeshPath();
         sight = this.gameObject.GetComponentInChildren<EnemySight>();
-        //target_Transform = gameObject.GetComponent<Player_Controll>().transform;
+        target_Transform = FindObjectOfType<Player_Controll>().transform;
     }
 
     void FixedUpdate()
@@ -68,11 +68,10 @@ public class Enemy_Test2 : MonoBehaviour
        }
        if(WayPoints != null)
        {
-            float TonextCorner = Vector3.Distance(transform.position, WayPoints[currentWayPoints]);
-            if(TonextCorner <= )
-            {
-                currentWayPoints++;
-            }
+            //float TonextCorner = Vector3.Distance(transform.position, WayPoints[currentWayPoints]);
+
+            //currentWayPoints++;
+
        }
        for(int i = 0; i < path.corners.Length -1; i++)
        {
