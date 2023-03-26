@@ -38,9 +38,8 @@ public class Enemy_Test2 : MonoBehaviour
 
     void FixedUpdate()
     {
-       if(state == State.Chase)
+       if(state == State.idle)
        {
-            state = State.idle;
             OnMoveStop();
        }
     }

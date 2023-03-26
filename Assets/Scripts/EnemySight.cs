@@ -62,6 +62,10 @@ public class EnemySight : MonoBehaviour
                             enemy.state = Enemy_Test2.State.Chase;
                             enemy.UpdateFollwingPath();
                         }
+                        else if(_hit.transform.name != "Player")
+                        {
+                            enemy.state = Enemy_Test2.State.idle;
+                        }
 
                     }
                 }
