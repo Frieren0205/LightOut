@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Player_Controll : MonoBehaviour
 {
+    public PlayerHP playerHP;
     public Animator animator;
     public GameObject spriteObject;
     public float JumpPower;
@@ -27,6 +28,7 @@ public class Player_Controll : MonoBehaviour
         bool hascontrol = (MoveDirection != Vector3.zero);
         if(hascontrol)
         {
+            //rb.AddForce(new Vector3(MoveDirection.x, 0, MoveDirection.z) * MoveSpeed * Time.deltaTime, ForceMode.);
             transform.Translate(new Vector3(MoveDirection.x,0,MoveDirection.z) * MoveSpeed * Time.deltaTime);
             if(isGrounded) animator.SetBool("isMove",true);
             else animator.SetBool("isMove",false);
@@ -70,5 +72,11 @@ public class Player_Controll : MonoBehaviour
     {
         isGrounded = true;
         animator.SetBool("isGrounded",true);
+        if(other.collider.GetComponent<Enemy_Test2>())
+        {
+            playerHP.HP_Point -= 1;
+            rb.AddForce(Vector3.left * 5, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * 7.5f, ForceMode.Impulse);
+        }
     }
 }

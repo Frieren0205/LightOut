@@ -6,26 +6,31 @@ using UnityEngine.AI;
 
 public class Enemy_Test2 : MonoBehaviour
 {
-    public enum State
+    public enum State // 적 개체 상태머신
     {
         idle,
         Chase,
+        Attak,
     }
-    public State state;
-    public Animator animator;
-    public Transform target_Transform;
-    private Rigidbody rb;
-    private EnemySight sight; 
-    public GameObject SpriteObject;
+    // 적 스크립트 구조 관련
+    private EnemySight sight; // 시야 스크립트
+    public Animator animator; // 적 스프라이트 애니메이터
+    public GameObject SpriteObject; // 분리한 스프라이트 오브젝트
+    public State state; // 상태머신 변수화
+    private Rigidbody rb; // 리지드바디
 
-    private NavMeshPath path;
-    private float PathRefreshTime = 0.0f;
+    // 움직임 및 추적 관련
     public float MovementSpeed = 5;
-
-    public Vector3[] WayPoints;
-    [SerializeField]
-    private int currentWayPointIndex = 0;
+    private float PathRefreshTime = 0.0f;
     private float WayPointsArrivalDistance = 1.5f;
+    private int currentWayPointIndex = 0;
+    private NavMeshPath path;
+    public Transform target_Transform;
+    public Vector3[] WayPoints;
+
+    // 공격 관련
+
+    private float AttackDistance = 1.5f;
 
     void Start()
     {
@@ -41,6 +46,10 @@ public class Enemy_Test2 : MonoBehaviour
        if(state == State.idle)
        {
             OnMoveStop();
+       }
+       if(state == State.Chase)
+       {
+            MovementSpeed = 2.5f;
        }
     }
     public void UpdateFollwingPath()
@@ -115,15 +124,25 @@ public class Enemy_Test2 : MonoBehaviour
         if(state == State.Chase)
         {
             animator.SetBool("Move",true);
+            bool isfilp = 0 <= (target_Transform.position.x - this.transform.position.x);
+            if(isfilp)
+            {
+                SpriteObject.transform.localScale = new Vector3(1,1,1);
+            }
+            else
+                SpriteObject.transform.localScale = new Vector3(-1,1,1);
+            transform.position = Vector3.MoveTowards(transform.position, WayPoints[currentWayPointIndex], MovementSpeed * Time.deltaTime);
+            if(Vector3.Distance(transform.position, target_Transform.position) <= AttackDistance)
+            {
+                state = State.Attak;
+                OnAttack();
+            }
         }
-        bool isfilp = 0 <= (target_Transform.position.x - this.transform.position.x);
-        if(isfilp)
-        {
-            SpriteObject.transform.localScale = new Vector3(1,1,1);
-        }
-        else
-            SpriteObject.transform.localScale = new Vector3(-1,1,1);
-        transform.position = Vector3.MoveTowards(transform.position, WayPoints[currentWayPointIndex], MovementSpeed * Time.deltaTime);
+    }
+
+    public void OnAttack()
+    {
+        MovementSpeed = 0;
     }
     public void OnMoveStop()
     {
