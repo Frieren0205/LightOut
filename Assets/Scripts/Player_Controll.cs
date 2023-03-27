@@ -15,6 +15,7 @@ public class Player_Controll : MonoBehaviour
     [SerializeField]
     private float MoveSpeed;
 
+    private bool isflip;
     bool isGrounded;
     void Start()
     {
@@ -42,7 +43,7 @@ public class Player_Controll : MonoBehaviour
     }
     public void OnFlip()
     {
-        bool isflip = MoveDirection.x > 0; // 좌우 반전을 위해
+        isflip = MoveDirection.x > 0; // 좌우 반전을 위해
         bool flipStay = MoveDirection.x == 0; // 좌우 반전을 유지하기 위해
         if(isflip && !flipStay)
         {
@@ -75,7 +76,12 @@ public class Player_Controll : MonoBehaviour
         if(other.collider.GetComponent<Enemy_Test2>())
         {
             playerHP.HP_Point -= 1;
-            rb.AddForce(Vector3.left * 5, ForceMode.Impulse);
+            if(isflip)
+            {
+                rb.AddForce(Vector3.left * 5, ForceMode.Impulse);
+            }
+            else
+                rb.AddForce(Vector3.right * 5, ForceMode.Impulse);
             rb.AddForce(Vector3.up * 7.5f, ForceMode.Impulse);
         }
     }
