@@ -341,7 +341,19 @@ MonoBehaviour:
     m_ActionId: 38954ee2-70bd-4069-8bce-cf1fd589bd4e
     m_ActionName: Player/Look[/Mouse/delta,/Pen/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4183615275893863729}
+        m_TargetAssemblyTypeName: Player_Controll, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 03c4d1d8-1902-450c-a3b8-5f946331cb78
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -449,12 +461,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65641bb46b6a354d9ee1fa4244caae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHP: {fileID: 0}
   animator: {fileID: 0}
   spriteObject: {fileID: 0}
   JumpPower: 0
   rb: {fileID: 0}
   MoveDirection: {x: 0, y: 0, z: 0}
   MoveSpeed: 0
+  isflip: 0
 --- !u!114 &5259514440353871498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,5 +481,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b310633b1feca694aa5a7d3460416333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HPSlider: {fileID: 0}
-  HP: 0
+  hpslider: {fileID: 0}
+  HP_Point: 0

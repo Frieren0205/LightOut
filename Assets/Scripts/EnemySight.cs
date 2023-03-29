@@ -59,12 +59,11 @@ public class EnemySight : MonoBehaviour
                         if (_hit.transform.name == "Player")
                         {
                             Debug.DrawRay(transform.position + transform.up, _direction, Color.blue);
-                            enemy.state = Enemy_Test2.State.Chase;
                             enemy.UpdateFollwingPath();
                         }
                         else if(_hit.transform.name != "Player")
                         {
-                            enemy.state = Enemy_Test2.State.idle;
+                            enemy.OnMoveStop();
                         }
 
                     }
