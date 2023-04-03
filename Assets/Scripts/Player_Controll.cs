@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Player_Controll : MonoBehaviour
 {
+    public LevelManager levelManager;
     public PlayerHP playerHP;
     public Animator animator;
     public GameObject spriteObject;
@@ -37,6 +38,16 @@ public class Player_Controll : MonoBehaviour
         {
             //rb.AddForce(new Vector3(MoveDirection.x, 0, MoveDirection.z) * MoveSpeed * Time.deltaTime, ForceMode.);
             transform.Translate(new Vector3(MoveDirection.x,0,MoveDirection.z) * MoveSpeed * Time.deltaTime);
+            /* 맵 별 이동좌표 제한해버리기
+            if(transform.position.z > -8.25f)
+            {
+                transform.position = new Vector3(transform.position.x, 0, -8.25f);
+            }
+            if(transform.position.z < -10.85f)
+            {
+                transform.position = new Vector3(transform.position.x, 0, -10.85f);
+            }*/
+
             if(isGrounded) animator.SetBool("isMove",true);
             else animator.SetBool("isMove",false);
             OnFlip();
@@ -113,6 +124,10 @@ public class Player_Controll : MonoBehaviour
         {
             CalculateHit();
         }
+        if(other.collider.name == "Warp_Damage" && !isHit && CanHit)
+        {
+            WarpDamage();
+        }
     }
     private void OnTriggerEnter(Collider other) 
     {
@@ -127,15 +142,6 @@ public class Player_Controll : MonoBehaviour
             InteractionObject = other.gameObject;
             CanInteractionIcon.SetActive(true);
         }
-    }
-    private void OnTriggerStay(Collider other) 
-    {
-        if(other.gameObject.tag == "InteractionPosition")
-        {
-            CanInteraction = true;
-            InteractionObject = other.gameObject;
-            CanInteractionIcon.SetActive(true);
-        }    
     }
     private void OnTriggerExit(Collider other) 
     {
@@ -168,6 +174,15 @@ public class Player_Controll : MonoBehaviour
         if(isflip)  rb.AddForce(Vector3.left * 2.5f, ForceMode.Impulse);
         else if(!isflip) rb.AddForce(Vector3.right * 2.5f, ForceMode.Impulse);
         rb.AddForce(Vector3.up * 7.5f, ForceMode.Impulse);
+        StartCoroutine(OnHit());
+        StartCoroutine(Hitable());
+    }
+    private void WarpDamage()
+    {
+        playerHP.HP_Point -= 1;
+        if(isflip)  rb.AddForce(Vector3.left * 5f, ForceMode.Impulse);
+        else if(!isflip) rb.AddForce(Vector3.right * 5f, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * 10f, ForceMode.Impulse);
         StartCoroutine(OnHit());
         StartCoroutine(Hitable());
     }
