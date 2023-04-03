@@ -14,10 +14,13 @@ public class Player_Controll : MonoBehaviour
     private Vector3 MoveDirection;
     [SerializeField]
     private float MoveSpeed;
-    [SerializeField]
     private  bool isflip; // 좌우 반전을 위해
     bool isGrounded;
     bool isHit;
+    bool CanInteraction = false;
+    [SerializeField]
+    private GameObject InteractionObject;
+    public GameObject CanInteractionIcon;
     bool CanHit = true;
     bool CanAttack = true;
     void Start()
@@ -88,17 +91,58 @@ public class Player_Controll : MonoBehaviour
         }
 
     }
+    public void OnInteraction()
+    {
+        if(CanInteraction)
+        {
+            if(InteractionObject != null)
+            {
+                Debug.Log(InteractionObject);
+            }
+        }
+    }
+
+    // 컬라이더 관련 시작!!!
     private void OnCollisionExit(Collision other) {
         isGrounded = false;
         animator.SetBool("isGrounded",false);
     }
     private void OnCollisionEnter(Collision other) // 몬스터에게 가까이 붙어도 데미지 판정이 들어가도록
     {
-        isGrounded = true;
-        animator.SetBool("isGrounded",true);
         if(other.collider.GetComponent<Enemy_Test2>() && !isHit && CanHit)
         {
             CalculateHit();
+        }
+    }
+    private void OnTriggerEnter(Collider other) 
+    {
+        if(other.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
+            animator.SetBool("isGrounded",true);
+        }
+        if(other.gameObject.tag == "InteractionPosition")
+        {
+            CanInteraction = true;
+            InteractionObject = other.gameObject;
+            CanInteractionIcon.SetActive(true);
+        }
+    }
+    private void OnTriggerStay(Collider other) 
+    {
+        if(other.gameObject.tag == "InteractionPosition")
+        {
+            CanInteraction = true;
+            InteractionObject = other.gameObject;
+            CanInteractionIcon.SetActive(true);
+        }    
+    }
+    private void OnTriggerExit(Collider other) 
+    {
+        if(InteractionObject != null)
+        {
+            InteractionObject = null;
+            CanInteractionIcon.SetActive(false);
         }
     }
     private void OnCollisionStay(Collision other) // 히트 후 몬스터한테 비비고 있어도 데미지 판정이 들어가도록 Stay도 사용
@@ -115,6 +159,9 @@ public class Player_Controll : MonoBehaviour
             rb.AddForce(Vector3.up * 7.5f, ForceMode.Impulse);
         }
     }
+    // 컬라이더 관련 끝
+
+
     private void CalculateHit()
     {
         playerHP.HP_Point -= 1;
