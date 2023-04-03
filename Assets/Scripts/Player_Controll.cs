@@ -16,9 +16,6 @@ public class Player_Controll : MonoBehaviour
     private float MoveSpeed;
     [SerializeField]
     private  bool isflip; // 좌우 반전을 위해
-    
-
-    private bool isflip;
     bool isGrounded;
     bool isHit;
     bool CanHit = true;
@@ -51,12 +48,12 @@ public class Player_Controll : MonoBehaviour
     {
         isflip = MoveDirection.x > 0; // 좌우 반전을 위해
         bool flipStay = MoveDirection.x == 0; // 좌우 반전을 유지하기 위해
-        if(flip && !flipStay)
+        if(isflip && !flipStay)
         {
             isflip = true;
             spriteObject.transform.localScale = new Vector3(1,1,1);
         }
-        else if(!flip && !flipStay)
+        else if(!isflip && !flipStay)
         {
             isflip = false;
             spriteObject.transform.localScale = new Vector3(-1,1,1);
@@ -91,14 +88,10 @@ public class Player_Controll : MonoBehaviour
         }
 
     }
-<<<<<<< Updated upstream
     private void OnCollisionExit(Collision other) {
         isGrounded = false;
         animator.SetBool("isGrounded",false);
     }
-=======
-
->>>>>>> Stashed changes
     private void OnCollisionEnter(Collision other) // 몬스터에게 가까이 붙어도 데미지 판정이 들어가도록
     {
         isGrounded = true;
