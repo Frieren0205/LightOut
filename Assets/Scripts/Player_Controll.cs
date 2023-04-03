@@ -90,7 +90,10 @@ public class Player_Controll : MonoBehaviour
         }
 
     }
-
+    private void OnCollisionExit(Collision other) {
+        isGrounded = false;
+        animator.SetBool("isGrounded",false);
+    }
     private void OnCollisionEnter(Collision other) // 몬스터에게 가까이 붙어도 데미지 판정이 들어가도록
     {
         isGrounded = true;
