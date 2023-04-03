@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.15
+  m_FogDensity: 0.12
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -2489,12 +2489,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1945092048}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1145360669 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2131179700318788345, guid: 59ef4050b108e5f4b9763dee768a3723,
-    type: 3}
-  m_PrefabInstance: {fileID: 1945092048}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1150782109
 GameObject:
   m_ObjectHideFlags: 0
@@ -4356,6 +4350,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1814024298646517415, guid: 59ef4050b108e5f4b9763dee768a3723,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814024298646517415, guid: 59ef4050b108e5f4b9763dee768a3723,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814024298646517415, guid: 59ef4050b108e5f4b9763dee768a3723,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4183615275893863729, guid: 59ef4050b108e5f4b9763dee768a3723,
         type: 3}
       propertyPath: rb
@@ -4365,7 +4374,7 @@ PrefabInstance:
         type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 1145360669}
+      objectReference: {fileID: 0}
     - target: {fileID: 4183615275893863729, guid: 59ef4050b108e5f4b9763dee768a3723,
         type: 3}
       propertyPath: playerHP

@@ -23,8 +23,10 @@ public class Enemy_Test2 : MonoBehaviour
     public float MovementSpeed = 5;
     private float PathRefreshTime = 0.0f;
     private float WayPointsArrivalDistance = 1.5f;
+
+    [SerializeField]
     private int currentWayPointIndex = 0;
-    private NavMeshPath path;
+    public NavMeshPath path;
     public Transform target_Transform;
     public Vector3[] WayPoints;
 
@@ -95,6 +97,14 @@ public class Enemy_Test2 : MonoBehaviour
             if(path.status == NavMeshPathStatus.PathComplete)
             {
                 WayPoints = path.corners;
+                state = State.Chase;
+            }
+            else if(path.status == NavMeshPathStatus.PathPartial) 
+            {
+                Debug.Log("안돼~");
+                OnMoveStop();
+                WayPoints = null;
+                currentWayPointIndex = 0;
             }
             else 
                 WayPoints = null;
@@ -146,6 +156,7 @@ public class Enemy_Test2 : MonoBehaviour
     }
     public void OnMoveStop()
     {
+        state = State.idle;
         animator.SetBool("Move", false);
     }
 }
