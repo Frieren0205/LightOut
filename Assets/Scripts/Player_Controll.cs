@@ -69,7 +69,22 @@ public class Player_Controll : MonoBehaviour
             isGrounded = false;
         }
     }
-    private void OnCollisionEnter(Collision other) 
+
+    public void OnAttack()
+    {
+        if(CanAttack)
+        {
+            StartCoroutine(AttackTimer());
+            Debug.Log("공격 입력 확인");
+            animator.SetTrigger("isAttack");
+        }
+
+    }
+    private void OnCollisionExit(Collision other) {
+        isGrounded = false;
+        animator.SetBool("isGrounded",false);
+    }
+    private void OnCollisionEnter(Collision other) // 몬스터에게 가까이 붙어도 데미지 판정이 들어가도록
     {
         isGrounded = true;
         animator.SetBool("isGrounded",true);
