@@ -38,15 +38,14 @@ public class Player_Controll : MonoBehaviour
         {
             //rb.AddForce(new Vector3(MoveDirection.x, 0, MoveDirection.z) * MoveSpeed * Time.deltaTime, ForceMode.);
             transform.Translate(new Vector3(MoveDirection.x,0,MoveDirection.z) * MoveSpeed * Time.deltaTime);
-            /* 맵 별 이동좌표 제한해버리기
-            if(transform.position.z > -8.25f)
+            if(transform.position.z > -6.687f)
             {
-                transform.position = new Vector3(transform.position.x, 0, -8.25f);
+                transform.position = new Vector3(transform.position.x, 0, -6.687f);
             }
-            if(transform.position.z < -10.85f)
+            if(transform.position.z < -10.4f)
             {
-                transform.position = new Vector3(transform.position.x, 0, -10.85f);
-            }*/
+                transform.position = new Vector3(transform.position.x, 0, -10.4f);
+            }
 
             if(isGrounded) animator.SetBool("isMove",true);
             else animator.SetBool("isMove",false);
