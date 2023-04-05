@@ -6,30 +6,53 @@ using UnityEngine.AI;
 
 public class Enemy_Test2 : MonoBehaviour
 {
-    public Transform target_Transform;
-    private Rigidbody rb;
-    private EnemySight sight; 
-    private NavMeshPath path;
-    private float PathRefreshTime = 0.0f;
-    public float MovementSpeed = 5;
+    public enum State // 적 개체 상태머신
+    {
+        idle,
+        Chase,
+        Attak,
+    }
+    // 적 스크립트 구조 관련
+    private EnemySight sight; // 시야 스크립트
+    public Animator animator; // 적 스프라이트 애니메이터
+    public GameObject SpriteObject; // 분리한 스프라이트 오브젝트
+    public State state; // 상태머신 변수화
+    private Rigidbody rb; // 리지드바디
 
-    public Vector3[] WayPoints;
-    private int currentWayPoints = 0;
+    // 움직임 및 추적 관련
+    public float MovementSpeed = 5;
+    private float PathRefreshTime = 0.0f;
     private float WayPointsArrivalDistance = 1.5f;
+    private int currentWayPointIndex = 0;
+    private NavMeshPath path;
+    public Transform target_Transform;
+    public Vector3[] WayPoints;
+
+    // 공격 관련
+
+    private float AttackDistance = 1.5f;
 
     void Start()
     {
         path = new NavMeshPath();
+        animator = this.GetComponent<Animator>();
         sight = this.gameObject.GetComponentInChildren<EnemySight>();
-        //target_Transform = gameObject.GetComponent<Player_Controll>().transform;
+        target_Transform = FindObjectOfType<Player_Controll>().transform;
+        state = State.idle;
     }
 
     void FixedUpdate()
     {
-        this.UpdateFollwingPath();
-        //this.UpdateSight();
+       if(state == State.idle)
+       {
+            OnMoveStop();
+       }
+       if(state == State.Chase)
+       {
+            MovementSpeed = 2.5f;
+       }
     }
-    private void UpdateFollwingPath()
+    public void UpdateFollwingPath()
     {
         this.UpdateFollwingPath_Navigate();
         //this.UpdateFollwingPath_Follow();
@@ -49,35 +72,80 @@ public class Enemy_Test2 : MonoBehaviour
         throw new NotImplementedException();
     }
 
+    bool IsWayPointArrived(Vector3 currentWayPoint)
+    {
+        return Vector3.Distance(transform.position, currentWayPoint) <= WayPointsArrivalDistance;
+    }
     public void UpdateFollwingPath_Navigate()
     {
        // 갱신 주기 
        PathRefreshTime += Time.deltaTime;
-       if(PathRefreshTime > 1.0f)
+       if(PathRefreshTime >= 0.0025f)
        {
-            PathRefreshTime -= 1.0f;
+            // 주기 리셋
+            PathRefreshTime = 0.0f;
             // 경로 재계산
             NavMesh.CalculatePath(transform.position, target_Transform.position, NavMesh.AllAreas, path);
+
+            // 각 코너까지의 라인을 디버깅하여 그림
+            for(int i = 0; i < path.corners.Length -1; i++)
+            {
+                Debug.DrawLine(path.corners[i], path.corners[i+1], Color.red);
+            }
             if(path.status == NavMeshPathStatus.PathComplete)
             {
                 WayPoints = path.corners;
             }
             else 
                 WayPoints = null;
-                currentWayPoints = 0;
+                currentWayPointIndex = 0;
        }
-       if(WayPoints != null)
+       if(WayPoints != null && currentWayPointIndex < path.corners.Length)
        {
-        /*
-            float TonextCorner = Vector3.Distance(transform.position, WayPoints[currentWayPoints]);
-            if(TonextCorner <= )
+            Vector3 currentWayPoint = WayPoints[currentWayPointIndex];
+            if(IsWayPointArrived(currentWayPoint))
             {
-                currentWayPoints++;
-            }*/
+                currentWayPointIndex++;
+                {
+                    if(currentWayPointIndex >= path.corners.Length)
+                    {
+                        //TODO 도착확인
+                    }
+                    else
+                        currentWayPoint = WayPoints[currentWayPointIndex];
+                }
+                UpdateFollwingPath_Navigate_OnMove();
+            }
        }
-       for(int i = 0; i < path.corners.Length -1; i++)
-       {
-            Debug.DrawLine(path.corners[i], path.corners[i+1], Color.red);
-       }
+    }
+    public void UpdateFollwingPath_Navigate_OnMove()
+    {
+        //TODO 웨이포인트로 움직이는 로직
+        if(state == State.Chase)
+        {
+            animator.SetBool("Move",true);
+            bool isfilp = 0 <= (target_Transform.position.x - this.transform.position.x);
+            if(isfilp)
+            {
+                SpriteObject.transform.localScale = new Vector3(1,1,1);
+            }
+            else
+                SpriteObject.transform.localScale = new Vector3(-1,1,1);
+            transform.position = Vector3.MoveTowards(transform.position, WayPoints[currentWayPointIndex], MovementSpeed * Time.deltaTime);
+            if(Vector3.Distance(transform.position, target_Transform.position) <= AttackDistance)
+            {
+                state = State.Attak;
+                OnAttack();
+            }
+        }
+    }
+
+    public void OnAttack()
+    {
+        MovementSpeed = 0;
+    }
+    public void OnMoveStop()
+    {
+        animator.SetBool("Move", false);
     }
 }
