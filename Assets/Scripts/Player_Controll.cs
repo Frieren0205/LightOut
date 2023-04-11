@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Player_Controll : MonoBehaviour
 {
+    public UIManager uIManager;
     public LevelManager levelManager;
     public PlayerHP playerHP;
     public Animator animator;
@@ -13,9 +14,14 @@ public class Player_Controll : MonoBehaviour
     public Rigidbody rb;
     [SerializeField]
     private Vector3 MoveDirection;
+    public float minLimit;
+    public float maxLimit;
+    public Vector3 MinMoveLimited;
+    public Vector3 MaxMoveLimited;
     [SerializeField]
     private float MoveSpeed;
     private  bool isflip; // 좌우 반전을 위해
+    [SerializeField]
     bool isGrounded;
     bool isHit;
     bool CanInteraction = false;
@@ -28,6 +34,7 @@ public class Player_Controll : MonoBehaviour
     {
         rb = this.GetComponent<Rigidbody>();
         animator = this.gameObject.GetComponentInChildren<Animator>().GetComponent<Animator>();
+        uIManager = FindObjectOfType<UIManager>();
     }
 
     // Update is called once per frame
@@ -38,13 +45,13 @@ public class Player_Controll : MonoBehaviour
         {
             //rb.AddForce(new Vector3(MoveDirection.x, 0, MoveDirection.z) * MoveSpeed * Time.deltaTime, ForceMode.);
             transform.Translate(new Vector3(MoveDirection.x,0,MoveDirection.z) * MoveSpeed * Time.deltaTime);
-            if(transform.position.z > -6.687f)
+            if(transform.position.z > MinMoveLimited.z)
             {
-                transform.position = new Vector3(transform.position.x, 0, -6.687f);
+                transform.position = new Vector3(transform.position.x, 0, MinMoveLimited.z);
             }
-            if(transform.position.z < -10.4f)
+            if(transform.position.z < MaxMoveLimited.z)
             {
-                transform.position = new Vector3(transform.position.x, 0, -10.4f);
+                transform.position = new Vector3(transform.position.x, 0, MaxMoveLimited.z);
             }
 
             if(isGrounded) animator.SetBool("isMove",true);
@@ -111,12 +118,16 @@ public class Player_Controll : MonoBehaviour
             }
         }
     }
-
-    // 컬라이더 관련 시작!!!
-    private void OnCollisionExit(Collision other) {
-        isGrounded = false;
-        animator.SetBool("isGrounded",false);
+    public void OnPause()
+    {
+        uIManager.OnPause();
     }
+
+    public void ExitPause()
+    {
+        uIManager.ExitPause();
+    }
+    // 컬라이더 관련 시작!!!
     private void OnCollisionEnter(Collision other) // 몬스터에게 가까이 붙어도 데미지 판정이 들어가도록
     {
         if(other.collider.GetComponent<Enemy_Test2>() && !isHit && CanHit)
@@ -142,8 +153,21 @@ public class Player_Controll : MonoBehaviour
             CanInteractionIcon.SetActive(true);
         }
     }
+    private void OnTriggerStay(Collider other) 
+    {
+        if(other.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
+            animator.SetBool("isGrounded",true);
+        }
+    }
     private void OnTriggerExit(Collider other) 
     {
+        if(other.gameObject.tag == "Ground")
+        {
+            isGrounded = false;
+            animator.SetBool("isGrounded",false);
+        }
         if(InteractionObject != null)
         {
             InteractionObject = null;
