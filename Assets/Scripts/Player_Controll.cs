@@ -11,6 +11,9 @@ public class Player_Controll : MonoBehaviour
     public GameObject spriteObject;
     public float JumpPower;
     public Rigidbody rb;
+
+    public float minLimit;
+    public float maxLimit;
     [SerializeField]
     private Vector3 MoveDirection;
     [SerializeField]
@@ -38,15 +41,6 @@ public class Player_Controll : MonoBehaviour
         {
             //rb.AddForce(new Vector3(MoveDirection.x, 0, MoveDirection.z) * MoveSpeed * Time.deltaTime, ForceMode.);
             transform.Translate(new Vector3(MoveDirection.x,0,MoveDirection.z) * MoveSpeed * Time.deltaTime);
-<<<<<<< HEAD
-            if(transform.position.z > -6.687f)
-            {
-                transform.position = new Vector3(transform.position.x, 0, -6.687f);
-            }
-            if(transform.position.z < -10.4f)
-            {
-                transform.position = new Vector3(transform.position.x, 0, -10.4f);
-=======
             if(transform.position.z > minLimit)
             {
                 transform.position = new Vector3(transform.position.x, 0, minLimit);
@@ -54,7 +48,6 @@ public class Player_Controll : MonoBehaviour
             if(transform.position.z < maxLimit)
             {
                 transform.position = new Vector3(transform.position.x, 0, maxLimit);
->>>>>>> main
             }
 
             if(isGrounded) animator.SetBool("isMove",true);
