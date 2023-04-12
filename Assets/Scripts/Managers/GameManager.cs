@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {   
+    [SerializeField]
     private LevelManager levelManager;
 
     // Start is called before the first frame update

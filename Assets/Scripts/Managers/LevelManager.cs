@@ -26,8 +26,6 @@ public class LevelManager : MonoBehaviour
 
     [Header("맵 별 포지션 제한도(Z축)")]
     public LimitiedPositions[] limitiedPositions;
-    public Vector3[] MinLimitiedPosition;
-    public Vector3[] MaxLimitiedPosition;
     private CinemachineConfiner confiner;
     public BoxCollider cameraLimitedAreas;
     void Start()
