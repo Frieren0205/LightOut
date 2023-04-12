@@ -50,8 +50,6 @@ public class LevelManager : MonoBehaviour
             player = FindObjectOfType<Player_Controll>();
             player.minLimit = LimitiedPosition[0].minPosition;
             player.maxLimit = LimitiedPosition[0].maxPosition;
-            player.MinMoveLimited = MinLimitiedPosition[0];
-            player.MaxMoveLimited = MaxLimitiedPosition[0];
         }
     }
     public void CameraAreasUpdate()
