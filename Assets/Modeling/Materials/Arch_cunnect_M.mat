@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: brick_tex_02
+  m_Name: Arch_cunnect_M
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -27,11 +27,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 4eee2603e0c70d144abae8c1756174c7, type: 3}
-        m_Scale: {x: 3.22, y: 3.29}
+        m_Texture: {fileID: 2800000, guid: 80680deec9fe3964d8d190e99a0e9173, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: c4e217022def2e84386ae5b232833224, type: 3}
+        m_Texture: {fileID: 2800000, guid: 961435eb9246f44439ee4a866666a3d1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -51,11 +51,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 4eee2603e0c70d144abae8c1756174c7, type: 3}
-        m_Scale: {x: 3.22, y: 3.29}
+        m_Texture: {fileID: 2800000, guid: 80680deec9fe3964d8d190e99a0e9173, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 1f94246cb5ef1f549a34561b81cd854d, type: 3}
+        m_Texture: {fileID: 2800000, guid: f527dead96100aa48abf0d83ac7618ae, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -120,7 +120,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &2938251461315966081
+--- !u!114 &4697622960262852219
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
