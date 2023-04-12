@@ -20,11 +20,11 @@ public class LevelManager : MonoBehaviour
     [Serializable]
     public struct LimitiedPositions
     {
-        public int minPosition;
-        public int maxPosition;
+        public float minPosition;
+        public float maxPosition;
     }
 
-    [Header("맵 별 포지션 제한도")]
+    [Header("맵 별 포지션 제한도(Z축)")]
     public LimitiedPositions[] limitiedPositions;
     public Vector3[] MinLimitiedPosition;
     public Vector3[] MaxLimitiedPosition;
@@ -33,6 +33,10 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
+    }
+    public void Init()
+    {
+
     }
     private void Update() 
     {
@@ -48,10 +52,8 @@ public class LevelManager : MonoBehaviour
         if(level == Level.Underground)
         {
             player = FindObjectOfType<Player_Controll>();
-            player.minLimit = LimitiedPosition[0].minPosition;
-            player.maxLimit = LimitiedPosition[0].maxPosition;
-            player.MinMoveLimited = MinLimitiedPosition[0];
-            player.MaxMoveLimited = MaxLimitiedPosition[0];
+            player.minLimit = limitiedPositions[0].minPosition;
+            player.maxLimit = limitiedPositions[0].maxPosition;
         }
     }
     public void CameraAreasUpdate()

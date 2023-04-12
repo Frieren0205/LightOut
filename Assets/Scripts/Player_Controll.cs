@@ -45,13 +45,13 @@ public class Player_Controll : MonoBehaviour
         {
             //rb.AddForce(new Vector3(MoveDirection.x, 0, MoveDirection.z) * MoveSpeed * Time.deltaTime, ForceMode.);
             transform.Translate(new Vector3(MoveDirection.x,0,MoveDirection.z) * MoveSpeed * Time.deltaTime);
-            if(transform.position.z > MinMoveLimited.z)
+            if(transform.position.z > minLimit)
             {
-                transform.position = new Vector3(transform.position.x, 0, MinMoveLimited.z);
+                transform.position = new Vector3(transform.position.x, 0, minLimit);
             }
-            if(transform.position.z < MaxMoveLimited.z)
+            if(transform.position.z < maxLimit)
             {
-                transform.position = new Vector3(transform.position.x, 0, MaxMoveLimited.z);
+                transform.position = new Vector3(transform.position.x, 0, maxLimit);
             }
 
             if(isGrounded) animator.SetBool("isMove",true);

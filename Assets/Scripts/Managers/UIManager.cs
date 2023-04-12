@@ -6,10 +6,9 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject PauseWindow;
-    [SerializeField]
-    private GameObject UIClone;
-    [SerializeField]
-    private bool isPause;
+
+
+    public bool isPause;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +26,6 @@ public class UIManager : MonoBehaviour
         {
             Debug.Log("정지 실행");
             Time.timeScale = 0;
-            UIClone = Instantiate(PauseWindow);
             isPause = true;
         }
     }
@@ -37,7 +35,6 @@ public class UIManager : MonoBehaviour
         {
             Debug.Log("정지 종료");
             Time.timeScale = 1;
-            Destroy(UIClone);
             isPause = false;
         }
     }

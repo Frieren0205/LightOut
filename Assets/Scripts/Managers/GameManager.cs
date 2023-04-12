@@ -5,14 +5,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
-{
+{   
     private LevelManager levelManager;
+
     // Start is called before the first frame update
     void Start()
     {
         levelManager = this.gameObject.GetComponent<LevelManager>();
     }
-
+    public void Init()
+    {
+        
+    }
     // Update is called once per frame
     void Update()
     {
