@@ -9,9 +9,9 @@ public class Player_Controll : MonoBehaviour
     public PlayerHP playerHP;
     public Animator animator;
     public GameObject spriteObject;
+    private CapsuleCollider body;
     public float JumpPower;
     public Rigidbody rb;
-    [SerializeField]
     private Vector3 MoveDirection;
     [SerializeField]
     private float MoveSpeed;
@@ -20,19 +20,29 @@ public class Player_Controll : MonoBehaviour
     public float minLimit;
     public float maxLimit;
 
+    public bool debugtest;
 
-    bool isGrounded;
+    [SerializeField]
+    private bool isGrounded;
+    [Range(0,1)]
+    public float raydistance; 
+    private bool isCrawl;
+    private bool isstuck;
+
     bool isHit;
     bool CanInteraction = false;
     [SerializeField]
     private GameObject InteractionObject;
     public GameObject CanInteractionIcon;
+
+
     bool CanHit = true;
     bool CanAttack = true;
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
-        animator = this.gameObject.GetComponentInChildren<Animator>().GetComponent<Animator>();
+        body = this.GetComponent<CapsuleCollider>();
+        animator = this.gameObject.GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -41,8 +51,9 @@ public class Player_Controll : MonoBehaviour
         bool hascontrol = (MoveDirection != Vector3.zero);
         if(hascontrol && !isHit)
         {
-            //rb.AddForce(new Vector3(MoveDirection.x, 0, MoveDirection.z) * MoveSpeed * Time.deltaTime, ForceMode.);
             transform.Translate(new Vector3(MoveDirection.x,0,MoveDirection.z) * MoveSpeed * Time.deltaTime);
+            if(!debugtest)
+            {
             if(transform.position.z > minLimit)
             {
                 transform.position = new Vector3(transform.position.x, 0, minLimit);
@@ -51,16 +62,20 @@ public class Player_Controll : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, 0, maxLimit);
             }
+            }
 
-            if(isGrounded) animator.SetBool("isMove",true);
+            if(isGrounded && MoveDirection.x != 0 || MoveDirection.z != 0) 
+                animator.SetBool("isMove",true);
             else animator.SetBool("isMove",false);
             OnFlip();
-            OnJump(MoveDirection.y);
         }
         else if(!hascontrol)        
         {
             animator.SetBool("isMove",false);
         }
+        GroundCheck();
+        OnCrawl(MoveDirection.y);
+        OnJump(MoveDirection.y);
     }
     public void OnFlip()
     {
@@ -88,12 +103,70 @@ public class Player_Controll : MonoBehaviour
     }
     public void OnJump(float value)
     {
-        if(value == 1 && isGrounded) 
+        if(value == 1 && isGrounded && !isCrawl) 
         {
             animator.SetTrigger("isJump");
+            animator.SetBool("isGrounded", false);
             rb.AddForce(Vector3.up * JumpPower,ForceMode.Impulse);
             isGrounded = false;
         }
+    }
+
+    private void GroundCheck()
+    {
+        Ray ray = new Ray(this.transform.position, Vector3.down);
+        RaycastHit hit;
+        if(Physics.Raycast(ray, out hit, raydistance))
+        {
+            isGrounded = true;
+            animator.SetBool("isGrounded",true);
+        }
+    }
+    public void OnCrawl(float value)
+    {
+        Ray ray = new Ray(this.transform.position + new Vector3(0,0.65f,0),Vector3.up);
+        Ray ray2 = new Ray(this.transform.position + new Vector3(-0.3f,0.65f,0), Vector3.up);
+        Ray ray3 = new Ray(this.transform.position + new Vector3(0.3f,0.65f,0), Vector3.up);
+        RaycastHit hit;
+        isstuck = (Physics.Raycast(ray, out hit, 0.01f) || Physics.Raycast(ray2,out hit, 0.01f) || Physics.Raycast(ray3, out hit, 0.01f));
+        if(isstuck)
+        {
+            value = -1;
+            isCrawl = true;
+            Debug.DrawRay((this.transform.position + new Vector3(0,0.65f,0)),Vector3.up, Color.cyan);
+            Debug.DrawRay((this.transform.position + new Vector3(-0.3f,0.65f,0)),Vector3.up, Color.cyan);
+            Debug.DrawRay((this.transform.position + new Vector3(0.3f,0.65f,0)),Vector3.up, Color.cyan);
+        }
+        if(value == -1 && isGrounded)
+        {
+            //TODO : 포복전진
+            isCrawl = true;
+            animator.SetBool("isCrawl",true);
+            body.center = new Vector3(0,0.345f,0);
+            body.direction = 0;
+            OnCrawlMovement();
+        }
+        else if(value == 0 && isGrounded && !isstuck)
+        {
+            animator.SetBool("isCrawl",false);
+            MoveSpeed = 5;
+            body.center = new Vector3(0,0.8f,0);
+            body.direction = 1;
+            isCrawl = false;
+        }
+    }
+    public void OnCrawlMovement()
+    {
+        //TODO: 포복이동
+        MoveSpeed = 1.25f;
+        if(MoveDirection.x != 0 || MoveDirection.z != 0)
+        {
+            Debug.Log("애니메이터 켜기");
+            //animator.SetBool("isCrawlMovement",true);
+        }
+        else
+            Debug.Log("애니메이터 끄기");
+            //animator.SetBool("isCrawlMovement",false);
     }
 
     public void OnAttack()
@@ -118,10 +191,6 @@ public class Player_Controll : MonoBehaviour
     }
 
     // 컬라이더 관련 시작!!!
-    private void OnCollisionExit(Collision other) {
-        isGrounded = false;
-        animator.SetBool("isGrounded",false);
-    }
     private void OnCollisionEnter(Collision other) // 몬스터에게 가까이 붙어도 데미지 판정이 들어가도록
     {
         if(other.collider.GetComponent<Enemy_Test2>() && !isHit && CanHit)
@@ -135,11 +204,11 @@ public class Player_Controll : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other) 
     {
-        if(other.gameObject.tag == "Ground")
+       /* if(other.gameObject.tag == "Ground")
         {
             isGrounded = true;
             animator.SetBool("isGrounded",true);
-        }
+        }*/
         if(other.gameObject.tag == "InteractionPosition")
         {
             CanInteraction = true;
@@ -148,7 +217,9 @@ public class Player_Controll : MonoBehaviour
         }
     }
     private void OnTriggerExit(Collider other) 
-    {
+    {/*
+        isGrounded = false;
+        animator.SetBool("isGrounded",false);*/
         if(InteractionObject != null)
         {
             InteractionObject = null;
