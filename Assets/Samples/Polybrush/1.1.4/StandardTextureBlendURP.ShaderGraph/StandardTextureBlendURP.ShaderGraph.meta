@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: b07bad33e81994e41ac4587d4e161331
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: '{"shaderPath":"Polybrush/Universal Render Pipeline/StandardTextureBlendURP","attributes":[{"isBaseTexture":true,"channel":4,"index":1,"range":{"x":0.0,"y":1.0},"propertyTarget":"_Texture1","mask":0},{"isBaseTexture":true,"channel":4,"index":0,"range":{"x":0.0,"y":1.0},"propertyTarget":"_MainTex","mask":0}]}'
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
