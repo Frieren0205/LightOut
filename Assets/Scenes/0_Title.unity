@@ -964,6 +964,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3643808445982999190, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4900337010472970423, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
         type: 3}
       propertyPath: PauseWindow
@@ -973,6 +978,16 @@ PrefabInstance:
         type: 3}
       propertyPath: limitiedPositions.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7583881977499372832, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
+        type: 3}
+      propertyPath: limitiedPositions.Array.data[0].maxPosition
+      value: -10.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7583881977499372832, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
+        type: 3}
+      propertyPath: limitiedPositions.Array.data[0].minPosition
+      value: -6.687
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1349,8 +1364,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

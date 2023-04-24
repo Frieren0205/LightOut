@@ -11,9 +11,17 @@ public class Enemy_Test2 : MonoBehaviour
         idle,
         Chase,
         Attak,
+        Emergency
     }
     // 적 스크립트 구조 관련
     private EnemySight sight; // 시야 스크립트
+
+    // 발전기 지키기 메소드 연결
+    private Generator generator;
+    private List<Generator> Generators;
+    [SerializeField]
+    private int generatorRange; // 발전기 인식 범위
+
     public Animator animator; // 적 스프라이트 애니메이터
     public GameObject SpriteObject; // 분리한 스프라이트 오브젝트
     public State state; // 상태머신 변수화
@@ -34,14 +42,22 @@ public class Enemy_Test2 : MonoBehaviour
 
     private float AttackDistance = 1.5f;
 
-    void Start()
+    void OnEnable()
     {
         path = new NavMeshPath();
         animator = this.GetComponent<Animator>();
         sight = this.gameObject.GetComponentInChildren<EnemySight>();
         target_Transform = FindObjectOfType<Player_Controll>().transform;
         state = State.idle;
+
+        FindGenerator();
     }
+
+    public void FindGenerator()
+    {
+
+    }
+
 
     void FixedUpdate()
     {
@@ -52,6 +68,10 @@ public class Enemy_Test2 : MonoBehaviour
        if(state == State.Chase)
        {
             MovementSpeed = 2.5f;
+       }
+       if(generator.isEmergency == true)
+       {
+            //TODO : AI 강화 메소드
        }
     }
     public void UpdateFollwingPath()

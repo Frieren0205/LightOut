@@ -49,7 +49,7 @@ public class Player_Controll : MonoBehaviour
     void FixedUpdate()
     {
         bool hascontrol = (MoveDirection != Vector3.zero);
-        if(hascontrol && !isHit)
+        if(hascontrol && !isHit && CanAttack)
         {
             transform.Translate(new Vector3(MoveDirection.x,0,MoveDirection.z) * MoveSpeed * Time.deltaTime);
             if(!debugtest)
@@ -174,7 +174,6 @@ public class Player_Controll : MonoBehaviour
         if(CanAttack)
         {
             StartCoroutine(AttackTimer());
-            Debug.Log("공격 입력 확인");
             animator.SetTrigger("isAttack");
         }
 
@@ -197,10 +196,6 @@ public class Player_Controll : MonoBehaviour
         {
             CalculateHit();
         }
-        if(other.collider.name == "Warp_Damage" && !isHit && CanHit)
-        {
-            WarpDamage();
-        }
     }
     private void OnTriggerEnter(Collider other) 
     {
@@ -214,6 +209,10 @@ public class Player_Controll : MonoBehaviour
             CanInteraction = true;
             InteractionObject = other.gameObject;
             CanInteractionIcon.SetActive(true);
+        }
+        if(other.gameObject.tag == "Warp_Damage" && !isHit && CanHit)
+        {
+            WarpDamage();
         }
     }
     private void OnTriggerExit(Collider other) 
@@ -255,9 +254,9 @@ public class Player_Controll : MonoBehaviour
     private void WarpDamage()
     {
         playerHP.HP_Point -= 1;
-        if(isflip)  rb.AddForce(Vector3.left * 5f, ForceMode.Impulse);
-        else if(!isflip) rb.AddForce(Vector3.right * 5f, ForceMode.Impulse);
-        rb.AddForce(Vector3.up * 10f, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * 15f, ForceMode.Impulse);
+        if(isflip)  rb.AddForce(Vector3.left * 7.5f, ForceMode.Impulse);
+        else if(!isflip) rb.AddForce(Vector3.right * 7.5f, ForceMode.Impulse);
         StartCoroutine(OnHit());
         StartCoroutine(Hitable());
     }
@@ -277,7 +276,7 @@ public class Player_Controll : MonoBehaviour
     IEnumerator Hitable()
     {
         CanHit = false;
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(1.25f);
         CanHit = true;
     }
 }
