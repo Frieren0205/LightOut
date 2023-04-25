@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Playables;
 
 public class Generator : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Generator : MonoBehaviour
     public int GeneratorHP; // 초기 밸런싱 15
     private BoxCollider col;
 
+    public PlayableDirector playableDirector;
     private DOTweenAnimation doanimation;
     private SpriteRenderer sprender;
     private bool isHit = false;
@@ -62,7 +64,10 @@ public class Generator : MonoBehaviour
     {
         col.enabled = false;
         yield return new WaitForSeconds(1.25f); // 파괴 애니메이션 길이만큼 딜레이
+        playableDirector.Play();
+        yield return new WaitForSecondsRealtime(8);
+        playableDirector.enabled = false;
         this.gameObject.SetActive(false);
-        Debug.Log("파괴");
+        //Debug.Log("파괴");
     }
 }
