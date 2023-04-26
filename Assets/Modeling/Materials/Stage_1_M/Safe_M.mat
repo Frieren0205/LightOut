@@ -145,7 +145,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _M_Value: 1
+    - _M_Value: 0.7
     - _Metallic: 0
     - _Metallic_Value: 1
     - _OcclusionStrength: 1
