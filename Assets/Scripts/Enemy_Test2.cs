@@ -11,16 +11,25 @@ public class Enemy_Test2 : MonoBehaviour
         idle,
         Chase,
         Attak,
+        Emergency
     }
     // 적 스크립트 구조 관련
     private EnemySight sight; // 시야 스크립트
+    
+    [SerializeField]
+    // 발전기 지키기 메소드 연결
+    private Generator generator;
+    private List<Generator> Generators;
+    [SerializeField]
+    private int generatorRange; // 발전기 인식 범위
+    private float shortDis;
     public Animator animator; // 적 스프라이트 애니메이터
     public GameObject SpriteObject; // 분리한 스프라이트 오브젝트
     public State state; // 상태머신 변수화
     private Rigidbody rb; // 리지드바디
 
     // 움직임 및 추적 관련
-    public float MovementSpeed = 5;
+    public float MovementSpeed = 2.5f;
     private float PathRefreshTime = 0.0f;
     private float WayPointsArrivalDistance = 1.5f;
 
@@ -34,14 +43,42 @@ public class Enemy_Test2 : MonoBehaviour
 
     private float AttackDistance = 1.5f;
 
-    void Start()
+    void OnEnable()
     {
         path = new NavMeshPath();
         animator = this.GetComponent<Animator>();
         sight = this.gameObject.GetComponentInChildren<EnemySight>();
         target_Transform = FindObjectOfType<Player_Controll>().transform;
         state = State.idle;
+
+        FindGenerator();
     }
+
+    public void FindGenerator()
+    {
+        Generators = new List<Generator>(GameObject.FindObjectsOfType<Generator>());
+        shortDis = Vector3.Distance(gameObject.transform.position, Generators[0].transform.position);
+        if(shortDis <= generatorRange)
+        {
+            generator = Generators[0];
+
+            foreach (Generator minGenerator in Generators)
+            {
+                float Distance = Vector3.Distance(gameObject.transform.position, minGenerator.transform.position);
+
+                if(Distance < shortDis)
+                {
+                    generator = minGenerator;
+                    shortDis = Distance;
+                }
+            }
+            //Debug.Log(generator);
+            //Debug.DrawLine(this.transform.position, generator.transform.position, Color.blue, 10f);
+        }
+        else
+            generator = null;
+    }
+
 
     void FixedUpdate()
     {
@@ -53,16 +90,15 @@ public class Enemy_Test2 : MonoBehaviour
        {
             MovementSpeed = 2.5f;
        }
+       if(generator != null && generator.isEmergency == true)
+       {
+            //TODO : AI 강화 메소드
+            OnEmergency();
+       }
     }
     public void UpdateFollwingPath()
     {
         this.UpdateFollwingPath_Navigate();
-        //this.UpdateFollwingPath_Follow();
-    }
-
-    private void UpdateFollwingPath_Follow()
-    {
-       
     }
     private void UpdateSight()
     {
@@ -158,5 +194,22 @@ public class Enemy_Test2 : MonoBehaviour
     {
         state = State.idle;
         animator.SetBool("Move", false);
+    }
+
+    public void OnEmergency()
+    {
+        // 이동속도 2배, 그 외 무언가
+        state = State.Emergency;
+        MovementSpeed = 5;
+
+        if(!generator.gameObject.activeInHierarchy)
+        {
+            StartCoroutine(OnGeneratorDestory());
+        }
+    }
+    IEnumerator OnGeneratorDestory()
+    {
+        yield return new WaitForSeconds(1.5f);
+        this.gameObject.SetActive(false);
     }
 }

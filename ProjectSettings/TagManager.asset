@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - InteractionPosition
+  - Warp_Damage
+  - PlayerAttack
   layers:
   - Default
   - TransparentFX
