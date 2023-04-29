@@ -26,8 +26,18 @@ public class Player_Controll : MonoBehaviour
     private bool isGrounded;
     [Range(0,1)]
     public float raydistance; 
+
+
+
     private bool isCrawl;
     private bool isstuck;
+
+    [Range(0,3)]
+    public int ComboCount = 0;
+    [SerializeField]
+    private float ComboTime;
+    [SerializeField,Range(0,0.5f)]
+    private float timer;
 
     bool isHit;
     bool CanInteraction = false;
@@ -37,6 +47,7 @@ public class Player_Controll : MonoBehaviour
 
 
     bool CanHit = true;
+    [SerializeField]
     bool CanAttack = true;
     void Start()
     {
@@ -76,6 +87,15 @@ public class Player_Controll : MonoBehaviour
         GroundCheck();
         OnCrawl(MoveDirection.y);
         OnJump(MoveDirection.y);
+
+
+        if(timer <= 0)
+        {
+            ComboCount = 0;
+            animator.SetInteger("AttackCombo", 0);
+        }
+        else
+            timer -= Time.deltaTime;
     }
     public void OnFlip()
     {
@@ -173,10 +193,25 @@ public class Player_Controll : MonoBehaviour
     {
         if(CanAttack)
         {
-            StartCoroutine(AttackTimer());
             animator.SetTrigger("isAttack");
+            StartCoroutine(AttackTimer());
         }
 
+    }
+    IEnumerator AttackTimer()
+    {
+        CanAttack = false;
+        // 공격 애니메이션 길이만큼 생성
+        ComboCount += 1;
+        timer = ComboTime;
+        animator.SetInteger("AttackCombo", ComboCount);
+        yield return new WaitForSecondsRealtime(0.35f);
+        if(ComboCount == 3)
+        {
+            ComboCount = 0;
+            animator.SetInteger("AttackCombo", 0);
+        }
+        CanAttack = true;
     }
     public void OnInteraction()
     {
@@ -259,13 +294,6 @@ public class Player_Controll : MonoBehaviour
         else if(!isflip) rb.AddForce(Vector3.right * 7.5f, ForceMode.Impulse);
         StartCoroutine(OnHit());
         StartCoroutine(Hitable());
-    }
-    IEnumerator AttackTimer()
-    {
-        CanAttack = false;
-        // 공격 애니메이션 길이만큼 생성
-        yield return new WaitForSecondsRealtime(0.3f);
-        CanAttack = true;
     }
     IEnumerator OnHit()
     {

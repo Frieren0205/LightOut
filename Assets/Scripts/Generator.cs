@@ -10,7 +10,9 @@ public class Generator : MonoBehaviour
     public int GeneratorHP; // 초기 밸런싱 15
     private BoxCollider col;
 
-    public PlayableDirector playableDirector;
+    public EmissiveTest test;
+
+    public ChinemachineManager chinemachineManager;
     private DOTweenAnimation doanimation;
     private SpriteRenderer sprender;
     private bool isHit = false;
@@ -64,9 +66,11 @@ public class Generator : MonoBehaviour
     {
         col.enabled = false;
         yield return new WaitForSeconds(1.25f); // 파괴 애니메이션 길이만큼 딜레이
-        playableDirector.Play();
+        chinemachineManager.OnGeneratorTerminate();
+        chinemachineManager.playableDirector.Play();
         yield return new WaitForSecondsRealtime(8);
-        playableDirector.enabled = false;
+        chinemachineManager.playableDirector.enabled = false;
+        test.TurnOff();
         this.gameObject.SetActive(false);
         //Debug.Log("파괴");
     }
