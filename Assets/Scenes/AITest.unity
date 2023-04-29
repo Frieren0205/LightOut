@@ -547,7 +547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GeneratorHP: 15
   test: {fileID: 0}
-  playableDirector: {fileID: 0}
+  chinemachineManager: {fileID: 0}
   isEmergency: 0
 --- !u!65 &240423421
 BoxCollider:
@@ -853,7 +853,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GeneratorHP: 15
   test: {fileID: 1672727452}
-  playableDirector: {fileID: 0}
+  chinemachineManager: {fileID: 0}
   isEmergency: 0
 --- !u!65 &507057883
 BoxCollider:
@@ -1116,7 +1116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GeneratorHP: 15
   test: {fileID: 0}
-  playableDirector: {fileID: 0}
+  chinemachineManager: {fileID: 0}
   isEmergency: 0
 --- !u!65 &807080509
 BoxCollider:
@@ -1729,7 +1729,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GeneratorHP: 15
   test: {fileID: 0}
-  playableDirector: {fileID: 0}
+  chinemachineManager: {fileID: 0}
   isEmergency: 0
 --- !u!65 &1661259817
 BoxCollider:
@@ -2448,26 +2448,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1424940217814341460, guid: 59ef4050b108e5f4b9763dee768a3723,
-        type: 3}
-      propertyPath: m_Height
-      value: 1.609749
-      objectReference: {fileID: 0}
-    - target: {fileID: 1424940217814341460, guid: 59ef4050b108e5f4b9763dee768a3723,
-        type: 3}
-      propertyPath: m_Center.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1424940217814341460, guid: 59ef4050b108e5f4b9763dee768a3723,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 0.7898802
-      objectReference: {fileID: 0}
-    - target: {fileID: 1424940217814341460, guid: 59ef4050b108e5f4b9763dee768a3723,
-        type: 3}
-      propertyPath: m_Direction
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3995190716222106002, guid: 59ef4050b108e5f4b9763dee768a3723,
         type: 3}
       propertyPath: m_Layer
@@ -2477,11 +2457,6 @@ PrefabInstance:
         type: 3}
       propertyPath: isflip
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4183615275893863729, guid: 59ef4050b108e5f4b9763dee768a3723,
-        type: 3}
-      propertyPath: ComboTime
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5055680194429579816, guid: 59ef4050b108e5f4b9763dee768a3723,
         type: 3}
