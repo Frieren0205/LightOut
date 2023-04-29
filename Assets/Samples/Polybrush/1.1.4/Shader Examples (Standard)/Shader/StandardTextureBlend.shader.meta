@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 120d790a4301e0f40b0250c2c0210f4b
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: '{"shaderPath":"Polybrush/Standard Texture Blend Bump","attributes":[{"isBaseTexture":false,"channel":4,"index":0,"range":{"x":0.0,"y":1.0},"propertyTarget":"_MainTex","mask":0},{"isBaseTexture":false,"channel":4,"index":1,"range":{"x":0.0,"y":1.0},"propertyTarget":"_Texture1","mask":0},{"isBaseTexture":false,"channel":4,"index":2,"range":{"x":0.0,"y":1.0},"propertyTarget":"_Texture2","mask":0},{"isBaseTexture":false,"channel":4,"index":3,"range":{"x":0.0,"y":1.0},"propertyTarget":"_Texture3","mask":0}]}'
+  assetBundleName: 
+  assetBundleVariant: 

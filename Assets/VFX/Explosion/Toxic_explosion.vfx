@@ -16,10 +16,10 @@ MonoBehaviour:
   - title: Flash
     position:
       serializedVersion: 2
-      x: 514
-      y: -6
-      width: 651
-      height: 1795
+      x: 506
+      y: -7
+      width: 660
+      height: 1798
     contents:
     - model: {fileID: 8926484042661614608}
       id: 0
@@ -237,9 +237,9 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: 502
+    x: 506
     y: -640
-    width: 3378
+    width: 3374
     height: 5325
 --- !u!114 &114350483966674976
 MonoBehaviour:
@@ -2079,7 +2079,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614656}
       inputSlot: {fileID: 8926484042661614647}
-    position: {x: 544, y: 1442}
+    position: {x: 544, y: 1441.6001}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614656
@@ -13272,7 +13272,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661615452}
       inputSlot: {fileID: 8926484042661614641}
-    position: {x: 539, y: 1352}
+    position: {x: 539.2, y: 1352}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661615452
@@ -16688,7 +16688,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661615649}
       inputSlot: {fileID: 8926484042661614611}
-    position: {x: 527.30005, y: 148.82002}
+    position: {x: 531.2, y: 200}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661615649
