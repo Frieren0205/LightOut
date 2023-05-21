@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private LevelManager levelManager;
+    public InteractionManager interactionManager;
+    public UIManager uIManager;
+
+    public Player_Controll player;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +26,9 @@ public class GameManager : MonoBehaviour
             case 1:
             {
                 levelManager.level = LevelManager.Level.Underground;
+                player = FindAnyObjectByType<Player_Controll>().GetComponent<Player_Controll>();
+                interactionManager.player = player;
+                player.interactionManager = this.interactionManager;
                 break;
             }
             case 2:
