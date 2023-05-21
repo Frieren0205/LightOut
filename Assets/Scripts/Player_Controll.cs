@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class Player_Controll : MonoBehaviour
 {
     public LevelManager levelManager;
+    public InteractionManager interactionManager;
     public PlayerHP playerHP;
     public Animator animator;
     public GameObject spriteObject;
@@ -40,9 +41,9 @@ public class Player_Controll : MonoBehaviour
     private float timer;
 
     bool isHit;
-    bool CanInteraction = false;
-    [SerializeField]
-    private GameObject InteractionObject;
+    public bool CanInteraction = false;
+    
+    public InteractionPoint interactionPoint;
     public GameObject CanInteractionIcon;
 
 
@@ -217,9 +218,10 @@ public class Player_Controll : MonoBehaviour
     {
         if(CanInteraction)
         {
-            if(InteractionObject != null)
+            if(interactionPoint.gameObject != null)
             {
-                Debug.Log(InteractionObject);
+                // Debug.Log(interactionPoint.InteractionData);
+                interactionManager.ChangeEventLog(interactionPoint.InteractionData);
             }
         }
     }
@@ -239,12 +241,6 @@ public class Player_Controll : MonoBehaviour
             isGrounded = true;
             animator.SetBool("isGrounded",true);
         }*/
-        if(other.gameObject.tag == "InteractionPosition")
-        {
-            CanInteraction = true;
-            InteractionObject = other.gameObject;
-            CanInteractionIcon.SetActive(true);
-        }
         if(other.gameObject.tag == "Warp_Damage" && !isHit && CanHit)
         {
             WarpDamage();
@@ -254,11 +250,6 @@ public class Player_Controll : MonoBehaviour
     {/*
         isGrounded = false;
         animator.SetBool("isGrounded",false);*/
-        if(InteractionObject != null)
-        {
-            InteractionObject = null;
-            CanInteractionIcon.SetActive(false);
-        }
     }
     private void OnCollisionStay(Collision other) // 히트 후 몬스터한테 비비고 있어도 데미지 판정이 들어가도록 Stay도 사용
     {
