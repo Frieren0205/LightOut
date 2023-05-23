@@ -16,6 +16,10 @@ MonoBehaviour:
   - "\uB9AC\uCF00"
   EventCharacterIllust:
   - {fileID: 21300000, guid: 0200a7283dbb35145a935cf5adb05468, type: 3}
+  - {fileID: 21300000, guid: 0200a7283dbb35145a935cf5adb05468, type: 3}
+  - {fileID: 21300000, guid: 0200a7283dbb35145a935cf5adb05468, type: 3}
+  - {fileID: 21300000, guid: 0200a7283dbb35145a935cf5adb05468, type: 3}
+  - {fileID: 21300000, guid: 0200a7283dbb35145a935cf5adb05468, type: 3}
   TextEventLog:
   - "\uC0C1\uD638\uC791\uC6A9 \uCCAB \uD14D\uC2A4\uD2B8"
   - "\uB2E4\uC74C \uBB38\uC7A5 \uD14C\uC2A4\uD2B8 1"

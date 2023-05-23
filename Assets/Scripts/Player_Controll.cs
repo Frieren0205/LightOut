@@ -221,7 +221,8 @@ public class Player_Controll : MonoBehaviour
             if(interactionPoint.gameObject != null)
             {
                 // Debug.Log(interactionPoint.InteractionData);
-                interactionManager.ChangeEventLog(interactionPoint.InteractionData);
+                //interactionManager.ChangeEventLog(interactionPoint.InteractionData);
+                interactionManager.PopUpUI();
             }
         }
     }

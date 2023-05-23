@@ -7,7 +7,7 @@ public class InteractionPoint : MonoBehaviour
     public InteractionObject InteractionData;
     private Player_Controll player;
 
-    public int  Pointindex;
+    public string indexString;
 
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.GetComponent<Player_Controll>())
@@ -16,7 +16,6 @@ public class InteractionPoint : MonoBehaviour
             player.interactionPoint = this;
             player.CanInteractionIcon.SetActive(true);
             player.CanInteraction = true;
-            Debug.Log(InteractionData);
         }
     }
     private void OnTriggerExit(Collider other) {

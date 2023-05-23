@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Yarn.Unity;
 
 public class InteractionManager : MonoBehaviour
 {
+
+
     [SerializeField]
     private UIManager uIManager;
     private GameManager gameManager;
@@ -21,38 +24,53 @@ public class InteractionManager : MonoBehaviour
     private string[] testlog;
     private bool isPlaying = false;
     public TextMeshProUGUI EventLog;
-    [SerializeField]
-    private bool isOverlength;
 
+    public DialogueRunner runner;
+
+    int count = 0;
     public void PopUpUI()
     {
         uIManager.DialogueEventUI.SetActive(true);
+        runner.StartDialogue(player.interactionPoint.indexString);
+        ChangedIMG("Image/illust/test_1");
     }
 
-    public void ChangeEventLog(InteractionObject Data)
+
+    [YarnCommand("Changed_IMG")]
+    public void ChangedIMG(string path)
     {
-        PopUpUI();
-        EventCharacterIMG.sprite = Data.EventCharacterIllust[0];
-        EventCharacterName.text = Data.TextEventName[0];
-        testlog = Data.TextEventLog;
-        if(isPlaying == false) 
-            StartCoroutine(DialogueEvent());
+        EventCharacterIMG.sprite = Resources.Load<Sprite>(path);
     }
-    IEnumerator DialogueEvent()
-    {
-        EventLog.text = null;
-        isPlaying = true;
 
-        for(int t = 0; t < testlog.Length;)
-        {
-            SavedLog = testlog[t];
-            if(!isOverlength)
-            for(int i = 0; i < SavedLog.Length; i++)
-            {
-                EventLog.text = SavedLog.Substring(0, i+1);
-                yield return new WaitForSeconds(0.2f);
-
-            }
-        }
-    }
+    // public void ChangeEventLog(InteractionObject Data)
+    // {
+    //     PopUpUI();
+    //     interactionData = Data;
+    //     EventCharacterIMG.sprite = Data.EventCharacterIllust[0];
+    //     EventCharacterName.text = Data.TextEventName[0];
+    //     testlog = Data.TextEventLog;
+    //     if(isPlaying == false) 
+    //     {
+    //         count = 0;
+    //         StartCoroutine(DialogueEvent());
+    //     }
+    // }
+    // IEnumerator DialogueEvent()
+    // {
+    //     EventLog.text = null;
+    //     isPlaying = true;
+    //     while(count < testlog.Length)
+    //     {
+    //         SavedLog = testlog[count];
+    //         for(int i = 0; i < SavedLog.Length; i++)
+    //         {
+    //             EventLog.text = SavedLog.Substring(0, i+1);
+    //             yield return new WaitForSecondsRealtime(0.2f);
+    //             if(EventLog.text.Length >= SavedLog.Length)
+    //             {
+    //                 count++;
+    //             }
+    //         }
+    //     }
+    // }
 }
