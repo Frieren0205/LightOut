@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public InteractionManager interactionManager;
     public UIManager uIManager;
 
+
+    public bool isPause;
     public Player_Controll player;
     // Start is called before the first frame update
     void Start()
@@ -41,6 +43,20 @@ public class GameManager : MonoBehaviour
                 levelManager.level = LevelManager.Level.In_Tera;
                 break;
             }
+        }
+    }
+
+    [Yarn.Unity.YarnCommand("Pause")]
+    public void ToStopAllMovement()
+    {
+        switch(isPause)
+        {
+            case true :
+                isPause = false;
+                break;
+            case false : 
+                isPause = true;
+                break;
         }
     }
     public void NextSceneLoad()

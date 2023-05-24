@@ -60,43 +60,46 @@ public class Player_Controll : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        bool hascontrol = (MoveDirection != Vector3.zero);
-        if(hascontrol && !isHit && CanAttack)
+        if(!interactionManager.gameManager.isPause)
         {
-            transform.Translate(new Vector3(MoveDirection.x,0,MoveDirection.z) * MoveSpeed * Time.deltaTime);
-            if(!debugtest)
+            bool hascontrol = (MoveDirection != Vector3.zero);
+            if(hascontrol && !isHit && CanAttack)
             {
-            if(transform.position.z > minLimit)
+                transform.Translate(new Vector3(MoveDirection.x,0,MoveDirection.z) * MoveSpeed * Time.deltaTime);
+                if(!debugtest)
+                {
+                if(transform.position.z > minLimit)
+                {
+                    transform.position = new Vector3(transform.position.x, 0, minLimit);
+                }
+                if(transform.position.z < maxLimit)
+                {
+                    transform.position = new Vector3(transform.position.x, 0, maxLimit);
+                }
+                }
+
+                if(isGrounded && MoveDirection.x != 0 || MoveDirection.z != 0) 
+                    animator.SetBool("isMove",true);
+                else animator.SetBool("isMove",false);
+                OnFlip();
+            }
+            else if(!hascontrol)        
             {
-                transform.position = new Vector3(transform.position.x, 0, minLimit);
+                animator.SetBool("isMove",false);
             }
-            if(transform.position.z < maxLimit)
+            GroundCheck();
+            OnCrawl(MoveDirection.y);
+            OnJump(MoveDirection.y);
+
+
+            if(timer <= 0)
             {
-                transform.position = new Vector3(transform.position.x, 0, maxLimit);
+                ComboCount = 0;
+                animator.SetInteger("AttackCombo", 0);
             }
-            }
-
-            if(isGrounded && MoveDirection.x != 0 || MoveDirection.z != 0) 
-                animator.SetBool("isMove",true);
-            else animator.SetBool("isMove",false);
-            OnFlip();
+            else
+                timer -= Time.deltaTime;
         }
-        else if(!hascontrol)        
-        {
-            animator.SetBool("isMove",false);
-        }
-        GroundCheck();
-        OnCrawl(MoveDirection.y);
-        OnJump(MoveDirection.y);
-
-
-        if(timer <= 0)
-        {
-            ComboCount = 0;
-            animator.SetInteger("AttackCombo", 0);
-        }
-        else
-            timer -= Time.deltaTime;
     }
     public void OnFlip()
     {

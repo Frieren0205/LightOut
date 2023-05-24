@@ -11,7 +11,7 @@ public class InteractionManager : MonoBehaviour
 
     [SerializeField]
     private UIManager uIManager;
-    private GameManager gameManager;
+    public GameManager gameManager;
     public InteractionObject interactionData;
     public Player_Controll player;
 
@@ -31,15 +31,13 @@ public class InteractionManager : MonoBehaviour
     public void PopUpUI()
     {
         uIManager.DialogueEventUI.SetActive(true);
-        runner.StartDialogue(player.interactionPoint.indexString);
-        ChangedIMG("Image/illust/test_1");
+        DialogueEvent();
     }
 
-
-    [YarnCommand("Changed_IMG")]
-    public void ChangedIMG(string path)
+    private void DialogueEvent()
     {
-        EventCharacterIMG.sprite = Resources.Load<Sprite>(path);
+        gameManager.isPause = true;
+        runner.StartDialogue(player.interactionPoint.indexString);
     }
 
     // public void ChangeEventLog(InteractionObject Data)
