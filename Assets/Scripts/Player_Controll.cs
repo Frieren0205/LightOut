@@ -60,8 +60,8 @@ public class Player_Controll : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(!interactionManager.gameManager.isPause)
-        {
+        // if(!interactionManager.gameManager.isPause)
+        // {
             bool hascontrol = (MoveDirection != Vector3.zero);
             if(hascontrol && !isHit && CanAttack)
             {
@@ -99,7 +99,7 @@ public class Player_Controll : MonoBehaviour
             }
             else
                 timer -= Time.deltaTime;
-        }
+        // }
     }
     public void OnFlip()
     {

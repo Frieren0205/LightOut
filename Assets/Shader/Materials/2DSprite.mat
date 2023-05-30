@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_SpriteHD
+  m_Name: 2DSprite
   m_Shader: {fileID: -6465566751694194690, guid: 3a879e638a1250948a345ccf7791ca97,
     type: 3}
   m_Parent: {fileID: 0}
