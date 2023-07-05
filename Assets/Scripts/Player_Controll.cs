@@ -103,7 +103,7 @@ public class Player_Controll : MonoBehaviour
             }
             else
                 timer -= Time.deltaTime;
-        }
+        // }
     }
     public void OnFlip()
     {
