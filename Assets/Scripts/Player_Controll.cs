@@ -23,6 +23,8 @@ public class Player_Controll : MonoBehaviour
 
     public bool debugtest;
 
+    private bool isPlayerDead;
+
     [SerializeField]
     private bool isGrounded;
     [Range(0,1)]
@@ -60,6 +62,8 @@ public class Player_Controll : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        isPlayerDead = playerHP.HP_Point <= 0;
+        if(isPlayerDead) StartCoroutine(OnPlayerDead());
         if(!interactionManager.gameManager.isPause)
         {
             bool hascontrol = (MoveDirection != Vector3.zero);
@@ -280,6 +284,13 @@ public class Player_Controll : MonoBehaviour
         rb.AddForce(Vector3.up * 7.5f, ForceMode.Impulse);
         StartCoroutine(OnHit());
         StartCoroutine(Hitable());
+    }
+    IEnumerator OnPlayerDead()
+    {
+        yield return new WaitForEndOfFrame();
+        animator.SetBool("isDead", true);
+        yield return new WaitForSecondsRealtime(2.5f);
+        //TODO : 게임오버 UI 팝업
     }
     private void WarpDamage()
     {
