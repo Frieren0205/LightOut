@@ -52,6 +52,20 @@ public class Player_Controll : MonoBehaviour
     bool CanHit = true;
     [SerializeField]
     bool CanAttack = true;
+
+    public int Movement()
+    {
+        if(MoveDirection.x > 0)
+        {
+            return 1;
+        }
+        else if(MoveDirection.x < 0)
+        {
+            return -1;
+        }
+        else
+            return 0;
+    }
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -64,8 +78,8 @@ public class Player_Controll : MonoBehaviour
     {
         isPlayerDead = playerHP.HP_Point <= 0;
         if(isPlayerDead) StartCoroutine(OnPlayerDead());
-        if(!interactionManager.gameManager.isPause)
-        {
+        // if(!interactionManager.gameManager.isPause)
+        // {
             bool hascontrol = (MoveDirection != Vector3.zero);
             if(hascontrol && !isHit && CanAttack)
             {
@@ -314,3 +328,4 @@ public class Player_Controll : MonoBehaviour
         CanHit = true;
     }
 }
+
