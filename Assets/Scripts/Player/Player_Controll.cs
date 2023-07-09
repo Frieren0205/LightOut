@@ -186,7 +186,7 @@ public class Player_Controll : MonoBehaviour
             animator.SetBool("isCrawl",true);
             body.center = new Vector3(0,0.345f,0);
             body.direction = 0;
-            OnCrawlMovement();
+            MoveSpeed = 1.25f;
         }
         else if(value == 0 && isGrounded && !isstuck)
         {
@@ -195,20 +195,8 @@ public class Player_Controll : MonoBehaviour
             body.center = new Vector3(0,0.8f,0);
             body.direction = 1;
             isCrawl = false;
+            MoveSpeed = 5;
         }
-    }
-    public void OnCrawlMovement()
-    {
-        //TODO: 포복이동
-        MoveSpeed = 1.25f;
-        if(MoveDirection.x != 0 || MoveDirection.z != 0)
-        {
-            Debug.Log("애니메이터 켜기");
-            //animator.SetBool("isCrawlMovement",true);
-        }
-        else
-            Debug.Log("애니메이터 끄기");
-            //animator.SetBool("isCrawlMovement",false);
     }
 
     public void OnAttack()

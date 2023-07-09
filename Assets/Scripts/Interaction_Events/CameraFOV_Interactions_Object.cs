@@ -59,7 +59,7 @@ public class CameraFOV_Interactions_Object : MonoBehaviour
             if(virtualCamera.m_Lens.FieldOfView < 60)
             {
                 GetComponent<BoxCollider>().enabled = true;
-                iseventEnd = false;
+                break;
             }
         }
     }
@@ -77,7 +77,7 @@ public class CameraFOV_Interactions_Object : MonoBehaviour
             if(virtualCamera.m_Lens.FieldOfView > 90)
             {
                 GetComponent<BoxCollider>().enabled = true;
-                iseventEnd = false;
+                break;
             }
         }
     }

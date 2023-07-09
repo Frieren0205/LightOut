@@ -558,6 +558,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelManager: {fileID: 7583881977499372832, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
     type: 3}
+  interactionManager: {fileID: 0}
   playerHP: {fileID: 5259514440353871498}
   animator: {fileID: 2131179700318788345}
   spriteObject: {fileID: 7991882071821812985}
@@ -572,7 +573,8 @@ MonoBehaviour:
   ComboCount: 0
   ComboTime: 0.5
   timer: 0
-  InteractionObject: {fileID: 0}
+  CanInteraction: 0
+  interactionPoint: {fileID: 0}
   CanInteractionIcon: {fileID: 1335765093068834452}
   CanAttack: 1
 --- !u!114 &5259514440353871498
@@ -618,6 +620,6 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.325428
-  m_Height: 1.609749
+  m_Height: 1.5850058
   m_Direction: 1
-  m_Center: {x: 0, y: 0.7898802, z: 0}
+  m_Center: {x: 0, y: 0.8022518, z: 0}

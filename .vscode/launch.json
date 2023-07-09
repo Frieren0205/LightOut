@@ -4,7 +4,6 @@
 		{
 			"name": "Unity Editor",
 			"type": "unity",
-			"path": "${workspaceFolder}/Library/EditorInstance.json",
 			"request": "launch"
 		},
 		{
