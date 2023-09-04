@@ -35,7 +35,7 @@ public class InteractionManager : MonoBehaviour
     }
 
     private void DialogueEvent()
-    {
+    {   
         gameManager.isPause = true;
         runner.StartDialogue(player.interactionPoint.indexString);
     }

@@ -10,30 +10,39 @@ public class Player_Controll : MonoBehaviour
     public PlayerHP playerHP;
     public Animator animator;
     public GameObject spriteObject;
+    
+    //이동관련 컴포넌트
     private CapsuleCollider body;
     public float JumpPower;
     public Rigidbody rb;
     private Vector3 MoveDirection;
-    [SerializeField]
-    private float MoveSpeed;
+    
+    [Range(5, 6.25f)]
+    public float MoveSpeed;
     private  bool isflip; // 좌우 반전을 위해
 
+    
+    [Header("맵 이동가능 거리(float)")]
     public float minLimit;
     public float maxLimit;
 
+    [Header("개발용 맵 이동가능 거리 제한없게 하기")]
     public bool debugtest;
-
     private bool isPlayerDead;
-
-    [SerializeField]
     private bool isGrounded;
     [Range(0,1)]
     public float raydistance; 
 
 
-
+    /// <summary>
+    /// 포복상태 체크, 포복중 위에 장애물이 있는지 체크하기위함
+    /// </summary>
     private bool isCrawl;
     private bool isstuck;
+
+    // 전투&상호작용 조작 관련
+    [Range(1,5)] // 플레이어 공격력은 초기값 1, 최대 5까지 상승 가능
+    public float playerAttackDamage;
 
     [Range(0,3)]
     public int ComboCount = 0;
