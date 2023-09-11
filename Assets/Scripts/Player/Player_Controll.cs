@@ -41,8 +41,8 @@ public class Player_Controll : MonoBehaviour
     private bool isstuck;
 
     // 전투&상호작용 조작 관련
-    [Range(1,5)] // 플레이어 공격력은 초기값 1, 최대 5까지 상승 가능
-    public float playerAttackDamage;
+   [Range(1,5)] // 플레이어 공격력은 초기값 1, 최대 5까지 상승 가능
+    public int playerAttackDamage;
 
     [Range(0,3)]
     public int ComboCount = 0;
@@ -200,11 +200,10 @@ public class Player_Controll : MonoBehaviour
         else if(value == 0 && isGrounded && !isstuck)
         {
             animator.SetBool("isCrawl",false);
-            MoveSpeed = 5;
             body.center = new Vector3(0,0.8f,0);
             body.direction = 1;
             isCrawl = false;
-            MoveSpeed = 5;
+            MoveSpeed = 5f;
         }
     }
 

@@ -11,12 +11,12 @@ public class StatUpgrade : MonoBehaviour
     public void APupgrade()
     {
         //TODO : 공격력 업그레이드 
+        this.gameObject.GetComponent<Player_Controll>().playerAttackDamage += 1;
     }
     [YarnCommand("HPUpgrade")]
     public void HPupgrade()
     {
-        Debug.Log("HP +1");
-        //TODO : HP업그레이드
+        this.gameObject.GetComponent<PlayerHP>().shieldpoint += 1;
     }
     [YarnCommand("SPUpgrade")]
     public void SPupgrade()

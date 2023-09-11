@@ -1,7 +1,7 @@
 title: Sally
 tags: 
 colorID: 0
-position: 524,111
+position: 521,46
 ---
 <<if visited("Sally") is false>>
     Player: Hey, Sally. #line:794945
@@ -14,7 +14,7 @@ position: 524,111
 <<endif>>
 
 
--> Anything exciting happen on your watch? <<if not visited("Sally_Watch")>> #line:5d7a7c
+-> aa <<if not visited("Sally_Watch")>> #line:5d7a7c
     <<jump Sally_Watch>>
 -> Sorry about the console. <<if $sally_warning and not visited("Sally_Sorry")>> #line:0a7e39
     <<jump Sally_Sorry>>
