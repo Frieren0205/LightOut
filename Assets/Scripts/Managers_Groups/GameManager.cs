@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using DG.Tweening.Core.Easing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,7 +13,7 @@ public class GameManager : MonoBehaviour
 
 
     public bool isPause;
-    public Player_Controll player;
+    private Player_Controll player;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,20 +44,6 @@ public class GameManager : MonoBehaviour
                 levelManager.level = LevelManager.Level.In_Tera;
                 break;
             }
-        }
-    }
-
-    [Yarn.Unity.YarnCommand("Pause")]
-    public void ToStopAllMovement()
-    {
-        switch(isPause)
-        {
-            case true :
-                isPause = false;
-                break;
-            case false : 
-                isPause = true;
-                break;
         }
     }
     public void NextSceneLoad()

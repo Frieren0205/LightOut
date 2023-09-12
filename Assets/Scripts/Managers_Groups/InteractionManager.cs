@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Yarn.Unity;
+using Unity.VisualScripting;
 
 public class InteractionManager : MonoBehaviour
 {
@@ -27,7 +28,10 @@ public class InteractionManager : MonoBehaviour
 
     public DialogueRunner runner;
 
+    public  LineView lineView => FindFirstObjectByType<LineView>();
+
     int count = 0;
+
     public void PopUpUI()
     {
         uIManager.DialogueEventUI.SetActive(true);

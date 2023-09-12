@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening.Core.Easing;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Yarn.Unity;
 
 public class Player_Controll : MonoBehaviour
 {
+    private GameManager gameManager;
     public LevelManager levelManager;
     public InteractionManager interactionManager;
     public PlayerHP playerHP;
@@ -62,6 +66,9 @@ public class Player_Controll : MonoBehaviour
     [SerializeField]
     bool CanAttack = true;
 
+    [SerializeField]
+    private bool isInteractionEnd;
+
     public int Movement()
     {
         if(MoveDirection.x > 0)
@@ -75,6 +82,12 @@ public class Player_Controll : MonoBehaviour
         else
             return 0;
     }
+    private void Awake() {
+        if(gameManager == null)
+        {
+            gameManager = FindFirstObjectByType<GameManager>().GetComponent<GameManager>();
+        }
+    }
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -82,6 +95,29 @@ public class Player_Controll : MonoBehaviour
         animator = this.gameObject.GetComponentInChildren<Animator>();
     }
 
+    [YarnCommand("EventBoolSet")]
+    private void isEventEnd(bool isEnd)
+    {
+        isInteractionEnd = isEnd;
+    }
+    private void Update() 
+    {
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            if(!isInteractionEnd)
+            {
+                StartCoroutine(eventendtime());
+            }
+            else
+                interactionManager.lineView.OnContinueClicked();
+        }
+    }
+    private IEnumerator eventendtime()
+    {
+        yield return new WaitForSeconds(3);
+        isInteractionEnd = true;
+
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -239,11 +275,12 @@ public class Player_Controll : MonoBehaviour
             {
                 // Debug.Log(interactionPoint.InteractionData);
                 //interactionManager.ChangeEventLog(interactionPoint.InteractionData);
+                CanInteraction = false;
+                gameManager.isPause = true;
                 interactionManager.PopUpUI();
             }
         }
     }
-
     // 컬라이더 관련 시작!!!
     private void OnCollisionEnter(Collision other) // 몬스터에게 가까이 붙어도 데미지 판정이 들어가도록
     {
