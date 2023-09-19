@@ -100,18 +100,6 @@ public class Player_Controll : MonoBehaviour
     {
         isInteractionEnd = isEnd;
     }
-    private void Update() 
-    {
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            if(!isInteractionEnd)
-            {
-                StartCoroutine(eventendtime());
-            }
-            else
-                interactionManager.lineView.OnContinueClicked();
-        }
-    }
     private IEnumerator eventendtime()
     {
         yield return new WaitForSeconds(3);

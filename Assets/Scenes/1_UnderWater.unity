@@ -124,6 +124,47 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &11374636 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2208386524344417754, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2010235115}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &11374639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11374636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 097b95c9f69f04f2d8c08a817e7786af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueView: {fileID: 558701725}
+  continueActionType: 3
+  continueActionKeyCode: 32
+  continueActionReference: {fileID: -3043456315958229113, guid: 05d4c081b6ff07548968cabdc8764e4f,
+    type: 3}
+  continueAction:
+    m_Name: Skip
+    m_Type: 1
+    m_ExpectedControlType: 
+    m_Id: e03ec750-6199-44f2-ac48-57e977ae2002
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 043bc191-2b29-48d7-8716-29fc537fd2c6
+      m_Path: Submit
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Skip
+      m_Flags: 0
+    m_Flags: 0
+  enableActionOnStart: 0
 --- !u!1001 &38858222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3922,6 +3963,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2208386524344417754, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 11374639}
     - targetCorrespondingSourceObject: {fileID: 1559220954671232318, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
         type: 3}
       insertIndex: -1
