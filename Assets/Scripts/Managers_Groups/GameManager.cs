@@ -13,13 +13,15 @@ public class GameManager : MonoBehaviour
 
 
     public bool isPause;
+    [SerializeField]
     private Player_Controll player;
     // Start is called before the first frame update
     void Start()
     {
         levelManager = this.gameObject.GetComponent<LevelManager>();
+        DataManager.Instance.LoadFromSaveData();
+        player.transform.position = DataManager.Instance.saveData.lastest_p_transform;
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -45,6 +47,14 @@ public class GameManager : MonoBehaviour
                 break;
             }
         }
+    }
+    /// <summary>
+    /// Callback sent to all game objects before the application is quit.
+    /// </summary>
+    void OnApplicationQuit()
+    {
+        DataManager.Instance.saveData.lastest_p_transform = player.transform.position;
+        DataManager.Instance.SavetoSaveData();
     }
     public void NextSceneLoad()
     {

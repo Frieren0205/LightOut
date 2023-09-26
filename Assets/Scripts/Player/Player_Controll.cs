@@ -82,12 +82,12 @@ public class Player_Controll : MonoBehaviour
         else
             return 0;
     }
-    private void Awake() {
-        if(gameManager == null)
-        {
-            gameManager = FindFirstObjectByType<GameManager>().GetComponent<GameManager>();
-        }
-    }
+    // private void Awake() {
+    //     if(gameManager == null)
+    //     {
+    //         gameManager = FindFirstObjectByType<GameManager>().GetComponent<GameManager>();
+    //     }
+    // }
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();

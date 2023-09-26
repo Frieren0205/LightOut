@@ -1,0 +1,26 @@
+﻿title: Prologue
+tags:
+---
+<<SpriteSwitch CutScene_IMG 1_1>>
+<<Fade_out CutScene_IMG 1>>
+<<wait 1>>
+프롤로그 텍스트 1
+<<Fade_in CutScene_IMG 1>>
+<<wait 1>>
+<<SpriteSwitch CutScene_IMG 1_2>>
+<<wait 1>>
+<<Fade_out CutScene_IMG 1>>
+프롤로그 텍스트 2
+<<Fade_in CutScene_IMG 1>>
+<<wait 1>>
+<<SpriteSwitch CutScene_IMG 1_3>>
+<<wait 1>>
+<<Fade_out CutScene_IMG 1>>
+프롤로그 텍스트 3
+<<Fade_in CutScene_IMG 1>>
+<<wait 1>>
+<<SpriteSwitch CutScene_IMG 1_4>>
+<<wait 1>>
+<<Fade_out CutScene_IMG 1>>
+프롤로그 텍스트 4
+===

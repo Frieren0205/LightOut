@@ -613,6 +613,7 @@ MonoBehaviour:
   interactionManager: {fileID: 8165705544254499160}
   uIManager: {fileID: 4900337010472970423}
   isPause: 0
+  player: {fileID: 0}
 --- !u!114 &7583881977499372832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1393,7 +1394,7 @@ GameObject:
   - component: {fileID: 5073216506294907250}
   - component: {fileID: 8238079259706023468}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: DialogueUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

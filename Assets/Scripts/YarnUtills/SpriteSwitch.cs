@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Yarn.Unity;
+using DG.Tweening;
 
 
 [RequireComponent (typeof (Image))]
@@ -35,5 +36,20 @@ public class SpriteSwitch : MonoBehaviour
         }
 
         GetComponent<Image>().sprite = s;
+    }
+    [YarnCommand("Fade_in")]
+    public void FadeinSprite(float time)
+    {
+        Image img = GetComponent<Image>();
+        Debug.Log(img);
+        img.DOFade(0, time);
+    }
+
+    [YarnCommand("Fade_out")]
+    public void FadeOutSprite(float time)
+    {
+        Image img = GetComponent<Image>();
+        Debug.Log(img);
+        img.DOFade(1, time);
     }
 }

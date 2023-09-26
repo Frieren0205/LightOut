@@ -9,8 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/0_Title.unity
     guid: 7b8f474d64c289b42afd641b7a4fcd76
   - enabled: 1
+    path: Assets/Scenes/0_Prologue.unity
+    guid: 7e60cc8ca96c8f24587de3b9003f7aa3
+  - enabled: 1
     path: Assets/Scenes/1_UnderWater.unity
     guid: 07c3d9e9e497e074ba0fc7d11bc3ec81
+  - enabled: 1
+    path: Assets/Scenes/2_Sub_Tera_SubWay.unity
+    guid: 53c83d604cf770948ba090bc52109f63
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 799a9a9e8b8273e40ba74268421ca986,
       type: 2}
