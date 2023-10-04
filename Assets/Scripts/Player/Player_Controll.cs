@@ -82,12 +82,12 @@ public class Player_Controll : MonoBehaviour
         else
             return 0;
     }
-    // private void Awake() {
-    //     if(gameManager == null)
-    //     {
-    //         gameManager = FindFirstObjectByType<GameManager>().GetComponent<GameManager>();
-    //     }
-    // }
+    private void Awake() {
+        if(gameManager == null)
+        {
+            gameManager = FindFirstObjectByType<GameManager>().GetComponent<GameManager>();
+        }
+    }
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -142,7 +142,6 @@ public class Player_Controll : MonoBehaviour
             OnCrawl(MoveDirection.y);
             OnJump(MoveDirection.y);
 
-
             if(timer <= 0)
             {
                 ComboCount = 0;
@@ -151,6 +150,10 @@ public class Player_Controll : MonoBehaviour
             else
                 timer -= Time.deltaTime;
         // }
+    }
+    public void OnPause()
+    {
+        gameManager.uIManager.OnPause();
     }
     public void OnFlip()
     {
@@ -261,11 +264,16 @@ public class Player_Controll : MonoBehaviour
         {
             if(interactionPoint.gameObject != null)
             {
-                // Debug.Log(interactionPoint.InteractionData);
-                //interactionManager.ChangeEventLog(interactionPoint.InteractionData);
                 CanInteraction = false;
                 gameManager.isPause = true;
-                interactionManager.PopUpUI();
+                if(interactionPoint.indexString != string.Empty && interactionPoint.interactiontype == InteractionPoint.Interactiontype.dialogue)
+                {
+                    interactionManager.PopUpUI();
+                }
+                else if(interactionPoint.interactiontype == InteractionPoint.Interactiontype.portal)
+                {
+                    Debug.Log("Used Portal method this time");
+                }
             }
         }
     }

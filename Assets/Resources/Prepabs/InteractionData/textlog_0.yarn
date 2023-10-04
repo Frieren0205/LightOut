@@ -1,12 +1,12 @@
 ﻿title: Log_0
 ---
-<<SpriteSwitch illust Player_normal>> <<EventBoolSet PlayerSample false>>
+<<SpriteSwitch illust Player_normal>> <<EventBoolSet Player false>>
     티케: 테스트 문장입니다. 테스트 문장은 어떻게 인식이 되는진 모르겠는데 아무튼 이정도로 줄 수 있습니다.
-    <<EnableSet DialogueEventBG>> <<EventBoolSet PlayerSample false>>
+    <<EnableSet DialogueEventBG>> <<EventBoolSet Player false>>
     티케: 상황에 따라선 연출을 위해 특정 이미지만 띄울 수 있습니다.
-    <<DisableSet DialogueEventBG>> <<EventBoolSet PlayerSample false>>
+    <<DisableSet DialogueEventBG>> <<EventBoolSet Player false>>
     티케: 이런식으로 다시 제거 또한 가능합니다.
-    <<EventBoolSet PlayerSample false>>
+    <<EventBoolSet Player false>>
     티케: 또한 선택지도 가능합니다.
 -> 공격력 업그레이드
     <<jump Player_ATKUP>>
@@ -18,15 +18,15 @@
 title: Player_ATKUP
 ---
     티케: 공격력 업그레이드 완료
-    <<SpriteSwitch illust Player_Anger>> <<ATKUpgrade PlayerSample>>
+    <<SpriteSwitch illust Player_Anger>> <<ATKUpgrade Player>>
 ===
 title: Player_SPUP
 ---
     티케: 이동속도 업그레이드 완료
-    <<SpriteSwitch illust Player_Sad>> <<SPUpgrade PlayerSample>>
+    <<SpriteSwitch illust Player_Sad>> <<SPUpgrade Player>>
 ===
 title: Player_HPUP
 ---
-    <<SpriteSwitch illust Player_Sad>> <<HPUpgrade PlayerSample>>
+    <<SpriteSwitch illust Player_Sad>> <<HPUpgrade Player>>
     티케: 체력 업그레이드 완료
 ===

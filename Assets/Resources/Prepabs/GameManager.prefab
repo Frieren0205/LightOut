@@ -573,6 +573,8 @@ GameObject:
   - component: {fileID: 7583881977499372832}
   - component: {fileID: 4900337010472970423}
   - component: {fileID: 8165705544254499160}
+  - component: {fileID: 6483695932787707801}
+  - component: {fileID: 9075486889442800010}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -663,6 +665,7 @@ MonoBehaviour:
   PauseWindow: {fileID: 4953793548478716603}
   DialogueEventUI: {fileID: 8982327301126554064}
   isPause: 0
+  cancallback: 1
 --- !u!114 &8165705544254499160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -681,9 +684,43 @@ MonoBehaviour:
   player: {fileID: 0}
   EventCharacterIMG: {fileID: 0}
   EventCharacterName: {fileID: 0}
-  SavedLog: 
-  EventLog: {fileID: 0}
   runner: {fileID: 964863544528109075}
+--- !u!114 &6483695932787707801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3643808445982999190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66f26c5329937e4e8d0bd0e003f9d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveData:
+    lastest_p_transform: {x: 0, y: 0, z: 0}
+    lastest_p_level: 1
+--- !u!114 &9075486889442800010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3643808445982999190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b79d96e1973aa643b75e48fc900e75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_Prepab: {fileID: 8731548563580095230, guid: 59ef4050b108e5f4b9763dee768a3723,
+    type: 3}
+  spawnpoints:
+  - level: 1
+    spawnpositionVec3: {x: -16.83, y: 0.717, z: -8.348}
+  - level: 2
+    spawnpositionVec3: {x: 0, y: 0, z: 0}
+  - level: 3
+    spawnpositionVec3: {x: 0, y: 0, z: 0}
 --- !u!1 &4608407336634254188
 GameObject:
   m_ObjectHideFlags: 0

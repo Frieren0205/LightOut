@@ -18,30 +18,34 @@ public class InteractionManager : MonoBehaviour
 
     public Image EventCharacterIMG;
     public TextMeshProUGUI EventCharacterName;
-    [SerializeField]
-    private string SavedLog;
+    // [SerializeField]
+    // private string SavedLog;
 
 
-    private string[] testlog;
-    private bool isPlaying = false;
-    public TextMeshProUGUI EventLog;
+    // private string[] testlog;
+    // // private bool isPlaying = false;
+    // public TextMeshProUGUI EventLog;
 
     public DialogueRunner runner;
 
     public  LineView lineView => FindFirstObjectByType<LineView>();
 
-    int count = 0;
+    // int count = 0;
 
     public void PopUpUI()
     {
-        uIManager.DialogueEventUI.SetActive(true);
-        DialogueEvent();
+        if(player.interactionPoint.indexString != string.Empty)
+        {
+            uIManager.DialogueEventUI.SetActive(true);
+            DialogueEvent();
+        }
     }
 
     private void DialogueEvent()
     {   
         gameManager.isPause = true;
         runner.StartDialogue(player.interactionPoint.indexString);
+        
     }
 
     // public void ChangeEventLog(InteractionObject Data)

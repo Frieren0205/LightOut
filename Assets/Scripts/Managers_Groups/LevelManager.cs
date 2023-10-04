@@ -6,6 +6,20 @@ using Cinemachine;
 
 public class LevelManager : MonoBehaviour
 {
+    static GameObject container;
+    static LevelManager _instance;
+    public  static LevelManager Instance
+    {
+        get
+        {
+            if(!_instance)
+            {
+                container = GameObject.FindFirstObjectByType<LevelManager>().gameObject;
+                _instance = container.GetComponent<LevelManager>();
+            }
+            return _instance;
+        }
+    }
     public enum Level
     {
         Title,
@@ -28,20 +42,12 @@ public class LevelManager : MonoBehaviour
     public LimitiedPositions[] limitiedPositions;
     public Vector3[] MinLimitiedPosition;
     public Vector3[] MaxLimitiedPosition;
+    private CinemachineVirtualCamera cinevirtualcam;
     private CinemachineConfiner confiner;
     public BoxCollider cameraLimitedAreas;
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-    }
-    private void Update() 
-    {
-        LevelSetting(level);
-    }
-    // Update is called once per frame
-    void LateUpdate()
-    {
-        CameraAreasUpdate();
     }
     public void LevelSetting(Level level)
     {
@@ -51,6 +57,11 @@ public class LevelManager : MonoBehaviour
             player.minLimit = limitiedPositions[0].minPosition;
             player.maxLimit = limitiedPositions[0].maxPosition;
         }
+    }
+    public void CameraTrackingUpdate()
+    {
+        cinevirtualcam = FindFirstObjectByType<CinemachineVirtualCamera>();
+        cinevirtualcam.Follow = player.GetComponentInChildren<Transform>().Find("Followed_This").transform;
     }
     public void CameraAreasUpdate()
     {

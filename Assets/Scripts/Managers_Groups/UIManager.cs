@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    static UIManager _instance;
+    public static UIManager Instance
+    {
+        get
+        {
+            if(!_instance)
+            {
+                GameObject container = GameObject.FindFirstObjectByType<UIManager>().gameObject;
+                _instance = container.GetComponent<UIManager>();
+            }
+            return _instance;
+        }
+    }
     [SerializeField]
     private GameObject PauseWindow;
 
@@ -12,42 +25,38 @@ public class UIManager : MonoBehaviour
     // [SerializeField]
     // private GameObject UIClone;
     
+    public bool isPause;
     [SerializeField]
-    private bool isPause;
-    // Start is called before the first frame update
-    void Start()
-    {
-        // PauseWindow = Resources.Load<GameObject>("Prepabs/UI/Pause_Window");
-    }
+    private bool cancallback = true;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void OnPause()
     {
-        if(isPause == false)
+        if(!isPause && cancallback)
         {
             PauseWindow.SetActive(true);
-            Debug.Log("정지 실행");
+            cancallback = false;
+            StartCoroutine(callbacktime());
             Time.timeScale = 0;
             isPause = true;
+            GameManager.Instance.isPause = true;
         }
-    }
-    public void ExitPause()
-    {
-        if(isPause == true)
+        if(isPause && cancallback)
         {
-            Debug.Log("정지 종료");
-            Time.timeScale = 1;
-            // Destroy(UIClone);
-            isPause = false;
             PauseWindow.SetActive(false);
+            cancallback = false;
+            StartCoroutine(callbacktime());
+            Time.timeScale = 1;
+            isPause = false;
+            GameManager.Instance.isPause = false;
         }
     }
-    public void OnSetting()
+    private IEnumerator callbacktime()
     {
-    
+        yield return new WaitForSecondsRealtime(0.15f);
+        cancallback = true;
+    }
+    public void OnFadeStart()
+    {
+        
     }
 }
