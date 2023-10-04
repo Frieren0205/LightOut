@@ -272,7 +272,8 @@ public class Player_Controll : MonoBehaviour
                 }
                 else if(interactionPoint.interactiontype == InteractionPoint.Interactiontype.portal)
                 {
-                    Debug.Log("Used Portal method this time");
+                    // Debug.Log("Used Portal method this time");
+                    GameManager.Instance.NextSceneLoad();
                 }
             }
         }

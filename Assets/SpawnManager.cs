@@ -33,13 +33,6 @@ public class SpawnManager : MonoBehaviour
     [Header("스폰포인트 리스트")]
     [SerializeField]
     public Spawnpoint[] spawnpoints;
-
-    public void SetPlayerSpawn(Spawnpoint spawnpoint)
-    {
-        var playerobject = Instantiate(player_Prepab,spawnpoint.spawnpositionVec3, Quaternion.identity);
-        playerobject.gameObject.name = "Player";
-        DontDestroyOnLoad(playerobject);
-    }
     public Player_Controll SpawnPlayer(Spawnpoint spawnpoint)
     {
         var playerobject = Instantiate(player_Prepab,spawnpoint.spawnpositionVec3, Quaternion.identity);
