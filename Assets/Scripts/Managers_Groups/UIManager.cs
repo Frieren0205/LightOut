@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.DemiLib;
+using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
@@ -21,6 +24,8 @@ public class UIManager : MonoBehaviour
     private GameObject PauseWindow;
 
     public GameObject DialogueEventUI;
+    public Image fadeimg;
+    
 
     // [SerializeField]
     // private GameObject UIClone;
@@ -54,9 +59,5 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(0.15f);
         cancallback = true;
-    }
-    public void OnFadeStart()
-    {
-        
     }
 }

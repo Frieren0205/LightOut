@@ -41,7 +41,6 @@ public class SpriteSwitch : MonoBehaviour
     public void FadeinSprite(float time)
     {
         Image img = GetComponent<Image>();
-        Debug.Log(img);
         img.DOFade(0, time);
     }
 
@@ -49,7 +48,6 @@ public class SpriteSwitch : MonoBehaviour
     public void FadeOutSprite(float time)
     {
         Image img = GetComponent<Image>();
-        Debug.Log(img);
         img.DOFade(1, time);
     }
 }

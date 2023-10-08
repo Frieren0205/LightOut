@@ -8,6 +8,7 @@ using Yarn.Unity;
 
 public class Player_Controll : MonoBehaviour
 {
+    [SerializeField]
     private GameManager gameManager;
     public LevelManager levelManager;
     public InteractionManager interactionManager;
