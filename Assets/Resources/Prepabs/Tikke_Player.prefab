@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1335765093068834452}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 0.22, y: 0.22, z: 0.22}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6595877803991912906}
@@ -73,8 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2bd6c1d6c2c288e45b12f716aa3d20ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -195,7 +194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7920745703607174318}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.89, z: -0.75}
+  m_LocalPosition: {x: 0, y: 0.666, z: -1.462}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -213,9 +212,9 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.41312838, g: 0.6037736, b: 0.40726238, a: 1}
-  m_Intensity: 1
-  m_Range: 2.654327
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 4
+  m_Range: 1.89
   m_SpotAngle: 110.635315
   m_InnerSpotAngle: 58.885616
   m_CookieSize: 10
@@ -385,7 +384,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 747b0ecd5dea2dc4b9d2b2f8f02a1b93, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -601,10 +600,12 @@ MonoBehaviour:
   spriteObject: {fileID: 7991882071821812985}
   JumpPower: 5
   rb: {fileID: 6429005941708711513}
+  MoveDirection: {x: 0, y: 0, z: 0}
   MoveSpeed: 5
   minLimit: 0
   maxLimit: 0
   debugtest: 0
+  isPlayerDead: 0
   isGrounded: 1
   raydistance: 0.2
   playerAttackDamage: 1

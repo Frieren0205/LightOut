@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 using Yarn.Unity;
 
 public class Player_Controll : MonoBehaviour
@@ -17,6 +18,7 @@ public class Player_Controll : MonoBehaviour
     private CapsuleCollider body;
     public float JumpPower;
     public Rigidbody rb;
+    [SerializeField]
     private Vector3 MoveDirection;
     
     [Range(5, 6.25f)]
@@ -30,7 +32,10 @@ public class Player_Controll : MonoBehaviour
 
     [Header("개발용 맵 이동가능 거리 제한없게 하기")]
     public bool debugtest;
+    [SerializeField]
     private bool isPlayerDead;
+    bool isaleadycheck = false;
+
     [SerializeField]
     private bool isGrounded;
     [Range(0,1)]
@@ -103,8 +108,12 @@ public class Player_Controll : MonoBehaviour
     void FixedUpdate()
     {
         isPlayerDead = playerHP.HP_Point <= 0;
-        if(isPlayerDead) StartCoroutine(OnPlayerDead());
-        if(!interactionManager.gameManager.isPause)
+        if(isPlayerDead && !isaleadycheck)
+        {
+            isaleadycheck = true;
+            StartCoroutine(OnPlayerDead());
+        }
+        else if(!interactionManager.gameManager.isPause && !isPlayerDead)
         {
             bool hascontrol = (MoveDirection != Vector3.zero);
             if(hascontrol && !isHit && CanAttack)
@@ -324,17 +333,26 @@ public class Player_Controll : MonoBehaviour
     }
     IEnumerator OnPlayerDead()
     {
-        yield return new WaitForEndOfFrame();
-        animator.SetBool("isDead", true);
-        yield return new WaitForSecondsRealtime(2.5f);
+        animator.SetTrigger("isDead");
+        yield return new WaitForSeconds(1);
         //TODO : 게임오버 UI 팝업
     }
     private void WarpDamage()
     {
         playerHP.HP_Point -= 1;
-        rb.AddForce(Vector3.up * 15f, ForceMode.Impulse);
-        if(isflip)  rb.AddForce(Vector3.left * 7.5f, ForceMode.Impulse);
-        else if(!isflip) rb.AddForce(Vector3.right * 7.5f, ForceMode.Impulse);
+        // rb.AddForce(Vector3.up * 17f, ForceMode.Impulse);
+        // if(isflip)  rb.AddForce(Vector3.left * 7.5f, ForceMode.Impulse);
+        // else if(!isflip) rb.AddForce(Vector3.right * 7.5f, ForceMode.Impulse);
+
+        float Angle = 15;
+        Quaternion Rotation = Quaternion.Euler(0,0,Angle);
+        if(isflip)
+            rb.AddForce(Rotation * Vector3.up * 20f, ForceMode.Impulse);
+        else if(!isflip) 
+        {
+            Rotation = Quaternion.Euler(0,0,-Angle);
+            rb.AddForce(Rotation * Vector3.up * 20f, ForceMode.Impulse);
+        }
         StartCoroutine(OnHit());
         StartCoroutine(Hitable());
     }

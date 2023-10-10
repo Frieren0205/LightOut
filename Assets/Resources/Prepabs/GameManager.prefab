@@ -230,6 +230,7 @@ RectTransform:
   m_Children:
   - {fileID: 7645049514079356614}
   - {fileID: 4914475878124598048}
+  - {fileID: 5436342398556370688}
   - {fileID: 3067917124070807891}
   - {fileID: 4639247593749253495}
   - {fileID: 3956202182116578052}
@@ -481,7 +482,19 @@ MonoBehaviour:
       m_Calls: []
   onDialogueComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1527312209205329152}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: PauseStateReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onCommand:
     m_PersistentCalls:
       m_Calls: []
@@ -653,7 +666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionManager: {fileID: 8165705544254499160}
   uIManager: {fileID: 4900337010472970423}
-  isPause: 0
+  isPause: 1
   player: {fileID: 0}
 --- !u!114 &7583881977499372832
 MonoBehaviour:
@@ -761,6 +774,119 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f5e8fe1cecacca44b6acfb9ac09141d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &3792342782093461720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5436342398556370688}
+  - component: {fileID: 7153135053106477468}
+  - component: {fileID: 6292794509102315269}
+  - component: {fileID: 957900704181518394}
+  - component: {fileID: 3062701815046327611}
+  m_Layer: 5
+  m_Name: other_illust
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &5436342398556370688
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3792342782093461720}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 4436243354370697001}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -441.5, y: 514.5}
+  m_SizeDelta: {x: 883, y: 1029}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7153135053106477468
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3792342782093461720}
+  m_CullTransparentMesh: 1
+--- !u!114 &6292794509102315269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3792342782093461720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &957900704181518394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3792342782093461720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b900605a40be6f047ac74f4b62441ac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - spritename: Player_normal
+    sprite: {fileID: 21300000, guid: 9d5dd555632c9d44da56cb431e1fbff2, type: 3}
+  - spritename: Player_Anger
+    sprite: {fileID: 21300000, guid: 8e72ad7bb3391d24dab03769bec90a5b, type: 3}
+  - spritename: Player_Sad
+    sprite: {fileID: 21300000, guid: 29aa5373ad7b12f4eaa1225ad105ebe0, type: 3}
+  - spritename: None
+    sprite: {fileID: 21300000, guid: cca286bc9e1019647bbfd83ab906718b, type: 3}
+  - spritename: None
+    sprite: {fileID: 0}
+--- !u!114 &3062701815046327611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3792342782093461720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb13ed106aa3e54fac749983649dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4608407336634254188

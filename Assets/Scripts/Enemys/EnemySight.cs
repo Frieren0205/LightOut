@@ -29,7 +29,7 @@ public class EnemySight : MonoBehaviour
 
     private Vector3 BoundaryAngle(float _angle)
     {
-        _angle += transform.eulerAngles.y;
+        _angle += transform.eulerAngles.y +90;
         return new Vector3(Mathf.Sin(_angle * Mathf.Deg2Rad), 0f, Mathf.Cos(_angle * Mathf.Deg2Rad));
     }
 

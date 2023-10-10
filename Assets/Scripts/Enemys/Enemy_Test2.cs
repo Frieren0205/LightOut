@@ -13,6 +13,8 @@ public class Enemy_Test2 : MonoBehaviour
         Attak,
         Emergency
     }
+
+    bool isattakable = true;
     // 적 스크립트 구조 관련
     private EnemySight sight; // 시야 스크립트
     
@@ -46,12 +48,12 @@ public class Enemy_Test2 : MonoBehaviour
     void OnEnable()
     {
         path = new NavMeshPath();
-        animator = this.GetComponent<Animator>();
+        animator = this.GetComponentInChildren<Animator>();
         sight = this.gameObject.GetComponentInChildren<EnemySight>();
         target_Transform = FindObjectOfType<Player_Controll>().transform;
         state = State.idle;
 
-        FindGenerator();
+       // FindGenerator();
     }
 
     public void FindGenerator()
@@ -189,6 +191,18 @@ public class Enemy_Test2 : MonoBehaviour
     public void OnAttack()
     {
         MovementSpeed = 0;
+        animator.SetBool("Move", false);
+        if(isattakable)
+        {
+            StartCoroutine(AttackRoutine());
+        }
+    }
+    IEnumerator AttackRoutine()
+    {
+        isattakable = false;
+        animator.SetTrigger("isAttack");
+        yield return new WaitForSeconds(3.5f);
+        isattakable = true;
     }
     public void OnMoveStop()
     {

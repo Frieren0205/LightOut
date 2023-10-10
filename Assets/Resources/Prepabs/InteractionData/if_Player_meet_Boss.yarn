@@ -1,0 +1,13 @@
+﻿title: if_Player_meet_Boss
+tags:
+---
+<<SpriteSwitch illust Player_normal>> 
+    티케 : 드디어 여기까지 왔어... 사진이 조금 마음에 걸리긴 하지만.<br>이제 저것만 파괴하면...
+    : (다른 쪽 문이 열린다)
+    티케 : 뭐야, 누구지?!
+    티케 : 순순히 물러서면 죽이지는 않을..
+    티케 : ...!
+<<EnableSet other_illust>> <<SpriteSwitch other_illust Tikke_Boss_normal>>
+    소장 : 안녕.
+    티케 : ...
+===

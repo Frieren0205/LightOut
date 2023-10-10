@@ -12,6 +12,7 @@ ScriptedImporter:
   - {fileID: 6391573757903218779, guid: e710cce93f4b0424e80cdc189a0e7698, type: 3}
   - {fileID: 6391573757903218779, guid: 3a87280cac9a7df4b9888bc215e6922d, type: 3}
   - {fileID: 6391573757903218779, guid: f3b5767fa59abfd44b10a1ad9087a3f0, type: 3}
+  - {fileID: 6391573757903218779, guid: 0c92ed7dce42ccc43b7a02c45c29a59d, type: 3}
   compileErrors: []
   serializedDeclarations: []
   defaultLanguage: ko-KR

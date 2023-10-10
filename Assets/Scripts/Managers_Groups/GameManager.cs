@@ -34,9 +34,16 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         levelManager = this.gameObject.GetComponent<LevelManager>();
         DataManager.Instance.LoadFromSaveData();
+        PauseStateReset();
         OnSwitchLevel();
         SceneManager.sceneLoaded += OnSceneLoaded;
         if(player != null) player.transform.position = DataManager.Instance.saveData.lastest_p_transform;
+    }
+
+    public void PauseStateReset()
+    {
+        isPause = false;
+        UIManager.Instance.isPause = false;
     }
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)

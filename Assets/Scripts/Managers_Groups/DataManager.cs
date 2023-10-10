@@ -11,9 +11,8 @@ public class DataManager : MonoBehaviour
         {
             if(!_instance)
             {
-                container = new GameObject();
-                container.name = "DataManager";
-                _instance = container.AddComponent(typeof(DataManager)) as DataManager;
+                container = GameObject.FindFirstObjectByType<DataManager>().gameObject;
+                _instance = container.GetComponent<DataManager>();
                 DontDestroyOnLoad(container);
             }
             return _instance;

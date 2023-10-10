@@ -4,7 +4,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Yarn.Unity;
-using Unity.VisualScripting;
 
 public class InteractionManager : MonoBehaviour
 {
@@ -18,13 +17,6 @@ public class InteractionManager : MonoBehaviour
 
     public Image EventCharacterIMG;
     public TextMeshProUGUI EventCharacterName;
-    // [SerializeField]
-    // private string SavedLog;
-
-
-    // private string[] testlog;
-    // // private bool isPlaying = false;
-    // public TextMeshProUGUI EventLog;
 
     public DialogueRunner runner;
 
@@ -47,36 +39,4 @@ public class InteractionManager : MonoBehaviour
         runner.StartDialogue(player.interactionPoint.indexString);
         
     }
-
-    // public void ChangeEventLog(InteractionObject Data)
-    // {
-    //     PopUpUI();
-    //     interactionData = Data;
-    //     EventCharacterIMG.sprite = Data.EventCharacterIllust[0];
-    //     EventCharacterName.text = Data.TextEventName[0];
-    //     testlog = Data.TextEventLog;
-    //     if(isPlaying == false) 
-    //     {
-    //         count = 0;
-    //         StartCoroutine(DialogueEvent());
-    //     }
-    // }
-    // IEnumerator DialogueEvent()
-    // {
-    //     EventLog.text = null;
-    //     isPlaying = true;
-    //     while(count < testlog.Length)
-    //     {
-    //         SavedLog = testlog[count];
-    //         for(int i = 0; i < SavedLog.Length; i++)
-    //         {
-    //             EventLog.text = SavedLog.Substring(0, i+1);
-    //             yield return new WaitForSecondsRealtime(0.2f);
-    //             if(EventLog.text.Length >= SavedLog.Length)
-    //             {
-    //                 count++;
-    //             }
-    //         }
-    //     }
-    // }
 }

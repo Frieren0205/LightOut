@@ -14,6 +14,14 @@ public class PlayerHP : MonoBehaviour
     public Volume volume;
     public VolumeProfile isNormalVolume;
     public VolumeProfile isDangerousVolume;
+
+
+    // public int HP
+    // {
+    //     get{return this.HP_Point;}
+    //     set{this.HP = value;}
+    // }
+
     void Update()
     {
         OnValueChanged();
