@@ -25,13 +25,16 @@ public class SpriteSwitch : MonoBehaviour
         {
             if(info.spritename == spriteName)
             {
+                //GetComponent<Image>().color = new Color(1,1,1,1);
                 s = info.sprite;
                 break;
             }
         }
         if(s == null)
         {
-            Debug.LogErrorFormat("스프라이트를 찾을 수 없습니다 {0}", spriteName);
+            Debug.LogErrorFormat("스프라이트를 찾을 수 없거나, 비어있습니다. 의도하신건가요? {0}", spriteName);
+            GetComponent<Image>().sprite = null;
+            GetComponent<Image>().color = new Color(1,1,1,0);
             return;
         }
 

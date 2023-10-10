@@ -605,6 +605,7 @@ MonoBehaviour:
   minLimit: 0
   maxLimit: 0
   debugtest: 0
+  isGrounded: 1
   raydistance: 0.2
   playerAttackDamage: 1
   ComboCount: 0

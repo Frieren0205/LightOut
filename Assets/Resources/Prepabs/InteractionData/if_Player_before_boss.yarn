@@ -1,0 +1,12 @@
+﻿title: if_Player_before_boss
+tags:
+---
+<<EnableSet CutScenefront>> <<SpriteSwitch CutScenefront 3_2>>
+    티케 :
+<<DisableSet CutScenefront>>
+    티케 : 뭔가 이상하다. 사진에 붙어있는 사람의 얼굴이 나와 너무도 똑같아.
+    티케 : 이게 대체 무슨 일이지?
+    티케 : 마치 내가 발전기 주변에, 이곳에 올 걸 알고 있었던 것처럼 보이지 않나...?
+    <<EventBoolSet Player false>>
+
+===

@@ -135,7 +135,7 @@
                     "name": "",
                     "id": "c4668c0c-a13e-42dc-956e-893127fd96a3",
                     "path": "<Keyboard>/f",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "PC",
                     "action": "Interaction",

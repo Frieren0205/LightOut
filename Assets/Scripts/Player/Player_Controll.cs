@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening.Core.Easing;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Yarn.Unity;
@@ -34,6 +31,7 @@ public class Player_Controll : MonoBehaviour
     [Header("개발용 맵 이동가능 거리 제한없게 하기")]
     public bool debugtest;
     private bool isPlayerDead;
+    [SerializeField]
     private bool isGrounded;
     [Range(0,1)]
     public float raydistance; 
@@ -99,21 +97,15 @@ public class Player_Controll : MonoBehaviour
     [YarnCommand("EventBoolSet")]
     private void isEventEnd(bool isEnd)
     {
-        isInteractionEnd = isEnd;
-    }
-    private IEnumerator eventendtime()
-    {
-        yield return new WaitForSeconds(3);
-        isInteractionEnd = true;
-
+        GameManager.Instance.isPause = isEnd;
     }
     // Update is called once per frame
     void FixedUpdate()
     {
         isPlayerDead = playerHP.HP_Point <= 0;
         if(isPlayerDead) StartCoroutine(OnPlayerDead());
-        // if(!interactionManager.gameManager.isPause)
-        // {
+        if(!interactionManager.gameManager.isPause)
+        {
             bool hascontrol = (MoveDirection != Vector3.zero);
             if(hascontrol && !isHit && CanAttack)
             {
@@ -150,7 +142,7 @@ public class Player_Controll : MonoBehaviour
             }
             else
                 timer -= Time.deltaTime;
-        // }
+        }
     }
     public void OnPause()
     {
