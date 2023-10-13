@@ -113,7 +113,7 @@ public class Player_Controll : MonoBehaviour
             isaleadycheck = true;
             StartCoroutine(OnPlayerDead());
         }
-        else if(!interactionManager.gameManager.isPause && !isPlayerDead)
+        if(!interactionManager.gameManager.isPause && !isPlayerDead)
         {
             bool hascontrol = (MoveDirection != Vector3.zero);
             if(hascontrol && !isHit && CanAttack)
@@ -309,14 +309,7 @@ public class Player_Controll : MonoBehaviour
     {
         if(other.collider.GetComponent<Enemy_Test2>() && !isHit && CanHit)
         {
-            playerHP.HP_Point -= 1;
-            if(isflip)
-            {
-                rb.AddForce(Vector3.left * 5, ForceMode.Impulse);
-            }
-            else
-                rb.AddForce(Vector3.right * 5, ForceMode.Impulse);
-            rb.AddForce(Vector3.up * 7.5f, ForceMode.Impulse);
+            CalculateHit();
         }
     }
     // 컬라이더 관련 끝

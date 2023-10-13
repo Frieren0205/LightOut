@@ -666,7 +666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionManager: {fileID: 8165705544254499160}
   uIManager: {fileID: 4900337010472970423}
-  isPause: 1
+  isPause: 0
   player: {fileID: 0}
 --- !u!114 &7583881977499372832
 MonoBehaviour:
@@ -707,7 +707,7 @@ MonoBehaviour:
   PauseWindow: {fileID: 4953793548478716603}
   DialogueEventUI: {fileID: 8982327301126554064}
   fadeimg: {fileID: 6860045356611502025}
-  isPause: 1
+  isPause: 0
   cancallback: 0
 --- !u!114 &8165705544254499160
 MonoBehaviour:

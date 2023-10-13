@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,15 +10,31 @@ public class Enemy_Test2 : MonoBehaviour
     public enum State // 적 개체 상태머신
     {
         idle,
+        hit,
         Chase,
         Attak,
         Emergency
     }
-
+    [Range(0,5)]
+    public int EnemyHP;
     bool isattakable = true;
+    bool ishitable = true;
+    bool isfilp;
+
+    private Rigidbody Rb
+    {
+        get 
+        {
+            return this.gameObject.GetComponent<Rigidbody>();
+        }
+        set
+        {
+            Rb = Rb;
+        }
+    }
+
     // 적 스크립트 구조 관련
     private EnemySight sight; // 시야 스크립트
-    
     [SerializeField]
     // 발전기 지키기 메소드 연결
     private Generator generator;
@@ -28,8 +45,6 @@ public class Enemy_Test2 : MonoBehaviour
     public Animator animator; // 적 스프라이트 애니메이터
     public GameObject SpriteObject; // 분리한 스프라이트 오브젝트
     public State state; // 상태머신 변수화
-    private Rigidbody rb; // 리지드바디
-
     // 움직임 및 추적 관련
     public float MovementSpeed = 2.5f;
     private float PathRefreshTime = 0.0f;
@@ -39,20 +54,23 @@ public class Enemy_Test2 : MonoBehaviour
     private int currentWayPointIndex = 0;
     public NavMeshPath path;
     public Transform target_Transform;
+    [SerializeField]
+    private GameObject playersprite;
+    private Vector3 Attackpoint;
     public Vector3[] WayPoints;
 
     // 공격 관련
-
+    [SerializeField]
     private float AttackDistance = 1.5f;
 
-    void OnEnable()
+    void Start()
     {
         path = new NavMeshPath();
         animator = this.GetComponentInChildren<Animator>();
         sight = this.gameObject.GetComponentInChildren<EnemySight>();
         target_Transform = FindObjectOfType<Player_Controll>().transform;
+        playersprite =  target_Transform.GetComponentInChildren<Animator>().gameObject;
         state = State.idle;
-
        // FindGenerator();
     }
 
@@ -84,34 +102,28 @@ public class Enemy_Test2 : MonoBehaviour
 
     void FixedUpdate()
     {
-       if(state == State.idle)
-       {
+        if(EnemyHP <= 0)
+        {
+            
+        }
+        if(state == State.idle)
+        {
             OnMoveStop();
-       }
-       if(state == State.Chase)
-       {
+        }
+        if(state == State.Chase)
+        {
             MovementSpeed = 2.5f;
-       }
-       if(generator != null && generator.isEmergency == true)
-       {
-            //TODO : AI 강화 메소드
-            OnEmergency();
-       }
+        }
+    //    if(generator != null && generator.isEmergency == true)
+    //    {
+    //         //TODO : AI 강화 메소드
+    //         OnEmergency();
+    //    }
     }
     public void UpdateFollwingPath()
     {
         this.UpdateFollwingPath_Navigate();
     }
-    private void UpdateSight()
-    {
-        this.UpdateSight_FindPlayer();
-    }
-
-    private void UpdateSight_FindPlayer()
-    {
-        throw new NotImplementedException();
-    }
-
     bool IsWayPointArrived(Vector3 currentWayPoint)
     {
         return Vector3.Distance(transform.position, currentWayPoint) <= WayPointsArrivalDistance;
@@ -125,7 +137,16 @@ public class Enemy_Test2 : MonoBehaviour
             // 주기 리셋
             PathRefreshTime = 0.0f;
             // 경로 재계산
-            NavMesh.CalculatePath(transform.position, target_Transform.position, NavMesh.AllAreas, path);
+            bool playerisflip = playersprite.transform.localScale == new Vector3(-1,1,1);
+            Debug.Log(playerisflip);
+            // 공격 위치는 플레이어 위치보다 앞뒤로 +2
+            if(playerisflip)
+            {
+                Attackpoint = new Vector3(target_Transform.position.x-2,target_Transform.position.y,target_Transform.position.z);
+            }
+            else
+                Attackpoint = new Vector3(target_Transform.position.x+2,target_Transform.position.y,target_Transform.position.z);
+            NavMesh.CalculatePath(transform.position, Attackpoint, NavMesh.AllAreas, path);
 
             // 각 코너까지의 라인을 디버깅하여 그림
             for(int i = 0; i < path.corners.Length -1; i++)
@@ -158,6 +179,7 @@ public class Enemy_Test2 : MonoBehaviour
                     if(currentWayPointIndex >= path.corners.Length)
                     {
                         //TODO 도착확인
+                        currentWayPointIndex = 0;
                     }
                     else
                         currentWayPoint = WayPoints[currentWayPointIndex];
@@ -172,7 +194,7 @@ public class Enemy_Test2 : MonoBehaviour
         if(state == State.Chase)
         {
             animator.SetBool("Move",true);
-            bool isfilp = 0 <= (target_Transform.position.x - this.transform.position.x);
+            isfilp = 0 <= (target_Transform.position.x - this.transform.position.x);
             if(isfilp)
             {
                 SpriteObject.transform.localScale = new Vector3(1,1,1);
@@ -180,14 +202,13 @@ public class Enemy_Test2 : MonoBehaviour
             else
                 SpriteObject.transform.localScale = new Vector3(-1,1,1);
             transform.position = Vector3.MoveTowards(transform.position, WayPoints[currentWayPointIndex], MovementSpeed * Time.deltaTime);
-            if(Vector3.Distance(transform.position, target_Transform.position) <= AttackDistance)
+            if(Math.Round(Vector3.Distance(transform.position, Attackpoint),2) <= AttackDistance)
             {
                 state = State.Attak;
                 OnAttack();
             }
         }
     }
-
     public void OnAttack()
     {
         MovementSpeed = 0;
@@ -209,21 +230,45 @@ public class Enemy_Test2 : MonoBehaviour
         state = State.idle;
         animator.SetBool("Move", false);
     }
-
-    public void OnEmergency()
+    private void OnTriggerEnter(Collider other) 
     {
-        // 이동속도 2배, 그 외 무언가
-        state = State.Emergency;
-        MovementSpeed = 5;
-
-        if(!generator.gameObject.activeInHierarchy)
+        if(other.gameObject.name == "Attack_Col" && ishitable)
         {
-            StartCoroutine(OnGeneratorDestory());
+            StartCoroutine(hitroutine());
         }
     }
-    IEnumerator OnGeneratorDestory()
+    private IEnumerator hitroutine()
     {
-        yield return new WaitForSeconds(1.5f);
-        this.gameObject.SetActive(false);
+        state = State.hit;
+        ishitable = false;
+        EnemyHP -= 1;
+        animator.SetTrigger("isHit");
+        if(isfilp)
+        {
+            Rb.AddForce(Vector3.right * 5,ForceMode.Impulse);
+        }
+        else
+        {
+            Rb.AddForce(Vector3.left * 5, ForceMode.Impulse);
+        }
+        Rb.AddForce(Vector3.up * 5, ForceMode.Impulse);
+        yield return new WaitForSeconds(0.25f);
+        ishitable = true;
     }
+    // public void OnEmergency()
+    // {
+    //     // 이동속도 2배, 그 외 무언가
+    //     state = State.Emergency;
+    //     MovementSpeed = 5;
+
+    //     if(!generator.gameObject.activeInHierarchy)
+    //     {
+    //         StartCoroutine(OnGeneratorDestory());
+    //     }
+    // // }
+    // IEnumerator OnGeneratorDestory()
+    // {
+    //     yield return new WaitForSeconds(1.5f);
+    //     this.gameObject.SetActive(false);
+    // }
 }
