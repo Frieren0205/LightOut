@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -100,7 +99,7 @@ public class Enemy_Test2 : MonoBehaviour
     }
 
 
-    void FixedUpdate()
+    void Update()
     {
         if(EnemyHP <= 0)
         {
@@ -245,11 +244,11 @@ public class Enemy_Test2 : MonoBehaviour
         animator.SetTrigger("isHit");
         if(isfilp)
         {
-            Rb.AddForce(Vector3.right * 5,ForceMode.Impulse);
+            Rb.AddForce(Vector3.left * 5,ForceMode.Impulse);
         }
         else
         {
-            Rb.AddForce(Vector3.left * 5, ForceMode.Impulse);
+            Rb.AddForce(Vector3.right * 5, ForceMode.Impulse);
         }
         Rb.AddForce(Vector3.up * 5, ForceMode.Impulse);
         yield return new WaitForSeconds(0.25f);

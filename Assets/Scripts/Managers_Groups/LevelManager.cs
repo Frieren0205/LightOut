@@ -54,6 +54,11 @@ public class LevelManager : MonoBehaviour
             player.minLimit = limitiedPositions[0].minPosition;
             player.maxLimit = limitiedPositions[0].maxPosition;
         }
+        if(level == Level.Sub_Tera)
+        {
+            player.minLimit = limitiedPositions[1].minPosition;
+            player.maxLimit = limitiedPositions[1].maxPosition;
+        }
     }
     public void CameraTrackingUpdate()
     {

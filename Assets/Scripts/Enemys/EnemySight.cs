@@ -4,12 +4,24 @@ using UnityEngine;
 
 public class EnemySight : MonoBehaviour 
 {
+    static EnemySight _instance;
+    public static EnemySight Instance
+    {
+        get{
+            if(_instance)
+            {
+                GameObject container = FindFirstObjectByType<EnemySight>().gameObject;
+                _instance = container.GetComponent<EnemySight>();
+            }
+            return _instance;
+        }
+    }
     //TODO AI의 "시야"만 구현
 
     [SerializeField]
     [Range(0f, 360f)]private float viewAngle; //시야의 각도
     [SerializeField]
-    private float viewDistance; // 시야 거리
+    public float viewDistance; // 시야 거리
     [SerializeField]
     private LayerMask targetMask; // 타겟의 레이어 마스크(플레이어)
 
@@ -22,7 +34,7 @@ public class EnemySight : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         View();
     }

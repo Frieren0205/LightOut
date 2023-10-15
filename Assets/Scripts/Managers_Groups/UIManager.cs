@@ -1,8 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.DemiLib;
 using DG.Tweening;
 
 public class UIManager : MonoBehaviour
@@ -33,7 +33,6 @@ public class UIManager : MonoBehaviour
     public bool isPause;
     [SerializeField]
     private bool cancallback = true;
-
     public void OnPause()
     {
         if(!isPause && cancallback)
@@ -59,5 +58,20 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(0.15f);
         cancallback = true;
+    }
+
+    public IEnumerator castfadeout()
+    {
+        fadeimg.gameObject.SetActive(true);
+        fadeimg.DOFade(1, 1);
+        yield return new WaitForSeconds(1.1f);
+        fadeimg.gameObject.SetActive(false);
+    }
+    public IEnumerator castfadein()
+    {
+        fadeimg.gameObject.SetActive(true);
+        fadeimg.DOFade(0,1);
+        yield return new WaitForSeconds(1);
+        fadeimg.gameObject.SetActive(false);
     }
 }

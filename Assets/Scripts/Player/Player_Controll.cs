@@ -123,11 +123,11 @@ public class Player_Controll : MonoBehaviour
                 {
                 if(transform.position.z > minLimit)
                 {
-                    transform.position = new Vector3(transform.position.x, 0, minLimit);
+                    transform.position = new Vector3(transform.position.x, transform.position.y, minLimit);
                 }
                 if(transform.position.z < maxLimit)
                 {
-                    transform.position = new Vector3(transform.position.x, 0, maxLimit);
+                    transform.position = new Vector3(transform.position.x, transform.position.y, maxLimit);
                 }
                 }
 

@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
-    private LevelManager levelManager;
+    public LevelManager levelManager;
     public InteractionManager interactionManager;
     public UIManager uIManager;
 
@@ -31,13 +31,19 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     private void Awake() 
     {
-        DontDestroyOnLoad(this.gameObject);
-        levelManager = this.gameObject.GetComponent<LevelManager>();
+        StartCoroutine(UIManager.Instance.castfadein());
         DataManager.Instance.LoadFromSaveData();
         PauseStateReset();
         OnSwitchLevel();
         SceneManager.sceneLoaded += OnSceneLoaded;
         if(player != null) player.transform.position = DataManager.Instance.saveData.lastest_p_transform;
+    }
+    private void Start() 
+    {
+        DontDestroyOnLoad(this.gameObject);
+        Debug.Log(this.gameObject.activeInHierarchy);
+        levelManager = this.gameObject.GetComponent<LevelManager>();
+        uIManager = this.gameObject.GetComponent<UIManager>();
     }
 
     public void PauseStateReset()
@@ -49,6 +55,7 @@ public class GameManager : MonoBehaviour
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         OnSwitchLevel();
+        StartCoroutine(UIManager.Instance.castfadein());
     }
 
     private void OnSwitchLevel()
@@ -68,7 +75,11 @@ public class GameManager : MonoBehaviour
             case 3:
             {
                 levelManager.level = LevelManager.Level.Sub_Tera;
+                if(!player) player = SpawnManager.Instance.SpawnPlayer(SpawnManager.Instance.spawnpoints[1]);
+                levelManager.player = player;
                 player.gameObject.transform.position = SpawnManager.Instance.spawnpoints[1].spawnpositionVec3;
+                LevelManager.Instance.LevelSetting(LevelManager.Level.Sub_Tera);
+                LevelSetting();
                 LevelManager.Instance.CameraTrackingUpdate();
                 LevelManager.Instance.CameraAreasUpdate();
                 break;
@@ -143,7 +154,23 @@ public class GameManager : MonoBehaviour
     {
         interactionManager.player = player;
         player.interactionManager = this.interactionManager;
-        player.playerHP.volume = GameObject.Find("UnderWater_Volume").GetComponent<Volume>();
+        switch(levelManager.level)
+        {
+            case LevelManager.Level.Underground:
+            {
+                player.playerHP.volume = GameObject.Find("UnderWater_Volume").GetComponent<Volume>();
+                break;
+            }
+            case LevelManager.Level.Sub_Tera:
+            {
+                player.playerHP.volume = GameObject.Find("SubTera_Volume").GetComponent<Volume>();   
+                break;
+            }
+            case LevelManager.Level.In_Tera:
+            {
+                break;
+            }
+        }
         LevelManager.Instance.CameraTrackingUpdate();
     }
     void OnApplicationQuit()
@@ -159,6 +186,11 @@ public class GameManager : MonoBehaviour
     public void NextSceneLoad()
     {
         //TODO : 페이드 인 아웃으로 다음 씬 넘어갈 수 있도록
+        Invoke("NextSceneLoadfromindex",1);
+        StartCoroutine(UIManager.Instance.castfadeout());
+    }
+    public void NextSceneLoadfromindex()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 }
