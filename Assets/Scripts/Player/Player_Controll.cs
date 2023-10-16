@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using Yarn.Unity;
+using Unity.VisualScripting;
 
 public class Player_Controll : MonoBehaviour
 {
@@ -155,7 +156,7 @@ public class Player_Controll : MonoBehaviour
     }
     public void OnPause()
     {
-        gameManager.uIManager.OnPause();
+        UIManager.Instance.OnPause();
     }
     public void OnFlip()
     {
@@ -198,8 +199,8 @@ public class Player_Controll : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit, raydistance))
         {
-            isGrounded = true;
             animator.SetBool("isGrounded",true);
+            isGrounded = true;
         }
     }
     public void OnCrawl(float value)
@@ -307,7 +308,7 @@ public class Player_Controll : MonoBehaviour
     }
     private void OnCollisionStay(Collision other) // 히트 후 몬스터한테 비비고 있어도 데미지 판정이 들어가도록 Stay도 사용
     {
-        if(other.collider.GetComponent<Enemy_Test2>() && !isHit && CanHit)
+        if(other.collider.tag == "EnemyAttack" && !isHit && CanHit)
         {
             CalculateHit();
         }
@@ -327,7 +328,9 @@ public class Player_Controll : MonoBehaviour
     IEnumerator OnPlayerDead()
     {
         animator.SetTrigger("isDead");
-        yield return new WaitForSeconds(1);
+        GameManager.Instance.isPlayerDead = true;
+        yield return new WaitForSeconds(2.5f);
+        UIManager.Instance.OnGameover();
         //TODO : 게임오버 UI 팝업
     }
     private void WarpDamage()

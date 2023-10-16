@@ -12,25 +12,16 @@ public class Enemy_Test2 : MonoBehaviour
         hit,
         Chase,
         Attak,
-        Emergency
+        Emergency,
+        Dead
     }
     [Range(0,5)]
     public int EnemyHP;
     bool isattakable = true;
     bool ishitable = true;
     bool isfilp;
-
-    private Rigidbody Rb
-    {
-        get 
-        {
-            return this.gameObject.GetComponent<Rigidbody>();
-        }
-        set
-        {
-            Rb = Rb;
-        }
-    }
+    bool isplayerdead = false;
+    private Rigidbody Rb;
 
     // 적 스크립트 구조 관련
     private EnemySight sight; // 시야 스크립트
@@ -68,6 +59,7 @@ public class Enemy_Test2 : MonoBehaviour
         animator = this.GetComponentInChildren<Animator>();
         sight = this.gameObject.GetComponentInChildren<EnemySight>();
         target_Transform = FindObjectOfType<Player_Controll>().transform;
+        Rb = this.gameObject.GetComponent<Rigidbody>();
         playersprite =  target_Transform.GetComponentInChildren<Animator>().gameObject;
         state = State.idle;
        // FindGenerator();
@@ -101,15 +93,20 @@ public class Enemy_Test2 : MonoBehaviour
 
     void Update()
     {
-        if(EnemyHP <= 0)
+        isplayerdead = GameManager.Instance.isPlayerDead;
+        if(isplayerdead)
         {
-            
+            StopAllCoroutines();
         }
-        if(state == State.idle)
+        if(EnemyHP <= 0 && state != State.Dead)
+        {
+            StartCoroutine(deadroutine());
+        }
+        if(state == State.idle || isplayerdead)
         {
             OnMoveStop();
         }
-        if(state == State.Chase)
+        if(state == State.Chase || !isplayerdead)
         {
             MovementSpeed = 2.5f;
         }
@@ -121,6 +118,7 @@ public class Enemy_Test2 : MonoBehaviour
     }
     public void UpdateFollwingPath()
     {
+        if(state != State.Dead)
         this.UpdateFollwingPath_Navigate();
     }
     bool IsWayPointArrived(Vector3 currentWayPoint)
@@ -136,15 +134,9 @@ public class Enemy_Test2 : MonoBehaviour
             // 주기 리셋
             PathRefreshTime = 0.0f;
             // 경로 재계산
-            bool playerisflip = playersprite.transform.localScale == new Vector3(-1,1,1);
-            Debug.Log(playerisflip);
-            // 공격 위치는 플레이어 위치보다 앞뒤로 +2
-            if(playerisflip)
-            {
-                Attackpoint = new Vector3(target_Transform.position.x-2,target_Transform.position.y,target_Transform.position.z);
-            }
-            else
-                Attackpoint = new Vector3(target_Transform.position.x+2,target_Transform.position.y,target_Transform.position.z);
+            // bool playerisflip = playersprite.transform.localScale == new Vector3(-1,1,1);
+            // Debug.Log(playerisflip);
+            Attackpoint = new Vector3(target_Transform.position.x+1,target_Transform.position.y,target_Transform.position.z);
             NavMesh.CalculatePath(transform.position, Attackpoint, NavMesh.AllAreas, path);
 
             // 각 코너까지의 라인을 디버깅하여 그림
@@ -159,7 +151,6 @@ public class Enemy_Test2 : MonoBehaviour
             }
             else if(path.status == NavMeshPathStatus.PathPartial) 
             {
-                Debug.Log("안돼~");
                 OnMoveStop();
                 WayPoints = null;
                 currentWayPointIndex = 0;
@@ -190,10 +181,10 @@ public class Enemy_Test2 : MonoBehaviour
     public void UpdateFollwingPath_Navigate_OnMove()
     {
         //TODO 웨이포인트로 움직이는 로직
-        if(state == State.Chase)
+        if(state == State.Chase && state != State.Dead || !isplayerdead)
         {
             animator.SetBool("Move",true);
-            isfilp = 0 <= (target_Transform.position.x - this.transform.position.x);
+            isfilp = target_Transform.position.x > this.transform.position.x;
             if(isfilp)
             {
                 SpriteObject.transform.localScale = new Vector3(1,1,1);
@@ -253,6 +244,15 @@ public class Enemy_Test2 : MonoBehaviour
         Rb.AddForce(Vector3.up * 5, ForceMode.Impulse);
         yield return new WaitForSeconds(0.25f);
         ishitable = true;
+    }
+    private IEnumerator deadroutine()
+    {
+        state = State.Dead;
+        ishitable = false;
+        animator.SetBool("isDead", true);
+        yield return new WaitForSeconds(1);
+        LevelManager.Instance.isLevelClear[0] = true;
+        Destroy(gameObject);
     }
     // public void OnEmergency()
     // {

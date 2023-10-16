@@ -8,6 +8,7 @@ TagManager:
   - InteractionPosition
   - Warp_Damage
   - PlayerAttack
+  - EnemyAttack
   layers:
   - Default
   - TransparentFX
@@ -15,10 +16,10 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
-  - 
-  - YuME_TileMap
-  - 
+  - BG1
+  - BG2
+  - BG3
+  - BG4
   - 
   - 
   - 

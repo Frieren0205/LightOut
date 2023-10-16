@@ -40,8 +40,11 @@ public class LevelManager : MonoBehaviour
 
     [Header("맵 별 포지션 제한도")]
     public LimitiedPositions[] limitiedPositions;
+    [Header("레벨 클리어 조건 달성여부")]
+    public bool[] isLevelClear;
     private CinemachineVirtualCamera cinevirtualcam;
     private CinemachineConfiner confiner;
+    [Header("카메라 영역 제한용 컬라이더")]
     public BoxCollider cameraLimitedAreas;
     void Start()
     {

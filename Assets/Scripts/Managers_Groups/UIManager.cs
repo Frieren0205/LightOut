@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -24,6 +25,13 @@ public class UIManager : MonoBehaviour
     private GameObject PauseWindow;
 
     public GameObject DialogueEventUI;
+    public GameObject GameoverWindows;
+
+    [SerializeField]
+    private Image gameoverbgimg;
+    [SerializeField]
+    private Image gameoverfrtimg;
+
     public Image fadeimg;
     
 
@@ -53,6 +61,27 @@ public class UIManager : MonoBehaviour
             isPause = false;
             GameManager.Instance.isPause = false;
         }
+    }
+    public void OnSetting()
+    {
+        PauseWindow.SetActive(true);
+    }
+    public void OnGameover()
+    {
+        GameoverWindows.SetActive(true);
+        //TODO : 게임오버 연출 어떻게 할지
+
+    }
+    public void toTitleScene()
+    {
+        StartCoroutine(castfadeout());
+        Invoke("toTitleScenewithFade",1);
+    }
+    void toTitleScenewithFade()
+    {
+        SceneManager.LoadScene(0);
+        GameManager.Instance.PlayerObjectDestroy();
+        GameoverWindows.SetActive(false);
     }
     private IEnumerator callbacktime()
     {

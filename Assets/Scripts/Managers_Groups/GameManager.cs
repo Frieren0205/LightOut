@@ -7,6 +7,7 @@ using Yarn.Unity;
 
 public class GameManager : MonoBehaviour
 {
+    static GameObject container;
     static GameManager _instance;
     public static GameManager Instance
     {
@@ -14,7 +15,7 @@ public class GameManager : MonoBehaviour
         {
             if(!_instance)
             {
-                GameObject container = GameObject.FindFirstObjectByType<GameManager>().gameObject;
+                container = GameObject.FindFirstObjectByType<GameManager>().gameObject;
                 _instance = container.GetComponent<GameManager>();
             }
             return _instance;
@@ -26,24 +27,45 @@ public class GameManager : MonoBehaviour
 
 
     public bool isPause;
+    public bool isPlayerDead = false;
     [SerializeField]
     private Player_Controll player;
     // Start is called before the first frame update
     private void Awake() 
     {
-        StartCoroutine(UIManager.Instance.castfadein());
+        var managerinstance = FindObjectsOfType<GameManager>();
+        if(Instance != this && Instance != null && managerinstance.Length > 1)
+        {
+            Destroy(managerinstance[0].gameObject, 1.5f);
+            return;
+        }
+        else
+        {
+            _instance  = this;
+        }
+    }
+    void OnEnable()
+    {
         DataManager.Instance.LoadFromSaveData();
+        uIManager = this.gameObject.GetComponent<UIManager>();
+        levelManager = this.gameObject.GetComponent<LevelManager>();
         PauseStateReset();
         OnSwitchLevel();
         SceneManager.sceneLoaded += OnSceneLoaded;
-        if(player != null) player.transform.position = DataManager.Instance.saveData.lastest_p_transform;
+        StartCoroutine(uIManager.castfadein());
+        if(player != null)
+        {
+            //TODO : 플레이어 상태 초기화
+            player.transform.position = DataManager.Instance.saveData.lastest_p_transform;
+        }
+    }
+    private void OnDisable() 
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
     private void Start() 
     {
         DontDestroyOnLoad(this.gameObject);
-        Debug.Log(this.gameObject.activeInHierarchy);
-        levelManager = this.gameObject.GetComponent<LevelManager>();
-        uIManager = this.gameObject.GetComponent<UIManager>();
     }
 
     public void PauseStateReset()
@@ -78,6 +100,7 @@ public class GameManager : MonoBehaviour
                 if(!player) player = SpawnManager.Instance.SpawnPlayer(SpawnManager.Instance.spawnpoints[1]);
                 levelManager.player = player;
                 player.gameObject.transform.position = SpawnManager.Instance.spawnpoints[1].spawnpositionVec3;
+                playerinit();
                 LevelManager.Instance.LevelSetting(LevelManager.Level.Sub_Tera);
                 LevelSetting();
                 LevelManager.Instance.CameraTrackingUpdate();
@@ -90,6 +113,12 @@ public class GameManager : MonoBehaviour
                 break;
             }
         }
+    }
+    private void playerinit()
+    {
+        player.CanInteraction = false;
+        player.interactionPoint = null;
+        player.CanInteractionIcon.SetActive(false);
     }
     // private void OnEnable() 
     // { 
@@ -192,5 +221,10 @@ public class GameManager : MonoBehaviour
     public void NextSceneLoadfromindex()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+    }
+
+    internal void PlayerObjectDestroy()
+    {
+        Destroy(player.gameObject, 1);
     }
 }
