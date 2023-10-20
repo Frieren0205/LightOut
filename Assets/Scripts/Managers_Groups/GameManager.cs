@@ -55,8 +55,27 @@ public class GameManager : MonoBehaviour
         StartCoroutine(uIManager.castfadein());
         if(player != null)
         {
-            //TODO : 플레이어 상태 초기화
+            //TODO : 플레이어 레벨별 포지션 로드 변경
             player.transform.position = DataManager.Instance.saveData.lastest_p_transform;
+            switch (DataManager.Instance.saveData.lastest_p_level)
+            {
+                case LevelManager.Level.Underground:
+                {
+                    break;
+                }
+                case LevelManager.Level.Sub_Tera:
+                {
+                    break;
+                }
+                case LevelManager.Level.In_Tera:
+                {
+                    break;
+                }
+                case LevelManager.Level.Boss_Battle:
+                {
+                    break;
+                }
+            }
         }
     }
     private void OnDisable() 
@@ -202,11 +221,18 @@ public class GameManager : MonoBehaviour
         }
         LevelManager.Instance.CameraTrackingUpdate();
     }
+        //TODO : 플레이 데이터 저장
+    public void SavePlayerData()
+    {
+        //TODO : 게임 종료시의 자동저장 정보 제한
+        DataManager.Instance.saveData.lastest_p_transform = player.transform.position;
+        DataManager.Instance.saveData.lastest_p_level = LevelManager.Instance.level;
+    }   
     void OnApplicationQuit()
     {
         if(player !=  null)
         {
-            DataManager.Instance.saveData.lastest_p_transform = player.transform.position;
+            SavePlayerData();
             //if(levelManager.level == LevelManager.Level.Title) DataManager.Instance.saveData.lastest_p_level = levelManager.level;
             DataManager.Instance.SavetoSaveData();
         }

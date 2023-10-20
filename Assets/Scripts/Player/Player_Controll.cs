@@ -278,8 +278,19 @@ public class Player_Controll : MonoBehaviour
                     // Debug.Log("Used Portal method this time");
                     GameManager.Instance.NextSceneLoad();
                 }
+                else if(interactionPoint.interactiontype == InteractionPoint.Interactiontype.teleport)
+                {
+                    //TODO : 같은 씬 안에서의 텔레포트
+                    UIManager.Instance.castfadeout();
+                    Invoke("OnInteraction_teleport", 1.2f);
+                }
             }
         }
+    }
+    private void OnInteraction_teleport()
+    {
+        transform.position = interactionPoint.transformVec3;
+        UIManager.Instance.castfadein();
     }
     // 컬라이더 관련 시작!!!
     private void OnCollisionEnter(Collision other) // 몬스터에게 가까이 붙어도 데미지 판정이 들어가도록

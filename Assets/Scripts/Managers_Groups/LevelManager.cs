@@ -25,7 +25,8 @@ public class LevelManager : MonoBehaviour
         Title,
         Underground,
         Sub_Tera,
-        In_Tera
+        In_Tera,
+        Boss_Battle
     }
     public Level level;
     public Player_Controll player;
@@ -61,6 +62,10 @@ public class LevelManager : MonoBehaviour
         {
             player.minLimit = limitiedPositions[1].minPosition;
             player.maxLimit = limitiedPositions[1].maxPosition;
+        }
+        if(level == Level.Boss_Battle)
+        {
+            
         }
     }
     public void CameraTrackingUpdate()

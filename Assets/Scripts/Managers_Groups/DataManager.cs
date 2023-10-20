@@ -42,8 +42,9 @@ public class DataManager : MonoBehaviour
         string ToJsonData = JsonUtility.ToJson(saveData, true);
         string filepath = Application.persistentDataPath + "/" + GamaDataFileName;
 
-        
+        GameManager.Instance.SavePlayerData();
         File.WriteAllText(filepath, ToJsonData);
         //올바르게 저장이 되었는지 체크하기
     }
+
 }

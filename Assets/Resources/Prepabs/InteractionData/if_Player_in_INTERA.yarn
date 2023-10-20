@@ -3,7 +3,7 @@ tags:
 ---
 <<EnableSet CutScenefront>> <<SpriteSwitch CutScenefront 3_1>>
     티케 : 
-<<DisableSet CutScenefront>>
+<<DisableSet CutScenefront>> <<SpriteSwitch illust Player_normal>>
     티케 : .....여기가 인 테라구나.
     티케 : 아주 밝고.... 따듯해.
     티케 : 인공 태양이라는 게 대단하긴 한가 보네.
