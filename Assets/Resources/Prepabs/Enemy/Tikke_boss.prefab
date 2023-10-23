@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1046339209462485668}
   - component: {fileID: 7020952513663416394}
   m_Layer: 0
-  m_Name: boss_melee_attack_col
+  m_Name: boss_attack_col
   m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216,8 +216,10 @@ MonoBehaviour:
       type: 3}
     attackpoint: {fileID: 6531319844899821015}
   positonstate: 0
-  ismelee_attack: 0
   isrange_attack: 0
+  canRandom: 0
+  attack_bool_list: 
+  Angle: 0
 --- !u!1 &5030158350649139217
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +293,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1314065138, guid: 624bb341576010e4db67f2fe4a0e8a16, type: 3}
+  m_Sprite: {fileID: -1989377803, guid: b62389aa32d1f084c9c1081807a613df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

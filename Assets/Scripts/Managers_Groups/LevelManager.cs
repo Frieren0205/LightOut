@@ -63,9 +63,15 @@ public class LevelManager : MonoBehaviour
             player.minLimit = limitiedPositions[1].minPosition;
             player.maxLimit = limitiedPositions[1].maxPosition;
         }
+        if(level == Level.In_Tera)
+        {
+            player.minLimit = limitiedPositions[2].minPosition;
+            player.maxLimit = limitiedPositions[2].maxPosition;
+        }
         if(level == Level.Boss_Battle)
         {
-            
+            player.minLimit = limitiedPositions[3].minPosition;
+            player.maxLimit = limitiedPositions[3].maxPosition;       
         }
     }
     public void CameraTrackingUpdate()
@@ -93,6 +99,13 @@ public class LevelManager : MonoBehaviour
             }
             case Level.In_Tera:
             {
+                break;
+            }
+            case Level.Boss_Battle:
+            {
+                cameraLimitedAreas = GameObject.Find("Boss_Camera_Area").GetComponent<BoxCollider>();
+                confiner = FindFirstObjectByType<CinemachineConfiner>();
+                confiner.m_BoundingVolume = cameraLimitedAreas;
                 break;
             }
         }

@@ -126,9 +126,21 @@ public class GameManager : MonoBehaviour
                 LevelManager.Instance.CameraAreasUpdate();
                 break;
             }
+            // case 4:
+            // {
+            //     levelManager.level = LevelManager.Level.In_Tera;
+            //     break;
+            // }
             case 4:
             {
-                levelManager.level = LevelManager.Level.In_Tera;
+                levelManager.level = LevelManager.Level.Boss_Battle;
+                levelManager.player = player;
+                player.gameObject.transform.position = SpawnManager.Instance.spawnpoints[3].spawnpositionVec3;
+                playerinit();
+                LevelManager.Instance.LevelSetting(LevelManager.Level.Boss_Battle);
+                LevelSetting();
+                LevelManager.Instance.CameraTrackingUpdate();
+                LevelManager.Instance.CameraAreasUpdate();
                 break;
             }
         }
@@ -243,6 +255,16 @@ public class GameManager : MonoBehaviour
         //TODO : 페이드 인 아웃으로 다음 씬 넘어갈 수 있도록
         Invoke("NextSceneLoadfromindex",1);
         StartCoroutine(UIManager.Instance.castfadeout());
+    }
+    [YarnCommand("LOAD_BOSS_SCENE")]
+    public void BossSceneLoad()
+    {
+        Invoke("BossSceneLoad_test", 1);
+        StartCoroutine(UIManager.Instance.castfadeout());
+    }
+    public void BossSceneLoad_test()
+    {
+        SceneManager.LoadScene(4);
     }
     public void NextSceneLoadfromindex()
     {

@@ -24,6 +24,7 @@ public class Player_Controll : MonoBehaviour
     
     [Range(5, 6.25f)]
     public float MoveSpeed;
+    [SerializeField]
     private  bool isflip; // 좌우 반전을 위해
 
     
@@ -98,6 +99,7 @@ public class Player_Controll : MonoBehaviour
         rb = this.GetComponent<Rigidbody>();
         body = this.GetComponent<CapsuleCollider>();
         animator = this.gameObject.GetComponentInChildren<Animator>();
+        isflip = true;
     }
 
     [YarnCommand("EventBoolSet")]
@@ -307,6 +309,10 @@ public class Player_Controll : MonoBehaviour
             isGrounded = true;
             animator.SetBool("isGrounded",true);
         }*/
+        if(other.gameObject.tag == "EnemyAttack" && !isHit && CanHit)
+        {
+            CalculateHit();
+        }
         if(other.gameObject.tag == "Warp_Damage" && !isHit && CanHit)
         {
             WarpDamage();

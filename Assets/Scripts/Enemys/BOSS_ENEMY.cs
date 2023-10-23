@@ -57,7 +57,7 @@ public class BOSS_ENEMY : MonoBehaviour
 
         player = LevelManager.Instance.player;
 
-        // Invoke("StartBattle", 5);
+        Invoke("StartBattle", 3);
     }
     private void StartBattle()
     {
@@ -139,9 +139,20 @@ public class BOSS_ENEMY : MonoBehaviour
         attackState = AttackState.Melee;
         animator.SetTrigger("ismelee_attack");
         yield return new WaitForSeconds(0.1f);
-        DOTween.To(() => transform.position.x, x => transform.position = new Vector3(x,transform.position.y,transform.position.z), (transform.position.x + -1),0.05f);
+        if(positonstate == positonState.right)
+        {
+            DOTween.To(() => transform.position.x, x => transform.position = new Vector3(x,transform.position.y,transform.position.z), (transform.position.x + 1),0.05f);
+        }
+        else
+            DOTween.To(() => transform.position.x, x => transform.position = new Vector3(x,transform.position.y,transform.position.z), (transform.position.x + -1),0.05f);
         yield return new WaitForSeconds(0.3f);
-        DOTween.To(() => transform.position.x, x => transform.position = new Vector3(x,transform.position.y,transform.position.z), (transform.position.x + -0.25f),0.05f);
+
+        if(positonstate == positonState.right)
+        {
+            DOTween.To(() => transform.position.x, x => transform.position = new Vector3(x,transform.position.y,transform.position.z), (transform.position.x + 0.25f),0.05f);
+        }
+        else
+            DOTween.To(() => transform.position.x, x => transform.position = new Vector3(x,transform.position.y,transform.position.z), (transform.position.x + -0.25f),0.05f);
         ismelee_attack = false;
     }
     IEnumerator rangeAttackroutine()

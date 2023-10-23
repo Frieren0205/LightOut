@@ -9,5 +9,5 @@ tags:
     티케 : ...!
 <<EnableSet other_illust>> <<SpriteSwitch other_illust Tikke_Boss_normal>>
     소장 : 안녕.
-    티케 : ...
+<<LOAD_BOSS_SCENE GameManager>>
 ===
