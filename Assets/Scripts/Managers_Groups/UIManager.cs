@@ -74,6 +74,7 @@ public class UIManager : MonoBehaviour
     }
     public void toTitleScene()
     {
+        Debug.Log("타이틀로");
         StartCoroutine(castfadeout());
         Invoke("toTitleScenewithFade",1);
     }
