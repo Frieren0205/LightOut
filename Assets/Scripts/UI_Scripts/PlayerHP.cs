@@ -1,30 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using DG.Tweening;
 using UnityEngine.Rendering;
 
 public class PlayerHP : MonoBehaviour
 {
-
     [Range(0,4)]
     public int HP_Point;
+    [Range(0,2)]
+    public int shieldpoint;
     public Sprite[] HP_sprites;
     public Image HPImage;
 
     public Volume volume;
     public VolumeProfile isNormalVolume;
     public VolumeProfile isDangerousVolume;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         OnValueChanged();
