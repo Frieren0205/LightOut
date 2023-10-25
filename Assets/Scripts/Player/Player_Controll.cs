@@ -299,7 +299,7 @@ public class Player_Controll : MonoBehaviour
     {
         if(other.collider.GetComponent<Enemy_Test2>() && !isHit && CanHit)
         {
-            CalculateHit();
+            CalculateHit("EnemyAttack");
         }
     }
     private void OnTriggerEnter(Collider other) 
@@ -311,7 +311,11 @@ public class Player_Controll : MonoBehaviour
         }*/
         if(other.gameObject.tag == "EnemyAttack" && !isHit && CanHit)
         {
-            CalculateHit();
+            CalculateHit("EnemyAttack");
+        }
+        if(other.gameObject.tag == "ArmHammer" && !isHit && CanHit)
+        {
+            CalculateHit("ArmHammer");
         }
         if(other.gameObject.tag == "Warp_Damage" && !isHit && CanHit)
         {
@@ -327,15 +331,36 @@ public class Player_Controll : MonoBehaviour
     {
         if(other.collider.tag == "EnemyAttack" && !isHit && CanHit)
         {
-            CalculateHit();
+            CalculateHit("EnemyAttack");
+        }
+        if(other.collider.tag == "ArmHammer" && !isHit && CanHit)
+        {
+            CalculateHit("ArmHammer");
         }
     }
     // 컬라이더 관련 끝
 
 
-    private void CalculateHit()
+    private void CalculateHit(string str)
     {
-        playerHP.HP_Point -= 1;
+        switch(str)
+        {
+            case "EnemyAttack":
+            {
+                playerHP.HP_Point -= 1;
+                break;
+            }
+            // case "ArmHammer":
+            // {
+            //     playerHP.HP_Point = 0;
+            //     break;
+            // }      
+            case "ArmHammer":
+            {
+                playerHP.HP_Point -= 2;
+                break;
+            }
+        }
         if(isflip)  rb.AddForce(Vector3.left * 2.5f, ForceMode.Impulse);
         else if(!isflip) rb.AddForce(Vector3.right * 2.5f, ForceMode.Impulse);
         rb.AddForce(Vector3.up * 7.5f, ForceMode.Impulse);

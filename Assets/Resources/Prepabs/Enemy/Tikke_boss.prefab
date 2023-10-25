@@ -215,8 +215,12 @@ MonoBehaviour:
     attackobject: {fileID: 3996464287816535219, guid: 99662469893f36a46b67585d62dabbc5,
       type: 3}
     attackpoint: {fileID: 6531319844899821015}
+  - pattername: "\uB85C\uBD07 \uD314 \uACF5\uACA91"
+    attackmode: 2
+    attackobject: {fileID: 6822118860132362530, guid: 2b4700cc13ff5ce4ca622f2c7f3ad518,
+      type: 3}
+    attackpoint: {fileID: 0}
   positonstate: 0
-  isrange_attack: 0
   canRandom: 0
   attack_bool_list: 
   Angle: 0
@@ -293,7 +297,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1989377803, guid: b62389aa32d1f084c9c1081807a613df, type: 3}
+  m_Sprite: {fileID: 1314065138, guid: 624bb341576010e4db67f2fe4a0e8a16, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

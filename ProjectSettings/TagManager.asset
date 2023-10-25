@@ -9,6 +9,7 @@ TagManager:
   - Warp_Damage
   - PlayerAttack
   - EnemyAttack
+  - ArmHammer
   layers:
   - Default
   - TransparentFX
