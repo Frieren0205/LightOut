@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Resources/Image/Sprite/Tikke_Boss.meta
 guid: 331b29fd6dc7aa6409993f4992a97c41
+========
+guid: 08f55cac92aa72e49ac9a478f5765c54
+>>>>>>>> Stashed changes:Assets/Resources/Animations/Tikke_Boss/Animator.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

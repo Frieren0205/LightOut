@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< Updated upstream:Assets/Resources/VFX/portal/circle02.png.meta
-guid: 7a7fbdd78d83fe945b75593b76b27d39
-========
-guid: 41000c5f89d7970468bd7283cd4f9102
->>>>>>>> Stashed changes:Assets/Scenes/Stage_03/Lightmap-1_comp_light.exr.meta
+guid: c5659c0bf7ea531418f34fe4d2e7b403
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -26,32 +22,24 @@ TextureImporter:
     normalMapFilter: 0
     flipGreenChannel: 0
   isReadable: 0
-  streamingMipmaps: 1
+  streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
   ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
-  cubemapConvolution: 0
-  seamlessCubemap: 0
+  cubemapConvolution: 1
+  seamlessCubemap: 1
   textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
-<<<<<<<< Updated upstream:Assets/Resources/VFX/portal/circle02.png.meta
-    aniso: 1
-    mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
-========
-    aniso: 3
+    filterMode: 2
+    aniso: 0
     mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
->>>>>>>> Stashed changes:Assets/Scenes/Stage_03/Lightmap-1_comp_light.exr.meta
   nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
@@ -63,18 +51,11 @@ TextureImporter:
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
-<<<<<<<< Updated upstream:Assets/Resources/VFX/portal/circle02.png.meta
   alphaUsage: 1
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 0
-========
-  alphaUsage: 0
-  alphaIsTransparency: 0
-  spriteTessellationDetail: -1
-  textureType: 6
->>>>>>>> Stashed changes:Assets/Scenes/Stage_03/Lightmap-1_comp_light.exr.meta
-  textureShape: 1
+  textureShape: 2
   singleChannelComponent: 0
   flipbookRows: 1
   flipbookColumns: 1
@@ -91,12 +72,8 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-<<<<<<<< Updated upstream:Assets/Resources/VFX/portal/circle02.png.meta
     textureCompression: 1
-========
-    textureCompression: 2
->>>>>>>> Stashed changes:Assets/Scenes/Stage_03/Lightmap-1_comp_light.exr.meta
-    compressionQuality: 50
+    compressionQuality: 100
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0

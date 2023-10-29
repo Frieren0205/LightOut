@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< Updated upstream:Assets/Resources/VFX/portal/circle02.png.meta
-guid: 7a7fbdd78d83fe945b75593b76b27d39
-========
-guid: 41000c5f89d7970468bd7283cd4f9102
->>>>>>>> Stashed changes:Assets/Scenes/Stage_03/Lightmap-1_comp_light.exr.meta
+guid: d278c35b751df4442a0a62d9bd391268
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -39,19 +35,11 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 1
-<<<<<<<< Updated upstream:Assets/Resources/VFX/portal/circle02.png.meta
-    aniso: 1
-    mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
-========
     aniso: 3
     mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
->>>>>>>> Stashed changes:Assets/Scenes/Stage_03/Lightmap-1_comp_light.exr.meta
   nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
@@ -63,17 +51,10 @@ TextureImporter:
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
-<<<<<<<< Updated upstream:Assets/Resources/VFX/portal/circle02.png.meta
-  alphaUsage: 1
-  alphaIsTransparency: 0
-  spriteTessellationDetail: -1
-  textureType: 0
-========
   alphaUsage: 0
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 6
->>>>>>>> Stashed changes:Assets/Scenes/Stage_03/Lightmap-1_comp_light.exr.meta
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -91,11 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-<<<<<<<< Updated upstream:Assets/Resources/VFX/portal/circle02.png.meta
-    textureCompression: 1
-========
     textureCompression: 2
->>>>>>>> Stashed changes:Assets/Scenes/Stage_03/Lightmap-1_comp_light.exr.meta
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
