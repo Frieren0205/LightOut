@@ -602,6 +602,7 @@ MonoBehaviour:
   rb: {fileID: 6429005941708711513}
   MoveDirection: {x: 0, y: 0, z: 0}
   MoveSpeed: 5
+  isflip: 0
   minLimit: 0
   maxLimit: 0
   debugtest: 0

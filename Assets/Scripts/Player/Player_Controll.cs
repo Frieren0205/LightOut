@@ -27,6 +27,13 @@ public class Player_Controll : MonoBehaviour
     [SerializeField]
     private  bool isflip; // 좌우 반전을 위해
 
+    private enum PositionState
+    {
+        left,
+        right
+    }
+    private PositionState positionState;
+    private bool isbackattack;
     
     [Header("맵 이동가능 거리(float)")]
     public float minLimit;
@@ -118,20 +125,21 @@ public class Player_Controll : MonoBehaviour
         }
         if(!interactionManager.gameManager.isPause && !isPlayerDead)
         {
+            if(isGrounded == true)  animator.SetBool("isGrounded",true);
             bool hascontrol = (MoveDirection != Vector3.zero);
             if(hascontrol && !isHit && CanAttack)
             {
                 transform.Translate(new Vector3(MoveDirection.x,0,MoveDirection.z) * MoveSpeed * Time.deltaTime);
                 if(!debugtest)
                 {
-                if(transform.position.z > minLimit)
-                {
-                    transform.position = new Vector3(transform.position.x, transform.position.y, minLimit);
-                }
-                if(transform.position.z < maxLimit)
-                {
-                    transform.position = new Vector3(transform.position.x, transform.position.y, maxLimit);
-                }
+                    if(transform.position.z > minLimit)
+                    {
+                        transform.position = new Vector3(transform.position.x, transform.position.y, minLimit);
+                    }
+                    if(transform.position.z < maxLimit)
+                    {
+                        transform.position = new Vector3(transform.position.x, transform.position.y, maxLimit);
+                    }
                 }
 
                 if(isGrounded && MoveDirection.x != 0 || MoveDirection.z != 0) 
@@ -167,11 +175,13 @@ public class Player_Controll : MonoBehaviour
         if(isflip && !flipStay)
         {
             isflip = true;
+            positionState = PositionState.right;
             spriteObject.transform.localScale = new Vector3(1,1,1);
         }
         else if(!isflip && !flipStay)
         {
             isflip = false;
+            positionState = PositionState.left;
             spriteObject.transform.localScale = new Vector3(-1,1,1);
         }
     }
@@ -194,15 +204,17 @@ public class Player_Controll : MonoBehaviour
             isGrounded = false;
         }
     }
-
     private void GroundCheck()
     {
-        Ray ray = new Ray(this.transform.position, Vector3.down);
+        Ray ray = new Ray(this.transform.position, new Vector3(0,-raydistance, 0));
+        Debug.DrawRay(this.transform.position, new Vector3(0,-raydistance, 0));
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit, raydistance))
         {
+            
             animator.SetBool("isGrounded",true);
             isGrounded = true;
+            Debug.Log("착지 & 지면에 있음");
         }
     }
     public void OnCrawl(float value)
@@ -331,6 +343,7 @@ public class Player_Controll : MonoBehaviour
     {
         if(other.collider.tag == "EnemyAttack" && !isHit && CanHit)
         {
+            BackattackCheck(other.gameObject);
             CalculateHit("EnemyAttack");
         }
         if(other.collider.tag == "ArmHammer" && !isHit && CanHit)
@@ -350,22 +363,29 @@ public class Player_Controll : MonoBehaviour
                 playerHP.HP_Point -= 1;
                 break;
             }
-            // case "ArmHammer":
-            // {
-            //     playerHP.HP_Point = 0;
-            //     break;
-            // }      
             case "ArmHammer":
             {
-                playerHP.HP_Point -= 2;
+                playerHP.HP_Point = 0;
                 break;
-            }
+            }      
         }
+        animator.SetBool("isGrounded", false);
+        animator.SetTrigger("isHit");
+        Debug.Log(isbackattack);
         if(isflip)  rb.AddForce(Vector3.left * 2.5f, ForceMode.Impulse);
         else if(!isflip) rb.AddForce(Vector3.right * 2.5f, ForceMode.Impulse);
         rb.AddForce(Vector3.up * 7.5f, ForceMode.Impulse);
         StartCoroutine(OnHit());
         StartCoroutine(Hitable());
+    }
+    private void BackattackCheck(GameObject gameObject)
+    {
+        if((this.gameObject.transform.position.x - gameObject.transform.position.x) < 0)
+        {
+            isbackattack = true;
+        }
+        else
+            isbackattack = false;
     }
     IEnumerator OnPlayerDead()
     {
@@ -378,6 +398,8 @@ public class Player_Controll : MonoBehaviour
     private void WarpDamage()
     {
         playerHP.HP_Point -= 1;
+        animator.SetBool("isGrounded", false);
+        animator.SetTrigger("isHit");
         // rb.AddForce(Vector3.up * 17f, ForceMode.Impulse);
         // if(isflip)  rb.AddForce(Vector3.left * 7.5f, ForceMode.Impulse);
         // else if(!isflip) rb.AddForce(Vector3.right * 7.5f, ForceMode.Impulse);

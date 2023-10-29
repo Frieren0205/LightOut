@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using Yarn.Unity;
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
         var managerinstance = FindObjectsOfType<GameManager>();
         if(Instance != this && Instance != null && managerinstance.Length > 1)
         {
+            // managerinstance[0].gameObject.GetComponentInChildren<EventSystem>().enabled = false;
             Destroy(managerinstance[0].gameObject, 1.5f);
             return;
         }
@@ -228,6 +230,11 @@ public class GameManager : MonoBehaviour
             }
             case LevelManager.Level.In_Tera:
             {
+                break;
+            }
+            case LevelManager.Level.Boss_Battle:
+            {
+                player.playerHP.volume = GameObject.Find("Boss_Volume").GetComponent<Volume>();
                 break;
             }
         }

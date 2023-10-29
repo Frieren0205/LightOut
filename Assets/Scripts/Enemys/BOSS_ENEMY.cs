@@ -79,7 +79,6 @@ public class BOSS_ENEMY : MonoBehaviour
         else if(GameManager.Instance.isPlayerDead)
         {
             player = null;
-            Debug.Log("플레이어 사망");
         }
         else
         {
@@ -122,20 +121,19 @@ public class BOSS_ENEMY : MonoBehaviour
         }
         attack_bool_list[Random.Range(0,10)] = true;
         int index = attack_bool_list.FindIndex(a => a == true);
-        // if(index % 2 == 1)
-        // {
-        //     Debug.Log("Start melee attack");
-        //     ismelee_attack = true;
-        //     yield return StartCoroutine(meleeAttackroutine());
-        // }
-        // else if(index % 2 == 0 && index != 0)
-        // {
-        //     Debug.Log("Start range attack");
-        //     isrange_attack = true;
-        //     yield return StartCoroutine(rangeAttackroutine());
-        // }
-        // else 
-        if (index != 0)
+        if(index % 2 == 1)
+        {
+            Debug.Log("Start melee attack");
+            ismelee_attack = true;
+            yield return StartCoroutine(meleeAttackroutine());
+        }
+        else if(index % 2 == 0 && index != 0)
+        {
+            Debug.Log("Start range attack");
+            isrange_attack = true;
+            yield return StartCoroutine(rangeAttackroutine());
+        }
+        else
         {
             isArm_Hammer = true;
             yield return StartCoroutine(armhammerroutine());
