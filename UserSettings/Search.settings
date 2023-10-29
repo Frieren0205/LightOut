@@ -9,16 +9,16 @@ showPackageIndexes = false
 showStatusBar = false
 scopes = {
 	"picker_window_position_offset.74AD8FDB" = "762;150;320;550"
-	"picker_search_text.74AD8FDB" = ""
-	"last_search.74AD8FDB" = ""
+	"picker_search_text.74AD8FDB" = "cycle"
+	"last_search.74AD8FDB" = "cycle"
 	"OpenInspectorPreview.74AD8FDB" = "0"
 	"currentGroup.74AD8FDB" = "all"
-	"picker_window_position_offset.7E63D72B" = "624;243;320;550"
+	"picker_window_position_offset.7E63D72B" = "624;243.3333;320;550"
 	"picker_search_text.7E63D72B" = ""
 	"last_search.7E63D72B" = ""
 	"OpenInspectorPreview.7E63D72B" = "0"
 	"currentGroup.7E63D72B" = "all"
-	"last_search.310DEAF1" = ""
+	"last_search.310DEAF1" = "visual effect m"
 	"OpenInspectorPreview.310DEAF1" = "0"
 	"currentGroup.310DEAF1" = "all"
 }
@@ -67,6 +67,7 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	""
 ]
 searchItemFavorites = [
 ]
