@@ -356,6 +356,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dummy_ARM
       objectReference: {fileID: 0}
+    - target: {fileID: 8749175809510496483, guid: 758807e9f516b014b9d78cfb2f1f53d0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
