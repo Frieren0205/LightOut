@@ -30,6 +30,10 @@ public class LevelManager : MonoBehaviour
     }
     public Level level;
     public Player_Controll player;
+    //TODO : 중간보스
+
+    public BOSS_ENEMY boss_object;
+    public bool isbossdead;
 
     public (int minPosition, int maxPosition)[] LimitiedPosition;
     [Serializable]
@@ -71,7 +75,13 @@ public class LevelManager : MonoBehaviour
         if(level == Level.Boss_Battle)
         {
             player.minLimit = limitiedPositions[3].minPosition;
-            player.maxLimit = limitiedPositions[3].maxPosition;       
+            player.maxLimit = limitiedPositions[3].maxPosition;
+
+            if(!GameManager.Instance.isGameClear)
+            {
+                boss_object = FindFirstObjectByType<BOSS_ENEMY>();
+                isbossdead = false;
+            }
         }
     }
     public void CameraTrackingUpdate()

@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/4_Boss_battle.unity
     guid: 712ebbbb45e3de5488fc363f28b0044f
+  - enabled: 1
+    path: Assets/Scenes/5_Ending.unity
+    guid: a93dabae47575274995c8f642841cb20
+  - enabled: 1
+    path: Assets/Scenes/6_Credit.unity
+    guid: ced6538e95e646043b4030e408e6a522
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 799a9a9e8b8273e40ba74268421ca986,
       type: 2}

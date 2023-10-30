@@ -29,7 +29,7 @@ Material:
   m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
-  m_DoubleSidedGI: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
@@ -57,11 +57,11 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _dissolve: -0.89
+    - _dissolve: -3.7
     - _rotate: 0
     - _scale: 4.46
     - _speed: 0.5
     - _twirl_strength: 20.45
     m_Colors:
-    - _Color: {r: 4, g: 0.8490568, b: 2.5150445, a: 1}
+    - _Color: {r: 2.0958211, g: 3.7898884, b: 11.773584, a: 1}
   m_BuildTextureStacks: []

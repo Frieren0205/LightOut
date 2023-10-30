@@ -521,45 +521,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1198356664448989497, guid: 2b4700cc13ff5ce4ca622f2c7f3ad518,
+    - target: {fileID: 3043861102041567872, guid: 2b4700cc13ff5ce4ca622f2c7f3ad518,
         type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 2723994676141584571, guid: 2b4700cc13ff5ce4ca622f2c7f3ad518,
-        type: 3}
-      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[3].m_Value
-      value: -3.52
-      objectReference: {fileID: 0}
-    - target: {fileID: 2723994676141584571, guid: 2b4700cc13ff5ce4ca622f2c7f3ad518,
-        type: 3}
-      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[0].m_Overridden
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2723994676141584571, guid: 2b4700cc13ff5ce4ca622f2c7f3ad518,
-        type: 3}
-      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[1].m_Overridden
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2723994676141584571, guid: 2b4700cc13ff5ce4ca622f2c7f3ad518,
-        type: 3}
-      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[2].m_Overridden
+      propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2723994676141584571, guid: 2b4700cc13ff5ce4ca622f2c7f3ad518,
-        type: 3}
-      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[3].m_Overridden
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2723994676141584571, guid: 2b4700cc13ff5ce4ca622f2c7f3ad518,
-        type: 3}
-      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Overridden
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2723994676141584571, guid: 2b4700cc13ff5ce4ca622f2c7f3ad518,
-        type: 3}
-      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Overridden
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3403412158269070662, guid: 2b4700cc13ff5ce4ca622f2c7f3ad518,
         type: 3}
@@ -620,6 +585,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arm_Hammer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822118860132362530, guid: 2b4700cc13ff5ce4ca622f2c7f3ad518,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1228,7 +1198,12 @@ PrefabInstance:
     - target: {fileID: 2721435134973116295, guid: 0e6b0104722b941409a789358bf93d2e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596826333697978227, guid: 0e6b0104722b941409a789358bf93d2e,
+        type: 3}
+      propertyPath: Boss_HP
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9051395334493718781, guid: 0e6b0104722b941409a789358bf93d2e,
         type: 3}

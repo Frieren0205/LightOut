@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class UIManager : MonoBehaviour
 {
@@ -74,9 +75,22 @@ public class UIManager : MonoBehaviour
     }
     public void toTitleScene()
     {
-        Debug.Log("타이틀로");
         StartCoroutine(castfadeout());
         Invoke("toTitleScenewithFade",1);
+    }
+    public void toGameExit()
+    {
+        StartCoroutine(castfadeout());
+        Invoke("toGameExitwithFade", 1);
+    }
+    void toGameExitwithFade()
+    {
+        // 데이터 날리기
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
     void toTitleScenewithFade()
     {
