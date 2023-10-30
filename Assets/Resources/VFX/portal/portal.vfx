@@ -273,8 +273,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 122
     y: -2862
-    width: 5931
-    height: 7015
+    width: 5929
+    height: 7000
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4911,6 +4911,8 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614728}
       inputSlot: {fileID: 8926484042661615290}
+    - outputSlot: {fileID: 8926484042661614728}
+      inputSlot: {fileID: 8926484042661615422}
     position: {x: 5413, y: 1248}
     expandedSlots: []
     expanded: 0
@@ -4959,6 +4961,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615041}
   - {fileID: 8926484042661615117}
   - {fileID: 8926484042661615290}
+  - {fileID: 8926484042661615422}
 --- !u!114 &8926484042661614729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22382,7 +22385,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 0
+  m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots: []
   m_OutputSlots:
@@ -23214,7 +23217,8 @@ MonoBehaviour:
       m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   m_Direction: 0
-  m_LinkedSlots: []
+  m_LinkedSlots:
+  - {fileID: 8926484042661614728}
 --- !u!114 &8926484042661615423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23372,7 +23376,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
+      m_SerializableObject: '{"obj":{"fileID":10300,"guid":"0000000000000000f000000000000000","type":0}}'
     m_Space: 2147483647
   m_Property:
     name: _mask
