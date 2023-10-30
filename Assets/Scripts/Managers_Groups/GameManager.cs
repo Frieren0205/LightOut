@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     public bool isPause;
     public bool isPlayerDead = false;
+
+    public bool isGameClear = false;
     [SerializeField]
     private Player_Controll player;
     // Start is called before the first frame update
