@@ -45,8 +45,10 @@ public class BOSS_ENEMY : MonoBehaviour
     private bool ismelee_attack;
     private bool isrange_attack;
     public bool isArm_Hammer;
-
     public bool canRandom;
+
+    private bool ishitable = true;
+
     private List<GameObject> range_obj_list = new List<GameObject>();
     public  List<bool> attack_bool_list = new List<bool>();
 
@@ -56,6 +58,8 @@ public class BOSS_ENEMY : MonoBehaviour
         return Quaternion.FromToRotation(Vector3.up, vEnd - vstart).eulerAngles.z;
     }
     public float Angle;
+
+
     private void OnEnable() 
     {
         animator = this.gameObject.GetComponent<Animator>();
@@ -71,7 +75,13 @@ public class BOSS_ENEMY : MonoBehaviour
     }
     private void FixedUpdate() 
     {
-        if(!GameManager.Instance.isPlayerDead)
+        if(Boss_HP <= 0)
+        {
+            LevelManager.Instance.isbossdead = true;
+            GameManager.Instance.isGameClear = true;
+            StartCoroutine(deadroutine());
+        }
+        if(!GameManager.Instance.isPlayerDead && !LevelManager.Instance.isbossdead)
         {
             Rotatetoplayer();
             BattleRoutine();
@@ -80,10 +90,10 @@ public class BOSS_ENEMY : MonoBehaviour
         {
             player = null;
         }
-        else
-        {
-            Debug.LogError($"플레이어에 해당하는 객체를 찾을 수 없습니다. 다음을 참조하세요 GameManager.Player,{0}",LevelManager.Instance.player);
-        }
+        // else if()
+        // {
+        //     Debug.LogError($"플레이어에 해당하는 객체를 찾을 수 없습니다. 다음을 참조하세요 GameManager.Player,{0}",LevelManager.Instance.player);
+        // }
 
     }
         // 플레이어와의 위치 차이에 따라 좌우 회전 (백어택 불가능)
@@ -103,6 +113,36 @@ public class BOSS_ENEMY : MonoBehaviour
                 transform.localScale = new Vector3(-1,1,1);
             }
         }
+    }
+    private void OnTriggerEnter(Collider other) 
+    {
+        if(other.gameObject.name == "Attack_Col" && ishitable)
+        {
+            StartCoroutine(hitroutine());
+        }
+    }
+    private IEnumerator hitroutine()
+    {
+        ishitable = false;
+        Boss_HP -= 1;
+        // animator.SetTrigger("isHit");
+        if(positonstate == positonState.right)
+        {
+            rb.AddForce(Vector3.left * 5,ForceMode.Impulse);
+        }
+        else
+        {
+            rb.AddForce(Vector3.right * 5, ForceMode.Impulse);
+        }
+        rb.AddForce(Vector3.up * 5, ForceMode.Impulse);
+        yield return new WaitForSeconds(0.25f);
+        ishitable = true;
+    }
+    private IEnumerator deadroutine()
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(this.gameObject);
+        GameManager.Instance.NextSceneLoad();
     }
     private void BattleRoutine()
     {

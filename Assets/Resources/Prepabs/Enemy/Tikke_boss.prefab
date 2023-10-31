@@ -205,6 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb544e58597809344867c590b34d0486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Boss_HP: 20
   attackPattenlist:
   - pattername: "\uADFC\uAC70\uB9AC \uACF5\uACA9"
     attackmode: 0
@@ -220,7 +221,9 @@ MonoBehaviour:
     attackobject: {fileID: 6822118860132362530, guid: 2b4700cc13ff5ce4ca622f2c7f3ad518,
       type: 3}
     attackpoint: {fileID: 0}
+  attackState: 0
   positonstate: 0
+  isArm_Hammer: 0
   canRandom: 0
   attack_bool_list: 
   Angle: 0
