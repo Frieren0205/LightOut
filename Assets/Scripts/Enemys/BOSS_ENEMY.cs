@@ -154,30 +154,30 @@ public class BOSS_ENEMY : MonoBehaviour
     IEnumerator Random_Call()
     {
         canRandom = false;
-        for(int i = 0; i < 5; i++)
-        {
-            attack_bool_list.Add(false);
-            attack_bool_list.Add(false);
-        }
-        attack_bool_list[Random.Range(0,10)] = true;
-        int index = attack_bool_list.FindIndex(a => a == true);
-        if(index % 2 == 1)
-        {
-            Debug.Log("Start melee attack");
-            ismelee_attack = true;
-            yield return StartCoroutine(meleeAttackroutine());
-        }
-        else if(index % 2 == 0 && index != 0)
-        {
-            Debug.Log("Start range attack");
-            isrange_attack = true;
-            yield return StartCoroutine(rangeAttackroutine());
-        }
-        else
-        {
+        // for(int i = 0; i < 5; i++)
+        // {
+        //     attack_bool_list.Add(false);
+        //     attack_bool_list.Add(false);
+        // }
+        // attack_bool_list[Random.Range(0,10)] = true;
+        // int index = attack_bool_list.FindIndex(a => a == true);
+        // if(index % 2 == 1)
+        // {
+        //     Debug.Log("Start melee attack");
+        //     ismelee_attack = true;
+        //     yield return StartCoroutine(meleeAttackroutine());
+        // }
+        // else if(index % 2 == 0 && index != 0)
+        // {
+        //     Debug.Log("Start range attack");
+        //     isrange_attack = true;
+        //     yield return StartCoroutine(rangeAttackroutine());
+        // }
+        // else
+        // {
             isArm_Hammer = true;
             yield return StartCoroutine(armhammerroutine());
-        }
+        // }
         yield return new WaitForSeconds(3);
         canRandom = true;
         attack_bool_list.Clear();
@@ -234,6 +234,7 @@ public class BOSS_ENEMY : MonoBehaviour
     {
         attackState = AttackState.Arm_Hammer;
         AttackPatternChange();
+        animator.SetTrigger("isSummonArm");
         yield return new WaitForSeconds(0.5f);
         GameObject cloneArm = Instantiate(attackobject, attackpoint.transform);
         yield return new WaitForSeconds(2);
