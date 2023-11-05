@@ -251,7 +251,7 @@ public class Enemy_Test2 : MonoBehaviour
         ishitable = false;
         animator.SetBool("isDead", true);
         yield return new WaitForSeconds(1);
-        LevelManager.Instance.isLevelClear[0] = true;
+        LevelManager.Instance.isLevel1Clear = true;
         Destroy(gameObject);
     }
     // public void OnEmergency()

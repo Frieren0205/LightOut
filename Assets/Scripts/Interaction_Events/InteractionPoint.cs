@@ -40,6 +40,10 @@ public class InteractionPoint : MonoBehaviour
         else if(other.gameObject.GetComponent<Player_Controll>() && interactiontype == Interactiontype.teleport)
         {
             //TODO : 같은 씬 안에서의 텔레포트
+            player = other.gameObject.GetComponent<Player_Controll>();
+            player.interactionPoint =  this;
+            player.CanInteractionIcon.SetActive(true);
+            player.CanInteraction = true;
         }
     }
     private void OnTriggerExit(Collider other)

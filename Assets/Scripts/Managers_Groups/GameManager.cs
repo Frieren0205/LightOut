@@ -120,8 +120,10 @@ public class GameManager : MonoBehaviour
             case 3:
             {
                 levelManager.level = LevelManager.Level.Sub_Tera;
-                if(!player) player = SpawnManager.Instance.SpawnPlayer(SpawnManager.Instance.spawnpoints[1]);
+                if(!player)
+                    player = SpawnManager.Instance.SpawnPlayer(SpawnManager.Instance.spawnpoints[1]);
                 levelManager.player = player;
+                player.levelManager = levelManager;
                 player.gameObject.transform.position = SpawnManager.Instance.spawnpoints[1].spawnpositionVec3;
                 playerinit();
                 LevelManager.Instance.LevelSetting(LevelManager.Level.Sub_Tera);
@@ -155,65 +157,6 @@ public class GameManager : MonoBehaviour
         player.interactionPoint = null;
         player.CanInteractionIcon.SetActive(false);
     }
-    // private void OnEnable() 
-    // { 
-    //     /// 새롭게 바꿀 때 준비해야 할 것
-    //     /// 1. 타이틀화면에서는 플레이어를 스폰하면 안됨
-    //     /// 2. 플레이어를 생성과 동시에 싱글톤화 된 LevelManager의 Player컴포넌트에 인풋
-    //     /// 3. 각 레벨별 플레이어의 위치를 변경할 수 있도록
-        
-    //     // 1. 타이틀화면에서는 플레이어를 스폰하면 안됨
-    //     if(levelManager.level != LevelManager.Level.Title)
-    //     {
-    //         switch(levelManager.level)
-    //         {
-    //             case LevelManager.Level.Underground:
-    //             {
-    //                 // 플레이어가 없다면 플레이어를 초기 스폰 위치에 생성시키기
-    //                 // if(!player) player = SpawnManager.Instance.SpawnPlayer(SpawnManager.Instance.spawnpoints[0]);
-    //                 // 플레이어를 생성과 동시에 LevelManager의 Player 컴포넌트에 인풋
-    //                 LevelManager.Instance.player = player;
-    //                 break;
-    //             }
-    //             case LevelManager.Level.Sub_Tera:
-    //             {
-    //                 player.gameObject.transform.position = SpawnManager.Instance.spawnpoints[1].spawnpositionVec3;
-    //                 break;
-    //             }
-    //             case LevelManager.Level.In_Tera:
-    //             {
-    //                 break;
-    //             }
-    //         }
-    //     }
-    // }
-    // void Start()
-    // {
-    //     DontDestroyOnLoad(this.gameObject);
-    //     switch(SceneManager.GetActiveScene().buildIndex)
-    //     {
-    //         case 2:
-    //         {
-    //             levelManager.level = LevelManager.Level.Underground;
-    //             LevelManager.Instance.LevelSetting(LevelManager.Level.Underground);
-    //             LevelSetting();
-    //             LevelManager.Instance.CameraAreasUpdate();
-    //             break;
-    //         }
-    //         case 3:
-    //         {
-    //             levelManager.level = LevelManager.Level.Sub_Tera;
-    //             LevelSetting();
-    //             break;
-    //         }
-    //         case 4:
-    //         {
-    //             levelManager.level = LevelManager.Level.In_Tera;
-    //             LevelSetting();
-    //             break;
-    //         }
-    //     }
-    // }
     private void LevelSetting()
     {
         interactionManager.player = player;

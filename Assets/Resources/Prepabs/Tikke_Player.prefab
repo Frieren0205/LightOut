@@ -600,7 +600,8 @@ MonoBehaviour:
   spriteObject: {fileID: 7991882071821812985}
   JumpPower: 10
   rb: {fileID: 6429005941708711513}
-  maxslope: 50
+  MoveDirection: {x: 0, y: 0, z: 0}
+  maxslope: 55
   MoveSpeed: 5
   isflip: 0
   minLimit: 0

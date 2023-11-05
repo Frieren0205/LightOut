@@ -1924,7 +1924,9 @@ MonoBehaviour:
     maxPosition: 0
   - minPosition: -582.5
     maxPosition: -585.7192
-  isLevelClear: 00000000
+  isLevel1Clear: 0
+  isLevel2Clear: 0
+  level2ClearCheckPoints: 000000
   cameraLimitedAreas: {fileID: 0}
 --- !u!114 &7250827595877547305
 MonoBehaviour:

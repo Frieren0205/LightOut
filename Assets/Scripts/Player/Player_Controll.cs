@@ -20,6 +20,7 @@ public class Player_Controll : MonoBehaviour
     private bool isJump = false;
     public float JumpPower;
     public Rigidbody rb;
+    [SerializeField]
     private Vector3 MoveDirection;
 
 
@@ -42,7 +43,7 @@ public class Player_Controll : MonoBehaviour
         return Vector3.ProjectOnPlane(direction, slopehit.normal).normalized;
     }
     
-    [Range(5, 6.25f)]
+    // [Range(5, 6.25f)] 선택지로 올릴 수 있는 수치인데 왜 일케됐지 암튼;
     public float MoveSpeed;
     [SerializeField]
     private  bool isflip; // 좌우 반전을 위해
@@ -337,7 +338,7 @@ public class Player_Controll : MonoBehaviour
                 else if(interactionPoint.interactiontype == InteractionPoint.Interactiontype.teleport)
                 {
                     //TODO : 같은 씬 안에서의 텔레포트
-                    UIManager.Instance.castfadeout();
+                    StartCoroutine(UIManager.Instance.castfadeout());
                     Invoke("OnInteraction_teleport", 1.2f);
                 }
             }
@@ -346,7 +347,9 @@ public class Player_Controll : MonoBehaviour
     private void OnInteraction_teleport()
     {
         transform.position = interactionPoint.transformVec3;
-        UIManager.Instance.castfadein();
+        LevelManager.Instance.CameraAreasUpdate();
+        gameManager.isPause = false;
+        StartCoroutine(UIManager.Instance.castfadein());
     }
     // 컬라이더 관련 시작!!!
     private void OnCollisionEnter(Collision other) // 몬스터에게 가까이 붙어도 데미지 판정이 들어가도록
