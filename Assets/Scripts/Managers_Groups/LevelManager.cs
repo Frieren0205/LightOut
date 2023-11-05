@@ -45,8 +45,25 @@ public class LevelManager : MonoBehaviour
 
     [Header("맵 별 포지션 제한도")]
     public LimitiedPositions[] limitiedPositions;
+    #region 
     [Header("레벨 클리어 조건 달성여부")]
-    public bool[] isLevelClear;
+    public bool isLevel1Clear;
+    public bool isLevel2Clear;
+    private bool isLevel2ClearCheck()
+    {
+        if(level2ClearCheckPoints[0] && level2ClearCheckPoints[1] && level2ClearCheckPoints[2])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool[] level2ClearCheckPoints;
+    public bool isLevel3Clear;
+    #endregion
     private CinemachineVirtualCamera cinevirtualcam;
     private CinemachineConfiner confiner;
     [Header("카메라 영역 제한용 컬라이더")]
@@ -54,6 +71,9 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
+    }
+    private void Update() {
+       isLevel2Clear = isLevel2ClearCheck();
     }
     public void LevelSetting(Level level)
     {
@@ -103,6 +123,14 @@ public class LevelManager : MonoBehaviour
             case Level.Sub_Tera:
             {
                 cameraLimitedAreas = GameObject.Find("SubTera_Camera_Area").GetComponent<BoxCollider>();
+                if(level2ClearCheckPoints[0])
+                {
+                    cameraLimitedAreas = GameObject.Find("SubTera_Camera_Area_2").GetComponent<BoxCollider>();
+                }
+                else if(level2ClearCheckPoints[1])
+                {
+                    
+                }
                 confiner = FindFirstObjectByType<CinemachineConfiner>();
                 confiner.m_BoundingVolume = cameraLimitedAreas;
                 break;

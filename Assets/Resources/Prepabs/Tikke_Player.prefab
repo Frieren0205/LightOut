@@ -598,9 +598,10 @@ MonoBehaviour:
   playerHP: {fileID: 5259514440353871498}
   animator: {fileID: 2131179700318788345}
   spriteObject: {fileID: 7991882071821812985}
-  JumpPower: 5
+  JumpPower: 10
   rb: {fileID: 6429005941708711513}
   MoveDirection: {x: 0, y: 0, z: 0}
+  maxslope: 55
   MoveSpeed: 5
   isflip: 0
   minLimit: 0
@@ -608,6 +609,7 @@ MonoBehaviour:
   debugtest: 0
   isPlayerDead: 0
   isGrounded: 1
+  rayposition: {x: 0, y: 0.1, z: 0}
   raydistance: 0.2
   playerAttackDamage: 1
   ComboCount: 0

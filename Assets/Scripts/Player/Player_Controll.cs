@@ -1,12 +1,12 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Events;
 using Yarn.Unity;
-using Unity.VisualScripting;
+
 
 public class Player_Controll : MonoBehaviour
 {
+    public Vector3 direction {get; private set;}
     [SerializeField]
     private GameManager gameManager;
     public LevelManager levelManager;
@@ -17,12 +17,33 @@ public class Player_Controll : MonoBehaviour
     
     //이동관련 컴포넌트
     private CapsuleCollider body;
+    private bool isJump = false;
     public float JumpPower;
     public Rigidbody rb;
     [SerializeField]
     private Vector3 MoveDirection;
+
+
+    private RaycastHit slopehit;
+    public int maxslope = 50;
+    public bool onSlope()
+    {
+        Ray ray = new Ray(transform.position + rayposition, Vector3.down);
+        int slopelayermask = 1 << LayerMask.NameToLayer("Slope");
+        Debug.DrawRay(transform.position + rayposition , Vector3.down * 0.3f, Color.red);
+        if(Physics.Raycast(ray, out slopehit, 0.3f, slopelayermask))
+        {
+            var angle = Vector3.Angle(Vector3.up, slopehit.normal);
+            return angle != 0f && angle < maxslope;
+        }
+        return false;
+    }
+    protected Vector3 DirectionToSlope(Vector3 direction)
+    {
+        return Vector3.ProjectOnPlane(direction, slopehit.normal).normalized;
+    }
     
-    [Range(5, 6.25f)]
+    // [Range(5, 6.25f)] 선택지로 올릴 수 있는 수치인데 왜 일케됐지 암튼;
     public float MoveSpeed;
     [SerializeField]
     private  bool isflip; // 좌우 반전을 위해
@@ -44,18 +65,17 @@ public class Player_Controll : MonoBehaviour
     [SerializeField]
     private bool isPlayerDead;
     bool isaleadycheck = false;
-
     [SerializeField]
     private bool isGrounded;
+    public Vector3 rayposition;
     [Range(0,1)]
     public float raydistance; 
 
 
-    /// <summary>
-    /// 포복상태 체크, 포복중 위에 장애물이 있는지 체크하기위함
-    /// </summary>
+    #region  #끼임 체크
     private bool isCrawl;
     private bool isstuck;
+    #endregion
 
     // 전투&상호작용 조작 관련
    [Range(1,5)] // 플레이어 공격력은 초기값 1, 최대 5까지 상승 가능
@@ -114,7 +134,7 @@ public class Player_Controll : MonoBehaviour
     {
         GameManager.Instance.isPause = isEnd;
     }
-    // Update is called once per frame
+
     void FixedUpdate()
     {
         isPlayerDead = playerHP.HP_Point <= 0;
@@ -125,26 +145,23 @@ public class Player_Controll : MonoBehaviour
         }
         if(!interactionManager.gameManager.isPause && !isPlayerDead)
         {
-            if(isGrounded == true)  animator.SetBool("isGrounded",true);
             bool hascontrol = (MoveDirection != Vector3.zero);
+            OnSlope();
             if(hascontrol && !isHit && CanAttack)
             {
                 transform.Translate(new Vector3(MoveDirection.x,0,MoveDirection.z) * MoveSpeed * Time.deltaTime);
-                if(!debugtest)
+                if(transform.position.z > minLimit && !debugtest)
                 {
-                    if(transform.position.z > minLimit)
-                    {
-                        transform.position = new Vector3(transform.position.x, transform.position.y, minLimit);
-                    }
-                    if(transform.position.z < maxLimit)
-                    {
-                        transform.position = new Vector3(transform.position.x, transform.position.y, maxLimit);
-                    }
+                    transform.position = new Vector3(transform.position.x, transform.position.y, minLimit);
                 }
-
+                if(transform.position.z < maxLimit && !debugtest)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, maxLimit);
+                }
                 if(isGrounded && MoveDirection.x != 0 || MoveDirection.z != 0) 
                     animator.SetBool("isMove",true);
-                else animator.SetBool("isMove",false);
+                else 
+                    animator.SetBool("isMove",false);
                 OnFlip();
             }
             else if(!hascontrol)        
@@ -162,6 +179,23 @@ public class Player_Controll : MonoBehaviour
             }
             else
                 timer -= Time.deltaTime;
+        }
+    }
+    public void OnSlope()
+    {
+        bool isSlope = onSlope();
+        Vector3 velocity = isSlope ? DirectionToSlope(direction) : direction;
+        Vector3 gravity = Vector3.down * Mathf.Abs(rb.velocity.y);
+        if(isSlope && isGrounded)
+        {
+            velocity = DirectionToSlope(direction);
+            gravity = Vector3.zero;
+            rb.useGravity = false;
+            rb.velocity = velocity * MoveSpeed + gravity;
+        }
+        else
+        {
+            rb.useGravity = true;
         }
     }
     public void OnPause()
@@ -196,25 +230,35 @@ public class Player_Controll : MonoBehaviour
     }
     public void OnJump(float value)
     {
-        if(value == 1 && isGrounded && !isCrawl) 
+        if(value == 1 && isGrounded && !isCrawl && !isJump) 
         {
+            rb.useGravity = true;
+            isJump = true;
+            StartCoroutine(Returnjumpcheck());
             animator.SetTrigger("isJump");
             animator.SetBool("isGrounded", false);
             rb.AddForce(Vector3.up * JumpPower,ForceMode.Impulse);
             isGrounded = false;
         }
     }
+    IEnumerator Returnjumpcheck()
+    {
+        if(isJump)
+        {
+            yield return new WaitForSeconds(0.65f);
+            isJump = false;
+        }
+    }
     private void GroundCheck()
     {
-        Ray ray = new Ray(this.transform.position, new Vector3(0,-raydistance, 0));
-        Debug.DrawRay(this.transform.position, new Vector3(0,-raydistance, 0));
+        Ray ray = new Ray(this.transform.position + rayposition, new Vector3(0,-raydistance, 0));
+        Debug.DrawRay(this.transform.position + rayposition, new Vector3(0,-raydistance, 0));
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit, raydistance))
         {
             
             animator.SetBool("isGrounded",true);
             isGrounded = true;
-            Debug.Log("착지 & 지면에 있음");
         }
     }
     public void OnCrawl(float value)
@@ -258,7 +302,6 @@ public class Player_Controll : MonoBehaviour
             animator.SetTrigger("isAttack");
             StartCoroutine(AttackTimer());
         }
-
     }
     IEnumerator AttackTimer()
     {
@@ -295,7 +338,7 @@ public class Player_Controll : MonoBehaviour
                 else if(interactionPoint.interactiontype == InteractionPoint.Interactiontype.teleport)
                 {
                     //TODO : 같은 씬 안에서의 텔레포트
-                    UIManager.Instance.castfadeout();
+                    StartCoroutine(UIManager.Instance.castfadeout());
                     Invoke("OnInteraction_teleport", 1.2f);
                 }
             }
@@ -304,7 +347,9 @@ public class Player_Controll : MonoBehaviour
     private void OnInteraction_teleport()
     {
         transform.position = interactionPoint.transformVec3;
-        UIManager.Instance.castfadein();
+        LevelManager.Instance.CameraAreasUpdate();
+        gameManager.isPause = false;
+        StartCoroutine(UIManager.Instance.castfadein());
     }
     // 컬라이더 관련 시작!!!
     private void OnCollisionEnter(Collision other) // 몬스터에게 가까이 붙어도 데미지 판정이 들어가도록
@@ -313,14 +358,14 @@ public class Player_Controll : MonoBehaviour
         {
             CalculateHit("EnemyAttack");
         }
-    }
-    private void OnTriggerEnter(Collider other) 
-    {
-       /* if(other.gameObject.tag == "Ground")
+        if(other.gameObject.tag == "Ground")
         {
             isGrounded = true;
             animator.SetBool("isGrounded",true);
-        }*/
+        }
+    }
+    private void OnTriggerEnter(Collider other) 
+    {
         if(other.gameObject.tag == "EnemyAttack" && !isHit && CanHit)
         {
             CalculateHit("EnemyAttack");

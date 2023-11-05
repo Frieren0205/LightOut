@@ -1897,6 +1897,7 @@ MonoBehaviour:
   uIManager: {fileID: 7250827595877547305}
   isPause: 0
   isPlayerDead: 0
+  isGameClear: 0
   player: {fileID: 0}
 --- !u!114 &814948015241077360
 MonoBehaviour:
@@ -1912,16 +1913,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   player: {fileID: 0}
+  boss_object: {fileID: 0}
+  isbossdead: 0
   limitiedPositions:
   - minPosition: -6.687
     maxPosition: -10.4
   - minPosition: -4.994
-    maxPosition: -9.186
+    maxPosition: -12.8
   - minPosition: 0
     maxPosition: 0
   - minPosition: -582.5
     maxPosition: -585.7192
-  isLevelClear: 00000000
+  isLevel1Clear: 0
+  isLevel2Clear: 0
+  level2ClearCheckPoints: 000000
   cameraLimitedAreas: {fileID: 0}
 --- !u!114 &7250827595877547305
 MonoBehaviour:
