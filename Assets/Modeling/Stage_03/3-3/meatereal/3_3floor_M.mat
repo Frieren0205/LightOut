@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: stairbridge02_M
+  m_Name: 3_3floor_M
   m_Shader: {fileID: -6465566751694194690, guid: 99fff7db80a600a478ca55e63f64fbe0,
     type: 3}
   m_Parent: {fileID: 0}
@@ -38,11 +38,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo_Texture:
-        m_Texture: {fileID: 2800000, guid: 70c2a73c62d10d14494b64f0b6e9d57b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 792bee707b8330e429a015c03f86f16e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ambient_Occlusion:
-        m_Texture: {fileID: 2800000, guid: 94d83a9c61901e941a758979c9d1cd3b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 94aa55f34c5aaae4a873b95a092b7944, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -74,7 +74,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _M_Texutre:
-        m_Texture: {fileID: 2800000, guid: d394cfa608fcaba44ac416891397c0c7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8945b8e236da8d044ad88d64c2de05f5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -90,7 +90,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: c830ed181b1aa9546bb740c0a164b9cd, type: 3}
+        m_Texture: {fileID: 2800000, guid: f9aee61bd01fdc9499df29bca4303344, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -102,7 +102,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _R_Texture:
-        m_Texture: {fileID: 2800000, guid: 1a50ce57a2ab44e419530f0f2f2910c1, type: 3}
+        m_Texture: {fileID: 2800000, guid: f325881bfaaa99c4b814d15177e74958, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Roughness_Texutre:
