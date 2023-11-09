@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class Enemy_Test2 : MonoBehaviour
 {
@@ -15,11 +16,16 @@ public class Enemy_Test2 : MonoBehaviour
         Emergency,
         Dead
     }
+    public bool isdo_something;
     [Range(0,5)]
     public int EnemyHP;
     bool isattakable = true;
     bool ishitable = true;
-    bool isfilp;
+    public bool isfilp;
+
+    bool leftbackattack;
+    bool rightbackattack;
+
     bool isplayerdead = false;
     private Rigidbody Rb;
 
@@ -36,7 +42,7 @@ public class Enemy_Test2 : MonoBehaviour
     public GameObject SpriteObject; // 분리한 스프라이트 오브젝트
     public State state; // 상태머신 변수화
     // 움직임 및 추적 관련
-    public float MovementSpeed = 2.5f;
+    public float MovementSpeed = 1;
     private float PathRefreshTime = 0.0f;
     private float WayPointsArrivalDistance = 1.5f;
 
@@ -53,6 +59,7 @@ public class Enemy_Test2 : MonoBehaviour
     [SerializeField]
     private float AttackDistance = 1.5f;
 
+    public GameObject hitEffectPrepab;
     void Start()
     {
         path = new NavMeshPath();
@@ -89,11 +96,25 @@ public class Enemy_Test2 : MonoBehaviour
         else
             generator = null;
     }
+    private void CheckingBackAttack()
+    {
+        // 왼쪽 오른쪽 백어택을 구분해야함
+        // isflip = 오른쪽을 보고 있음
+        // !isflip = 왼쪽을 보고있음
 
+        // 오른쪽을 보고 있을때의 백어택 조건은, 플레이어의 위치가 현재 몹의 위치보다 -여야함.
+        // 따라서 왼쪽 백어택 조건은, 오른쪽을 보고 있을 때 몬스터의 좌표값이 더 클 경우
 
-    void Update()
+        // 왼쪽을 보고 있을때의 백어택 조건은, 플레이어의 위치가 더 커야함
+        // 따라서 오른쪽 백어택 조건은, 왼쪽을 보고있을때의 플레이어의 좌표값이 더 클 경우다.
+        leftbackattack = isfilp && this.transform.position.x > target_Transform.position.x;
+        rightbackattack = !isfilp && target_Transform.position.x > this.transform.position.x;
+    }
+
+    void FixedUpdate()
     {
         isplayerdead = GameManager.Instance.isPlayerDead;
+        isdo_something = !isattakable || !ishitable;
         if(isplayerdead)
         {
             StopAllCoroutines();
@@ -106,15 +127,11 @@ public class Enemy_Test2 : MonoBehaviour
         {
             OnMoveStop();
         }
-        if(state == State.Chase || !isplayerdead)
+        if(state == State.Chase && !isplayerdead)
         {
-            MovementSpeed = 2.5f;
+            MovementSpeed = 2;
+            
         }
-    //    if(generator != null && generator.isEmergency == true)
-    //    {
-    //         //TODO : AI 강화 메소드
-    //         OnEmergency();
-    //    }
     }
     public void UpdateFollwingPath()
     {
@@ -129,7 +146,7 @@ public class Enemy_Test2 : MonoBehaviour
     {
        // 갱신 주기 
        PathRefreshTime += Time.deltaTime;
-       if(PathRefreshTime >= 0.0025f)
+       if(PathRefreshTime >= 0.00025f)
        {
             // 주기 리셋
             PathRefreshTime = 0.0f;
@@ -181,7 +198,7 @@ public class Enemy_Test2 : MonoBehaviour
     public void UpdateFollwingPath_Navigate_OnMove()
     {
         //TODO 웨이포인트로 움직이는 로직
-        if(state == State.Chase && state != State.Dead || !isplayerdead)
+        if(!isdo_something && state == State.Chase && state != State.Dead || !isplayerdead)
         {
             animator.SetBool("Move",true);
             isfilp = target_Transform.position.x > this.transform.position.x;
@@ -203,7 +220,7 @@ public class Enemy_Test2 : MonoBehaviour
     {
         MovementSpeed = 0;
         animator.SetBool("Move", false);
-        if(isattakable)
+        if(isattakable && !isdo_something)
         {
             StartCoroutine(AttackRoutine());
         }
@@ -212,7 +229,7 @@ public class Enemy_Test2 : MonoBehaviour
     {
         isattakable = false;
         animator.SetTrigger("isAttack");
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(1.5f);
         isattakable = true;
     }
     public void OnMoveStop()
@@ -224,14 +241,24 @@ public class Enemy_Test2 : MonoBehaviour
     {
         if(other.gameObject.name == "Attack_Col" && ishitable)
         {
-            StartCoroutine(hitroutine());
+            var hit_vector = other.ClosestPoint(transform.position) + new Vector3(Random.Range(-0.5f,0.5f),Random.Range(-0.2f,0.2f),-0.1f);
+            StartCoroutine(hitroutine(hit_vector));
         }
     }
-    private IEnumerator hitroutine()
+    // void OnCollisionEnter(Collision other)
+    // {
+    //     if(other.gameObject.name == "Attack_Col" && ishitable)
+    //     {
+    //         var hit_vector = other.contacts[0].point;
+    //         StartCoroutine(hitroutine(hit_vector));
+    //     }
+    // }
+    private IEnumerator hitroutine(Vector3 position)
     {
         state = State.hit;
         ishitable = false;
         EnemyHP -= 1;
+        var Hit_vfx_clone = Instantiate(hitEffectPrepab, position, Quaternion.identity);
         animator.SetTrigger("isHit");
         if(isfilp)
         {
@@ -244,6 +271,7 @@ public class Enemy_Test2 : MonoBehaviour
         Rb.AddForce(Vector3.up * 5, ForceMode.Impulse);
         yield return new WaitForSeconds(0.25f);
         ishitable = true;
+        Destroy(Hit_vfx_clone, 1f);
     }
     private IEnumerator deadroutine()
     {
