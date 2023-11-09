@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class Enemy_Test2 : MonoBehaviour
 {
@@ -58,6 +59,7 @@ public class Enemy_Test2 : MonoBehaviour
     [SerializeField]
     private float AttackDistance = 1.5f;
 
+    public GameObject hitEffectPrepab;
     void Start()
     {
         path = new NavMeshPath();
@@ -127,7 +129,7 @@ public class Enemy_Test2 : MonoBehaviour
         }
         if(state == State.Chase && !isplayerdead)
         {
-            MovementSpeed = 1;
+            MovementSpeed = 2;
             
         }
     }
@@ -218,7 +220,7 @@ public class Enemy_Test2 : MonoBehaviour
     {
         MovementSpeed = 0;
         animator.SetBool("Move", false);
-        if(isattakable)
+        if(isattakable && !isdo_something)
         {
             StartCoroutine(AttackRoutine());
         }
@@ -239,14 +241,24 @@ public class Enemy_Test2 : MonoBehaviour
     {
         if(other.gameObject.name == "Attack_Col" && ishitable)
         {
-            StartCoroutine(hitroutine());
+            var hit_vector = other.ClosestPoint(transform.position) + new Vector3(Random.Range(-0.5f,0.5f),Random.Range(-0.2f,0.2f),-0.1f);
+            StartCoroutine(hitroutine(hit_vector));
         }
     }
-    private IEnumerator hitroutine()
+    // void OnCollisionEnter(Collision other)
+    // {
+    //     if(other.gameObject.name == "Attack_Col" && ishitable)
+    //     {
+    //         var hit_vector = other.contacts[0].point;
+    //         StartCoroutine(hitroutine(hit_vector));
+    //     }
+    // }
+    private IEnumerator hitroutine(Vector3 position)
     {
         state = State.hit;
         ishitable = false;
         EnemyHP -= 1;
+        var Hit_vfx_clone = Instantiate(hitEffectPrepab, position, Quaternion.identity);
         animator.SetTrigger("isHit");
         if(isfilp)
         {
@@ -259,6 +271,7 @@ public class Enemy_Test2 : MonoBehaviour
         Rb.AddForce(Vector3.up * 5, ForceMode.Impulse);
         yield return new WaitForSeconds(0.25f);
         ishitable = true;
+        Destroy(Hit_vfx_clone, 1f);
     }
     private IEnumerator deadroutine()
     {

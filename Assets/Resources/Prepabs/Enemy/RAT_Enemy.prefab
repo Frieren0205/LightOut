@@ -450,9 +450,11 @@ MonoBehaviour:
   animator: {fileID: 0}
   SpriteObject: {fileID: 3314688785731973254}
   state: 0
-  MovementSpeed: 1
+  MovementSpeed: 2
   currentWayPointIndex: 0
   target_Transform: {fileID: 0}
   playersprite: {fileID: 0}
   WayPoints: []
   AttackDistance: 0.03
+  hitEffectPrepab: {fileID: 3489913565660959836, guid: e5dc5210606e4e34daf1eb466d7de0d9,
+    type: 3}

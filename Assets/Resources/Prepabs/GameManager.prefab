@@ -655,8 +655,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -441.5, y: 514.5}
-  m_SizeDelta: {x: 883, y: 1029}
+  m_AnchoredPosition: {x: -438, y: 512}
+  m_SizeDelta: {x: 876, y: 1024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8824967606562643596
 CanvasRenderer:
@@ -686,7 +686,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: cceb1a3d5a9b16142b5de57611df32d9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1927,6 +1927,7 @@ MonoBehaviour:
   isLevel1Clear: 0
   isLevel2Clear: 0
   level2ClearCheckPoints: 000000
+  isLevel3Clear: 0
   cameraLimitedAreas: {fileID: 0}
 --- !u!114 &7250827595877547305
 MonoBehaviour:
@@ -2051,10 +2052,10 @@ RectTransform:
   m_Father: {fileID: 7990727429793288154}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -502.73154, y: -56.405396}
-  m_SizeDelta: {x: 731, y: 1014}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 400, y: 512}
+  m_SizeDelta: {x: 737, y: 1024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7925175553954622334
 CanvasRenderer:
@@ -2109,10 +2110,14 @@ MonoBehaviour:
   sprites:
   - spritename: Player_normal
     sprite: {fileID: 21300000, guid: 9d5dd555632c9d44da56cb431e1fbff2, type: 3}
-  - spritename: Player_Anger
-    sprite: {fileID: 21300000, guid: 8e72ad7bb3391d24dab03769bec90a5b, type: 3}
-  - spritename: Player_Sad
-    sprite: {fileID: 21300000, guid: 29aa5373ad7b12f4eaa1225ad105ebe0, type: 3}
+  - spritename: Tikke_Player_sup
+    sprite: {fileID: 21300000, guid: 7d0191f9e6dde6a4889b05374548f95f, type: 3}
+  - spritename: Tikke_Player_frenzy
+    sprite: {fileID: 21300000, guid: ab454b306bfe3524fa176deea715f728, type: 3}
+  - spritename: Tikke_Player_upset
+    sprite: {fileID: 21300000, guid: dc221ea83154efe42bda2ad3007a0f03, type: 3}
+  - spritename: Tikke_Player_resign
+    sprite: {fileID: 21300000, guid: ebc081cf9f7de3947a54d8ea2e438d71, type: 3}
   - spritename: Null
     sprite: {fileID: 0}
 --- !u!1 &7416636299377281143
