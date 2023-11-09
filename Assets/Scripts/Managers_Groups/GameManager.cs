@@ -100,6 +100,7 @@ public class GameManager : MonoBehaviour
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         OnSwitchLevel();
+        isPause = false;
         StartCoroutine(UIManager.Instance.castfadein());
     }
 

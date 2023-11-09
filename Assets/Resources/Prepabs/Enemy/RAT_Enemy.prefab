@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e16276cf37741448a27d0362f599c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewAngle: 190
+  viewAngle: 360
   viewDistance: 10
   targetMask:
     serializedVersion: 2
@@ -442,13 +442,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fcba01d9866374dba4d2081dee6bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isdo_something: 0
   EnemyHP: 3
+  isfilp: 0
   generator: {fileID: 0}
   generatorRange: 15
   animator: {fileID: 0}
   SpriteObject: {fileID: 3314688785731973254}
   state: 0
-  MovementSpeed: 1.5
+  MovementSpeed: 1
   currentWayPointIndex: 0
   target_Transform: {fileID: 0}
   playersprite: {fileID: 0}
