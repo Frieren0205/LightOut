@@ -19,6 +19,7 @@ public class InteractionManager : MonoBehaviour
     public TextMeshProUGUI EventCharacterName;
 
     public DialogueRunner runner;
+    public DialogueAdvanceInput advanceInput;
 
     public  LineView lineView => FindFirstObjectByType<LineView>();
 
@@ -37,6 +38,11 @@ public class InteractionManager : MonoBehaviour
     {   
         gameManager.isPause = true;
         runner.StartDialogue(player.interactionPoint.indexString);
-        
+        StartCoroutine(advancedInput_set());
+    }
+    IEnumerator advancedInput_set()
+    {
+        yield return new WaitForSeconds(0.25f);
+        advanceInput.enabled = true;
     }
 }

@@ -555,7 +555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactiontype: 0
-  indexString: Skeleton_Interaction
+  indexString: Leaflet_Interaction
   transformVec3: {x: 0, y: 0, z: 0}
 --- !u!65 &113979957
 BoxCollider:
@@ -1279,6 +1279,7 @@ GameObject:
   - component: {fileID: 667773973}
   - component: {fileID: 667773972}
   - component: {fileID: 667773974}
+  - component: {fileID: 667773975}
   m_Layer: 0
   m_Name: paper
   m_TagString: InteractionPosition
@@ -1373,8 +1374,23 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.6, y: 0.95142317, z: 1.5146923}
-  m_Center: {x: 0, y: -0.32428837, z: -0.0024318695}
+  m_Size: {x: 1.6, y: 1.64, z: 1.5146923}
+  m_Center: {x: 0, y: 0.54, z: -0.0024318695}
+--- !u!114 &667773975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667773971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f3a73d59fe756f4f90a692334963c49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactiontype: 0
+  indexString: 
+  transformVec3: {x: 0, y: 0, z: 0}
 --- !u!1 &709087664
 GameObject:
   m_ObjectHideFlags: 0

@@ -1061,14 +1061,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4984640553353337557}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 097b95c9f69f04f2d8c08a817e7786af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueView: {fileID: 1291356966489673261}
   continueActionType: 1
-  continueActionKeyCode: 32
+  continueActionKeyCode: 102
   continueActionReference: {fileID: -3043456315958229113, guid: 05d4c081b6ff07548968cabdc8764e4f,
     type: 3}
   continueAction:
@@ -1968,6 +1968,7 @@ MonoBehaviour:
   EventCharacterIMG: {fileID: 0}
   EventCharacterName: {fileID: 0}
   runner: {fileID: 253748153037906300}
+  advanceInput: {fileID: 6128241096510847623}
 --- !u!114 &791995143356965265
 MonoBehaviour:
   m_ObjectHideFlags: 0

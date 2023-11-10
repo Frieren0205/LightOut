@@ -90,11 +90,13 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
     }
-
+    // 이벤트 끝났을때의 체크
     public void PauseStateReset()
     {
         isPause = false;
         UIManager.Instance.isPause = false;
+        interactionManager.advanceInput.enabled = false;
+        if(player != null) player.CanInteractionIcon.SetActive(false);
     }
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -111,8 +113,12 @@ public class GameManager : MonoBehaviour
             case 2:
             {
                 levelManager.level = LevelManager.Level.Underground;
-                if(!player) player = SpawnManager.Instance.SpawnPlayer(SpawnManager.Instance.spawnpoints[0]);
+                if(!player)
+                player = SpawnManager.Instance.SpawnPlayer(SpawnManager.Instance.spawnpoints[0]);
                 LevelManager.Instance.player = player;
+                player.levelManager = levelManager;
+                player.gameObject.transform.position = SpawnManager.Instance.spawnpoints[0].spawnpositionVec3;
+                playerinit();
                 LevelManager.Instance.LevelSetting(LevelManager.Level.Underground);
                 LevelSetting();
                 LevelManager.Instance.CameraAreasUpdate();
