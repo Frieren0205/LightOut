@@ -70,7 +70,7 @@ Material:
     - _ZWrite: 1
     - _ZWriteControl: 0
     - _edge_size: 6
-    - _fresnel_power: 2
+    - _fresnel_power: 3.5
     - _noise_move_size: 5
     - _noise_power: 2.5
     - _noise_size: 20
@@ -79,7 +79,7 @@ Material:
     - _voronoi_speed: 1
     m_Colors:
     - _Color: {r: 0.1527929, g: 1.4083517, b: 0.6876821, a: 1}
-    - _Edge_Color: {r: 0.06375237, g: 1.2496573, b: 1.5413928, a: 1}
+    - _Edge_Color: {r: 0.2733124, g: 5.3573985, b: 6.6080956, a: 1}
     - _main_color: {r: 0.69658816, g: 4.475051, b: 2.7940793, a: 1}
     - _noise_move_speed: {r: 0, g: 0.01, b: 0, a: 0}
   m_BuildTextureStacks: []
