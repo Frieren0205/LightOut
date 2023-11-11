@@ -320,30 +320,36 @@ public class Player_Controll : MonoBehaviour
     }
     public void OnInteraction()
     {
-        if(CanInteraction)
+        if(interactionPoint.gameObject != null && CanInteraction)
         {
-            if(interactionPoint.gameObject != null)
+            if(interactionPoint.indexString != string.Empty && interactionPoint.interactiontype == InteractionPoint.Interactiontype.dialogue)
             {
                 CanInteraction = false;
                 gameManager.isPause = true;
-                if(interactionPoint.indexString != string.Empty && interactionPoint.interactiontype == InteractionPoint.Interactiontype.dialogue)
-                {
-                    interactionManager.PopUpUI();
-                }
-                else if(interactionPoint.interactiontype == InteractionPoint.Interactiontype.portal)
-                {
-                    // Debug.Log("Used Portal method this time");
-                    GameManager.Instance.NextSceneLoad();
-                }
-                else if(interactionPoint.interactiontype == InteractionPoint.Interactiontype.teleport)
-                {
-                    //TODO : 같은 씬 안에서의 텔레포트
-                    StartCoroutine(UIManager.Instance.castfadeout());
-                    Invoke("OnInteraction_teleport", 1.2f);
-                }
+                interactionManager.PopUpUI();
             }
+            else if(interactionPoint.interactiontype == InteractionPoint.Interactiontype.portal)
+            {
+                // Debug.Log("Used Portal method this time");
+                CanInteraction = false;
+                gameManager.isPause = true;
+                GameManager.Instance.NextSceneLoad();
+            }
+            else if(interactionPoint.interactiontype == InteractionPoint.Interactiontype.teleport)
+            {
+                //TODO : 같은 씬 안에서의 텔레포트
+                CanInteraction = false;
+                gameManager.isPause = true;
+                StartCoroutine(UIManager.Instance.castfadeout());
+                Invoke("OnInteraction_teleport", 1.2f);
+            }
+            else
+                {
+                    Debug.LogErrorFormat("상호작용 오브젝트의 정보를 불러올 수 없습니다. 다음을 확인하세요{0}의 {1} {2} {3}",interactionPoint, "interactionPoint.indexString", "interactionPoint.interactiontype", "interactionPoint.transformVec3");
+                }
         }
     }
+
     private void OnInteraction_teleport()
     {
         transform.position = interactionPoint.transformVec3;

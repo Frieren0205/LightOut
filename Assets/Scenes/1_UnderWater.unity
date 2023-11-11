@@ -555,7 +555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactiontype: 0
-  indexString: Leaflet_Interaction
+  indexString: 
   transformVec3: {x: 0, y: 0, z: 0}
 --- !u!65 &113979957
 BoxCollider:
@@ -1389,7 +1389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactiontype: 0
-  indexString: 
+  indexString: Paper_Interaction
   transformVec3: {x: 0, y: 0, z: 0}
 --- !u!1 &709087664
 GameObject:
