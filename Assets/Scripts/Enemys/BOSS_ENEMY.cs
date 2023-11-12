@@ -81,7 +81,7 @@ public class BOSS_ENEMY : MonoBehaviour
             GameManager.Instance.isGameClear = true;
             StartCoroutine(deadroutine());
         }
-        if(!GameManager.Instance.isPlayerDead && !LevelManager.Instance.isbossdead)
+        if(!GameManager.Instance.isPlayerDead && !LevelManager.Instance.isbossdead && !GameManager.Instance.isPause)
         {
             Rotatetoplayer();
             BattleRoutine();

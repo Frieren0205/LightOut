@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Yarn.Unity;
+using UnityEngine.SceneManagement;
 
 public class InteractionManager : MonoBehaviour
 {
@@ -24,7 +25,27 @@ public class InteractionManager : MonoBehaviour
     public  LineView lineView => FindFirstObjectByType<LineView>();
 
     // int count = 0;
-
+    public void After_Prologue()
+    {
+        if(SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            runner.startNode = "After_Prologue";
+            runner.StartDialogue(runner.startNode);
+            player.CanInteraction = false;
+            gameManager.isPause = true;
+            StartCoroutine(advancedInput_set());
+        }
+    }
+    public void BossApear()
+    {
+        if(SceneManager.GetActiveScene().buildIndex == 4)
+        {
+            runner.startNode = "if_Player_meet_Boss";
+            runner.StartDialogue(runner.startNode);
+            player.CanInteraction = false;
+            gameManager.isPause = true;
+        }
+    }
     public void PopUpUI()
     {
         if(player.interactionPoint.indexString != string.Empty)

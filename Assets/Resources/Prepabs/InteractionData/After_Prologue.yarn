@@ -1,0 +1,19 @@
+﻿title: After_Prologue
+tags:
+---
+<<SpriteSwitch illust Tikke_Player_normal>>
+티케 : ....벌써 도착했구나.
+티케 : 본 적이 많긴 하지만, 조금 더 읽고 싶었는데....
+티케 : 그건 그렇다 치고.... 여긴 정말로 바뀌지 않는구나.
+티케 : 빛은 희미하고, 하늘은 바라볼 수도 없어.
+티케 : 그런데도 인 테라 사람들은 아무런 일 없다는 듯 살아가고 있지.
+<<SpriteSwitch illust Tikke_Player_resign>>
+티케 : 내가 여기로 떠내려 와서 그분들에게 도움을 받았던 때랑 똑같아.
+티케 : ......이제 빛을 보면서 살고 계실까?
+<<SpriteSwitch illust Null>>
+: .......
+<<SpriteSwitch illust Tikke_Player_normal>>
+티케 : ......지금 이렇게 얘기해 봤자 소용 없겠지. 날 도와주신 그분들을 위해서라도, 반드시 이 일을 성공시켜야 해.
+<<SpriteSwitch illust Tikke_Player_upset>>
+티케 : 어떤 일이 있던 간에, 그들에게 책임을 지게 만들거야.
+===

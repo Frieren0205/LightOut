@@ -25,14 +25,14 @@ public class SpriteSwitch : MonoBehaviour
         {
             if(info.spritename == spriteName)
             {
-                GetComponent<Image>().color = new Color(1,1,1,1);
                 s = info.sprite;
+                GetComponent<Image>().color = new Color(1,1,1);
                 break;
             }
         }
         if(s == null)
         {
-            // Debug.LogErrorFormat("스프라이트를 찾을 수 없거나, 비어있습니다. 의도하신건가요? {0}", spriteName);
+            Debug.LogErrorFormat("스프라이트를 찾을 수 없거나, 비어있습니다. 의도하신건가요? {0}", spriteName);
             GetComponent<Image>().sprite = null;
             GetComponent<Image>().color = new Color(1,1,1,0);
             return;
@@ -43,6 +43,7 @@ public class SpriteSwitch : MonoBehaviour
     [YarnCommand("Fade_in")]
     public void FadeinSprite(float time)
     {
+        
         Image img = GetComponent<Image>();
         img.DOFade(0, time);
     }

@@ -1,0 +1,16 @@
+﻿title: if_Level3_AllClear
+tags:
+---
+<<SpriteSwitch illust Tikke_Player_sup>>
+티케 : 대체 이게 어떻게 된 일이지?
+티케 : 내 얼굴이 왜 여기 붙어있는 거야?
+티케 : 나도 모르는데다 가지고 있지도 않은 사진을 어떻게 이 연구소가 가지고 있는 거지?
+<<SpriteSwitch illust Tikke_Player_resign>>
+티케 : 게다가 난... 그저 많고 많은 서브 테라의 주민 중 하나일 뿐인데...
+티케 : ....
+<<SpriteSwitch illust Tikke_Player_normal>>
+티케 : ...일단은 발전기를 먼저 파괴해야 해.
+티케 : 기억을 되찾게 되면, 뭐라도 알 수 있겠지.
+티케 : 지금은 이 일이 먼저야. 생각하지 말자.
+티케 : 이제 조금만 더 하면 이 일도 끝날테니까.
+===

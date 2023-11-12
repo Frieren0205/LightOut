@@ -66,10 +66,10 @@ public class Generator : MonoBehaviour
     {
         col.enabled = false;
         yield return new WaitForSeconds(1.25f); // 파괴 애니메이션 길이만큼 딜레이
-        chinemachineManager.playableDirector.Play();
-        yield return new WaitForSecondsRealtime(8);
-        chinemachineManager.playableDirector.enabled = false;
-        test.TurnOff();
+        // chinemachineManager.playableDirector.Play();
+        // yield return new WaitForSecondsRealtime(8);
+        // chinemachineManager.playableDirector.enabled = false;
+        // test.TurnOff();
         this.gameObject.SetActive(false);
         //Debug.Log("파괴");
     }

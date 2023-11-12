@@ -1,0 +1,31 @@
+﻿title: if_Boss_Clear
+tags:
+---
+<<SpriteSwitch other_illust Tikke_Boss_upset>>
+소장 : ....설마... 일이 이렇게 될 줄은...
+<<SpriteSwitch illust Tikke_Player_normal>>
+티케 : 그래? 잘나신 연구소장께서도 이런 결말은 생각도 못 했나 보지?
+<<SpriteSwitch other_illust Tikke_Boss_frenzy>>
+소장 : 하, 내가 여기서 죽는다고 다 해결될 것 같아?!
+소장 : 모조품 주제에 뭘 할 수 있다고...!
+티케 : 내가 뭘 할 수 있는지는 네가 아니라 내가 결정하는 거야.
+티케 : 아, 너의 생사도 이제부턴 내가 결정하게 되겠네.
+소장 : 그래봤자 네 행동은 단순한 복수에 지나지 않아!
+티케 : 나도 알아. 내가 너의 복제품이어서 그런 건지, 대의를 위해서 행동하는 건 아무래도 힘들더라고.
+티케 : 더 이상 할 말 없으면, 여기까지 하자.<br>내가 바쁘신 몸은 아니지만, 저 모조품 태양이 역겨워서라도 빨리 일을 끝내야겠거든.
+<<SpriteSwitch other_illust Tikke_Boss_normal>>
+소장 : 네까짓 게 감히...!
+
+// 사운드
+<<SpriteSwitch illust Tikke_Player_resign>>
+티케 : .......이제 이것만 파괴하면 정말로 모든게 끝나겠네.
+마침 배터리도 얼마 남지 않았고....
+: .......
+//TODO : if_배경이 보인다면 배경을 보는 컷씬
+<<SpriteSwitch illust Tikke_Player_normal>>
+티케 : 이거면 됐어. 애초에 거창한 목표를 가지고 시작한 일도 아니고.
+티케 : 그 사람들을 위해서 행동할 생각도 애초부터 없었으니까...
+티케 : 뭐, 일부 설비들은 아직도 작동하고 있으니<br>나머지는 남은 사람들끼리 어떻게든 알아서 잘들 하겠지
+티케 : 잘 가, 모조품.
+//TODO 깨지는 소리
+===

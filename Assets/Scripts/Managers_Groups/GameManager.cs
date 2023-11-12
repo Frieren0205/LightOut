@@ -102,7 +102,6 @@ public class GameManager : MonoBehaviour
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         OnSwitchLevel();
-        isPause = false;
         StartCoroutine(UIManager.Instance.castfadein());
     }
 
@@ -122,6 +121,7 @@ public class GameManager : MonoBehaviour
                 LevelManager.Instance.LevelSetting(LevelManager.Level.Underground);
                 LevelSetting();
                 LevelManager.Instance.CameraAreasUpdate();
+                interactionManager.After_Prologue();
                 break;
             }
             case 3:
@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
     }
     private void playerinit()
     {
-        player.CanInteraction = false;
+        player.CanInteraction = true;
         player.interactionPoint = null;
         player.CanInteractionIcon.SetActive(false);
     }

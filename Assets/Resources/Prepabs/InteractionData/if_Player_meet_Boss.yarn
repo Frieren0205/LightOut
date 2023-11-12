@@ -1,13 +1,71 @@
 ﻿title: if_Player_meet_Boss
 tags:
 ---
-<<SpriteSwitch illust Player_normal>> 
-    티케 : 드디어 여기까지 왔어... 사진이 조금 마음에 걸리긴 하지만.<br>이제 저것만 파괴하면...
-    : (다른 쪽 문이 열린다)
-    티케 : 뭐야, 누구지?!
-    티케 : 순순히 물러서면 죽이지는 않을..
-    티케 : ...!
-<<EnableSet other_illust>> <<SpriteSwitch other_illust Tikke_Boss_normal>>
-    소장 : 안녕.
-<<LOAD_BOSS_SCENE GameManager>>
+// <<LOAD_BOSS_SCENE GameManager>>
+// : 
+<<SpriteSwitch illust Tikke_Player_normal>> 
+티케 : 드디어 여기까지 왔어... 사진이 조금 마음에 걸리긴 하지만.<br>이제 저것만 파괴하면...
+: (다른 쪽 문이 열린다)
+<<SpriteSwitch illust Tikke_Player_sup>>
+티케 : 뭐야, 누구지?!
+<<SpriteSwitch illust Tikke_Player_upset>>
+티케 : 순순히 물러서면 죽이지는 않을..
+티케 : ...!
+<<SpriteSwitch illust Null>>
+: (중앙쪽으로 누군가가 걸어온다.)
+<<EnableSet other_illust>> <<SpriteSwitch illust Tikke_Player_upset>> <<SpriteSwitch other_illust Tikke_Boss_smile>>
+소장 : 안녕.
+<<SpriteSwitch illust Null>> <<SpriteSwitch other_illust Null>>
+: (서서히 내 쪽으로 오고 있다.)
+<<SpriteSwitch illust Tikke_Player_upset>> <<SpriteSwitch other_illust Tikke_Boss_normal>>
+티케 : ..이런 상황에서도 그렇게 태연히 인사를 하다니.<br>네가 연구소장이 맞나 보군. 그렇지?
+<<SpriteSwitch other_illust Tikke_Boss_smile>>
+소장 : 맞아. 보충 설명을 해 주자면, 연구소장이자 이 도시의 통제권을 가진 사람이지.
+티케 : 쓸데 없는 말 하지 말고 조용히 비켜.<br>물러서지 않으면 죽이겠어.
+소장 : 너무 그렇게 화 내지 말고, 궁금한 게 많지? 네가 왜 기억을 잃었는지,<br>네 사진이 왜 연구소 게시판에 붙어 있었는지, 그리고...
+소장 : 너와 내가 어째서 이렇게 닮았는지 말이야.
+티케 : 헛소리...
+<<SpriteSwitch other_illust Tikke_Boss_close>>
+소장 : 많이 급한가 봐? 그렇게 반응하는 걸 보면.
+소장 : 시간은 많으니까, 너무 조급하게 굴지 마.
+소장 : 여기까지 오기도 했고...<br>아무것도 모른 채 죽으면 아까우니까, 내가 아는 모든 걸 알려줄게.
+티케 : 대체 뭘 알려 주겠다는거지? 네가 나에 대해서 뭘 안다고?
+<<SpriteSwitch other_illust Tikke_Boss_smile>>
+소장 : 물론 모든 걸 알고 있지. 애초에 너는 나의 <b>복제품</b>인걸?
+<<SpriteSwitch illust Tikke_Player_frenzy>>
+티케 : 뭐?!
+<<SpriteSwitch other_illust Tikke_Boss_close>>
+소장 : 너는 나의 수명 연장을 위해 만들어진 예비용 디스크 같은 거야.<br>컴퓨터의 하드 디스크가 수명을 다하면 그 안에 있는 데이터만 이동시켜서 새로운 컴퓨터로 옮기는 것처럼,
+소장 : 너는 그런 역할을 하기 위해서 만들어진 예비용 클론이었지.
+티케 : 그게 무슨...
+<<SpriteSwitch other_illust Tikke_Boss_smile>>
+소장 : 하지만 뭔가 부족했어. 인 테라에서는 순수한 인간을 가장 높이 치지만, 순수한 인간에게는 제약이 너무나 많거든.<br>기존의 생각을 버릴 때가 된 거지.
+소장 : 그래서 나는 너를 사이보그로 만든 거야. <br>단점은 버리고 인간과 기계의 장점만 골라 합친 새로운 무언가를. 
+티케 : 내가 너의 복제품이라고...? 거짓말 마.<br>그러면 나는 왜 지하수로에 버려진 거지?!
+소장 : 그것도 설명해 줄게. 너무 조급해하지 마. 너를 폐기한 이유는 간단해.<br>네가 불량품이었었기 때문이야.
+소장 : 너는 분명 무언가를 담을 그릇으로만 존재해야 했는데,<br>어떤 이유에서인지 제멋대로 움직이기 시작하더라고.
+소장 : 처음으로 내 손을 벗어난 일이었어.
+티케 : 단지 불량품이란 이유로 날 죽이기로 결정했다고?
+소장 : 죽이다니. 비약이 심하네.
+소장 : 물론, 넌 네가 살아있다고 생각하니까 그렇게 생각할 수도 있겠지만... 
+소장 : 애초에, 넌 나의 클론이야. 내가 없으면 이 세상 빛을 볼 일도 없던 무언가라고.<br>내가 만들어 낸 거니까, 책임도 내가 져야 하지 않겠어?
+티케 : 헛소리 집어치워!
+소장 : 뭐, 어쨌든... 파룸 테라를 그렇게 휘젓고 다녔으니까, 이제 만족할 때도 되지 않았어?<br>덕분에 몇몇 불온분자들을 색출해 낼 수 있었지만, 너때문에 본 피해도 상당하다고.
+소장 : 네가 있었던 서브 테라의 주민들을 위해서라도 이쯤에서 멈추는 게 좋을텐데?
+<<SpriteSwitch illust Tikke_Player_upset>> <<SpriteSwitch other_illust Tikke_Boss_normal>>
+티케 : 서브 테라의 주민들은 안줗에도 없으면서, 나한테 무슨 자격으로 그런 말을 하는 거지?
+<<SpriteSwitch other_illust Tikke_Boss_smile>>
+소장 섭섭한 소리를. 이래봬도 꽤 신경쓰고 있는데 말이야.
+티케 : 그렇다면 여태껏 내가 봐온 것들은 뭐지?
+소장 : 인 테라의 사람들이 현재의 생활을 영위하려면, 그 사람들은 그렇게 살 수밖에 없어. 편리함에는 대가가 따르거든.
+소장 : 그리고, 뭐... 애초에 그 사람들이 그 꼴로 전락한 이유는 초기 이주 시기에 능력이 없어서였잖아?<br>정말로 능력이 있었다면 인 테라 주민이 되었겠지. 우리 일가 사람들은 나름 공정하다고.
+<<SpriteSwitch illust Tikke_Player_frenzy>>
+티케 : 네가 그 단어를 입에 올릴 자격 따위 없어!!!
+소장 : 그래, 그래. 알겠어. 그래서 이제 어쩔 거야?
+소장 : 여기서 얌전히 편하게 죽던가, 만신창이로 죽던가.<br>둘 중 하나는 선택해줄래?
+소장 : 시간이 얼마 없거든. 일이 꽤 쌓여있어서 말이야.
+<<SpriteSwitch illust Tikke_Player_upset>>
+티케 : 그걸 지금 말이라고... 너처럼 역겨운 인간은 살면서 처음이야.
+소장 : 칭찬 고마워.<br>그럼, 선택도 했으니까 네 쪽에서 먼저 공격해볼래?<br>내가 마냥 앉아서 책상놀음만 한 사람은 아니거든.
+// 전투 돌입
 ===

@@ -320,7 +320,12 @@ public class Player_Controll : MonoBehaviour
     }
     public void OnInteraction()
     {
-        if(interactionPoint.gameObject != null && CanInteraction)
+        if(CanInteraction && interactionPoint == null && interactionManager.runner.startAutomatically == false) 
+        {
+            Debug.LogError("상호 작용을 할 사물을 확인하지 못했습니다.");
+            return;
+        }
+        if(CanInteraction)
         {
             if(interactionPoint.indexString != string.Empty && interactionPoint.interactiontype == InteractionPoint.Interactiontype.dialogue)
             {
