@@ -971,11 +971,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
+  - spritename: 2_1
+    sprite: {fileID: 21300000, guid: d016815e867f1374e8ffa5426df86f4f, type: 3}
   - spritename: 3_1
     sprite: {fileID: 21300000, guid: aee5adf45e803e149aed9ea0e4d24de2, type: 3}
   - spritename: 3_2
     sprite: {fileID: 21300000, guid: d9b9f56fabc34cf4b80b50195ff74c47, type: 3}
-  - spritename: 
+  - spritename: 4_1
+    sprite: {fileID: 21300000, guid: b1144a5d238149a4cb6938648097ec6e, type: 3}
+  - spritename: 4_2
+    sprite: {fileID: 21300000, guid: daac04fd271a0cc468eb1571e3467f54, type: 3}
+  - spritename: Null
     sprite: {fileID: 0}
 --- !u!1 &4829371197306278988
 GameObject:
@@ -1997,8 +2003,8 @@ MonoBehaviour:
   limitiedPositions:
   - minPosition: -6.687
     maxPosition: -10.4
-  - minPosition: -4.994
-    maxPosition: -12.8
+  - minPosition: 10
+    maxPosition: -30
   - minPosition: 0
     maxPosition: 0
   - minPosition: -12
@@ -2084,7 +2090,7 @@ MonoBehaviour:
   - level: 2
     spawnpositionVec3: {x: -36.68, y: 1.24, z: -7.23}
   - level: 3
-    spawnpositionVec3: {x: 0, y: 0, z: 0}
+    spawnpositionVec3: {x: -18.52, y: 1.94, z: -1.7}
   - level: 4
     spawnpositionVec3: {x: 0, y: -6, z: -12}
 --- !u!114 &809449827122312695
