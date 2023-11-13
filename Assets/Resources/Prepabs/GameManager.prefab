@@ -1541,8 +1541,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uD2F0\uCF00"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 12033a501806134479e11eb3e8e4e737, type: 2}
-  m_sharedMaterial: {fileID: 3041202414624154920, guid: 12033a501806134479e11eb3e8e4e737,
+  m_fontAsset: {fileID: 11400000, guid: 4c876f620a0f1a54ca98ccc4ece926a3, type: 2}
+  m_sharedMaterial: {fileID: 3041202414624154920, guid: 4c876f620a0f1a54ca98ccc4ece926a3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2001,8 +2001,8 @@ MonoBehaviour:
     maxPosition: -12.8
   - minPosition: 0
     maxPosition: 0
-  - minPosition: -582.5
-    maxPosition: -585.7192
+  - minPosition: -12
+    maxPosition: -18
   isLevel1Clear: 0
   isLevel2Clear: 0
   subtera_generator_list: []
@@ -2086,7 +2086,7 @@ MonoBehaviour:
   - level: 3
     spawnpositionVec3: {x: 0, y: 0, z: 0}
   - level: 4
-    spawnpositionVec3: {x: -4.817439, y: -3.25546, z: -584.49}
+    spawnpositionVec3: {x: 0, y: -6, z: -12}
 --- !u!114 &809449827122312695
 MonoBehaviour:
   m_ObjectHideFlags: 0

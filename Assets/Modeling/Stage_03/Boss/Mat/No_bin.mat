@@ -8,15 +8,15 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: No_bin
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 89ba50a084c7f8547b5243eb61bdf6f2,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _EMISSION
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 2
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Opaque
@@ -88,6 +88,7 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
+    - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -103,6 +104,7 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
@@ -112,12 +114,26 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _WorkflowMode: 1
+    - _ZTest: 4
     - _ZWrite: 1
+    - _ZWriteControl: 0
+    - _edge_size: 6
+    - _fresnel_power: 3.5
+    - _noise_move_size: 5
+    - _noise_power: 2.5
+    - _noise_size: 20
+    - _noise_speed: 0.05
+    - _voronoi_power: 10
+    - _voronoi_size: 8
+    - _voronoi_speed: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 0.5886792, b: 0.9253918, a: 1}
     - _Color: {r: 1, g: 0.5886792, b: 0.9253918, a: 1}
+    - _Edge_Color: {r: 0.1395001, g: 2.3652694, b: 2.454578, a: 1}
     - _EmissionColor: {r: 1, g: 0.30498737, b: 0.83879924, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _main_color: {r: 0.67806673, g: 5.0192947, b: 3.1192052, a: 1}
+    - _noise_move_speed: {r: 0, g: 0.05, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3260665181069237041
 MonoBehaviour:
