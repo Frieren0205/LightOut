@@ -346,7 +346,7 @@ public class Player_Controll : MonoBehaviour
                 CanInteraction = false;
                 gameManager.isPause = true;
                 StartCoroutine(UIManager.Instance.castfadeout());
-                Invoke("OnInteraction_teleport", 1.2f);
+                Invoke("OnInteraction_teleport", 1f);
             }
             else
                 {

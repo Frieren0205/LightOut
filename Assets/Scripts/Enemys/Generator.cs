@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Playables;
+using System.Linq;
 
 public class Generator : MonoBehaviour
 {
@@ -70,7 +71,8 @@ public class Generator : MonoBehaviour
         // yield return new WaitForSecondsRealtime(8);
         // chinemachineManager.playableDirector.enabled = false;
         // test.TurnOff();
-        this.gameObject.SetActive(false);
+        LevelManager.Instance.subtera_generator_list.RemoveAt(0);
+        Destroy(this.gameObject);
         //Debug.Log("파괴");
     }
 }

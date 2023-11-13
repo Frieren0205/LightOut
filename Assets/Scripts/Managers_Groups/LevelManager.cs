@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System.Linq;
 
 public class LevelManager : MonoBehaviour
 {
@@ -42,13 +43,17 @@ public class LevelManager : MonoBehaviour
         public float minPosition;
         public float maxPosition;
     }
-
     [Header("맵 별 포지션 제한도")]
     public LimitiedPositions[] limitiedPositions;
     #region 
     [Header("레벨 클리어 조건 달성여부")]
     public bool isLevel1Clear;
     public bool isLevel2Clear;
+
+    #region 발전기 그룹
+    public List<Generator> subtera_generator_list;
+
+    #endregion
     private bool isLevel2ClearCheck()
     {
         if(level2ClearCheckPoints[0] && level2ClearCheckPoints[1] && level2ClearCheckPoints[2])
@@ -72,8 +77,10 @@ public class LevelManager : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
     }
-    private void Update() {
-       isLevel2Clear = isLevel2ClearCheck();
+    private void Update() 
+    {
+        isLevel2Clear = isLevel2ClearCheck();
+        Clearcheckpoint();
     }
     public void LevelSetting(Level level)
     {
@@ -86,6 +93,8 @@ public class LevelManager : MonoBehaviour
         {
             player.minLimit = limitiedPositions[1].minPosition;
             player.maxLimit = limitiedPositions[1].maxPosition;
+            
+            FindGenerator();
         }
         if(level == Level.In_Tera)
         {
@@ -103,6 +112,41 @@ public class LevelManager : MonoBehaviour
                 isbossdead = false;
             }
         }
+    }
+    public void FindGenerator()
+    {
+        var subtera_generator_list_var = FindObjectsByType<Generator>(FindObjectsSortMode.None);
+        Array.Sort(subtera_generator_list_var,(a,b) =>
+        {
+            // 발전기 오름차순으로 재정렬
+            return a.transform.GetSiblingIndex().CompareTo(b.transform.GetSiblingIndex());
+        });
+        subtera_generator_list = new List<Generator>(subtera_generator_list_var);
+    }
+    private void Clearcheckpoint()
+    {   
+        if(subtera_generator_list.Count == 6)
+        {
+            level2ClearCheckPoints[0] = true;
+        }
+        else if(subtera_generator_list.Count == 3)
+        {
+            level2ClearCheckPoints[0] = true;
+            level2ClearCheckPoints[1] = true;
+        }
+        else if(subtera_generator_list.Count == 0 || !subtera_generator_list.Any())
+        {
+            level2ClearCheckPoints[0] = true;
+            level2ClearCheckPoints[1] = true;
+            level2ClearCheckPoints[2] = true;
+        }
+        else
+        {
+            level2ClearCheckPoints[0] = false;
+            level2ClearCheckPoints[1] = false;
+            level2ClearCheckPoints[2] = false;
+        }
+
     }
     public void CameraTrackingUpdate()
     {
