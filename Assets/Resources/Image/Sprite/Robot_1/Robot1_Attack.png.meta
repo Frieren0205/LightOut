@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 542e4abd76cf67d4fb1bf7722489c21d
+guid: 4973dc9e1e4381b468d8eabc016678e8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -103,23 +103,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Robot1_Attack_Sample_0
+      name: Robot1_Attack_0
       rect:
         serializedVersion: 2
         x: 0
@@ -127,20 +115,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.75, y: 0}
+      pivot: {x: 0.235, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 044d7d97ba7b3154db21c8be659cd686
-      internalID: 1100468988
+      spriteID: 2d81d019436d08f418f6ebf59da54684
+      internalID: -1452770686
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot1_Attack_Sample_1
+      name: Robot1_Attack_1
       rect:
         serializedVersion: 2
         x: 128
@@ -148,20 +136,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.75, y: 0}
+      pivot: {x: 0.235, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a10ce240b91650419c90846a38a9f8f
-      internalID: 1983811210
+      spriteID: da145e832d718134b84961cb636ea564
+      internalID: -1043172110
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot1_Attack_Sample_2
+      name: Robot1_Attack_2
       rect:
         serializedVersion: 2
         x: 256
@@ -169,20 +157,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.75, y: 0}
+      pivot: {x: 0.235, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 133c4606fd182c4478958df5158397bf
-      internalID: -1950453560
+      spriteID: d68c09d7a95c70b4fbf1f6e81b747d5c
+      internalID: -1866514407
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot1_Attack_Sample_3
+      name: Robot1_Attack_3
       rect:
         serializedVersion: 2
         x: 384
@@ -190,14 +178,35 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: 0.75, y: 0}
+      pivot: {x: 0.235, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a5f05fd7d439cd64da735824a7178cc2
-      internalID: -245836516
+      spriteID: eb60d851cbb0e824e806962c5d1691c3
+      internalID: 672298489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Robot1_Attack_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.235, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7011dfc97240e7e4e9d546f1788b14f6
+      internalID: -757254227
       vertices: []
       indices: 
       edges: []
@@ -205,7 +214,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: a638ad44b2f85cb479c7b04c7f67961e
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -213,10 +222,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Robot1_Attack_Sample_0: 1100468988
-      Robot1_Attack_Sample_1: 1983811210
-      Robot1_Attack_Sample_2: -1950453560
-      Robot1_Attack_Sample_3: -245836516
+      Robot1_Attack_0: -1452770686
+      Robot1_Attack_1: -1043172110
+      Robot1_Attack_2: -1866514407
+      Robot1_Attack_3: 672298489
+      Robot1_Attack_4: -757254227
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e113c7188d639ef4992e4fa29ace2f6d
+guid: 5797b752b91c9e34caf8c709c94c76e7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Robot1_walk_0
+      name: Robot1_idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -121,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89287c28203e827429603dcf6a74272f
-      internalID: -1302182714
+      spriteID: b5dca0f9b643598438c16a511e347b0a
+      internalID: 60276570
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot1_walk_1
+      name: Robot1_idle_1
       rect:
         serializedVersion: 2
         x: 64
@@ -142,14 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba0a5536ea2ed6a42a8bcc16d41f6bc3
-      internalID: 1330447150
+      spriteID: 18ecb878a4f2eb04f8fd3c3b73e38f7e
+      internalID: 1901844403
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot1_walk_2
+      name: Robot1_idle_2
       rect:
         serializedVersion: 2
         x: 128
@@ -163,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b99ba277806287341b7c953c2e8098f1
-      internalID: -1312598672
+      spriteID: 4abaf2330750c524da8aa9af1e15268f
+      internalID: 175486788
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot1_walk_3
+      name: Robot1_idle_3
       rect:
         serializedVersion: 2
         x: 192
@@ -184,29 +184,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bebcf2065811932459a7c25229e4e614
-      internalID: -612075495
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Robot1_walk_4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 87cb6f8aacc31a9419f4475a173708fb
-      internalID: 1546928142
+      spriteID: ad7449124260d21469d9aa0825f0ccaa
+      internalID: -1708908966
       vertices: []
       indices: 
       edges: []
@@ -222,11 +201,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Robot1_walk_0: -1302182714
-      Robot1_walk_1: 1330447150
-      Robot1_walk_2: -1312598672
-      Robot1_walk_3: -612075495
-      Robot1_walk_4: 1546928142
+      Robot1_idle_0: 60276570
+      Robot1_idle_1: 1901844403
+      Robot1_idle_2: 175486788
+      Robot1_idle_3: -1708908966
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

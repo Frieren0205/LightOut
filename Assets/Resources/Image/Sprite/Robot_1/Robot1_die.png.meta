@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e113c7188d639ef4992e4fa29ace2f6d
+guid: 68af702aa78f9574eb7d3cce23f0d65c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Robot1_walk_0
+      name: Robot1_die_0
       rect:
         serializedVersion: 2
         x: 0
@@ -121,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89287c28203e827429603dcf6a74272f
-      internalID: -1302182714
+      spriteID: 81d7bde069a62bf458a95505dac664cf
+      internalID: 550822682
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot1_walk_1
+      name: Robot1_die_1
       rect:
         serializedVersion: 2
         x: 64
@@ -142,14 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba0a5536ea2ed6a42a8bcc16d41f6bc3
-      internalID: 1330447150
+      spriteID: 1c58571c3fbd1e5429f88666330815e0
+      internalID: 505493143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot1_walk_2
+      name: Robot1_die_2
       rect:
         serializedVersion: 2
         x: 128
@@ -163,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b99ba277806287341b7c953c2e8098f1
-      internalID: -1312598672
+      spriteID: e70b002a717a81e448d8bda9e3fa1420
+      internalID: 1613097947
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot1_walk_3
+      name: Robot1_die_3
       rect:
         serializedVersion: 2
         x: 192
@@ -184,14 +184,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bebcf2065811932459a7c25229e4e614
-      internalID: -612075495
+      spriteID: 084c48169f7efd64999930333e2c9625
+      internalID: 539796719
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot1_walk_4
+      name: Robot1_die_4
       rect:
         serializedVersion: 2
         x: 256
@@ -205,8 +205,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87cb6f8aacc31a9419f4475a173708fb
-      internalID: 1546928142
+      spriteID: cebdc4e5fd6b59244b530150567cc438
+      internalID: 608450226
       vertices: []
       indices: 
       edges: []
@@ -222,11 +222,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Robot1_walk_0: -1302182714
-      Robot1_walk_1: 1330447150
-      Robot1_walk_2: -1312598672
-      Robot1_walk_3: -612075495
-      Robot1_walk_4: 1546928142
+      Robot1_die_0: 550822682
+      Robot1_die_1: 505493143
+      Robot1_die_2: 1613097947
+      Robot1_die_3: 539796719
+      Robot1_die_4: 608450226
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

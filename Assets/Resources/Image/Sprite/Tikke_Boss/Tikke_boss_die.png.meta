@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e113c7188d639ef4992e4fa29ace2f6d
+guid: a59b91bbb3d66fb4983616261e640060
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 40
+  spritePixelsToUnits: 36
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -107,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Robot1_walk_0
+      name: Tikke_boss_die_0
       rect:
         serializedVersion: 2
         x: 0
@@ -121,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89287c28203e827429603dcf6a74272f
-      internalID: -1302182714
+      spriteID: d8d1d64f9ec0be448bca40c9ea62c67c
+      internalID: 1190622262
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot1_walk_1
+      name: Tikke_boss_die_1
       rect:
         serializedVersion: 2
         x: 64
@@ -142,14 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba0a5536ea2ed6a42a8bcc16d41f6bc3
-      internalID: 1330447150
+      spriteID: 3ce2ad5c9797e5c4aa0ac63232b01717
+      internalID: 1455272991
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot1_walk_2
+      name: Tikke_boss_die_2
       rect:
         serializedVersion: 2
         x: 128
@@ -163,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b99ba277806287341b7c953c2e8098f1
-      internalID: -1312598672
+      spriteID: c9a322938fda9774599fb93fd23f6d50
+      internalID: 15020016
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot1_walk_3
+      name: Tikke_boss_die_3
       rect:
         serializedVersion: 2
         x: 192
@@ -184,14 +184,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bebcf2065811932459a7c25229e4e614
-      internalID: -612075495
+      spriteID: 1eefdf486dca28543ad2fde11423f052
+      internalID: 1574908781
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot1_walk_4
+      name: Tikke_boss_die_4
       rect:
         serializedVersion: 2
         x: 256
@@ -205,8 +205,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87cb6f8aacc31a9419f4475a173708fb
-      internalID: 1546928142
+      spriteID: eca57a6a801646545856d7752eb0a697
+      internalID: -1098631707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tikke_boss_die_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26f77808bd3c0054dbc998750d221e22
+      internalID: -841850496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tikke_boss_die_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e39abcbda748dae4895721ee9e8b2c3d
+      internalID: -594620851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tikke_boss_die_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47811f787233f2a46b10265e54997e30
+      internalID: -222615976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tikke_boss_die_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21e310053ac1dbc4dbbe85f8cc185519
+      internalID: -475521500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tikke_boss_die_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5b956c88c87b394dae350b18d18871f
+      internalID: -76655982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tikke_boss_die_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2acd36a537a9204479a4093c0c186187
+      internalID: 2003057402
       vertices: []
       indices: 
       edges: []
@@ -214,7 +340,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: dfc30ab295857f145ac315725b192d5b
     internalID: 0
     vertices: []
     indices: 
@@ -222,11 +348,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Robot1_walk_0: -1302182714
-      Robot1_walk_1: 1330447150
-      Robot1_walk_2: -1312598672
-      Robot1_walk_3: -612075495
-      Robot1_walk_4: 1546928142
+      Tikke_boss_die_0: 1190622262
+      Tikke_boss_die_1: 1455272991
+      Tikke_boss_die_10: 2003057402
+      Tikke_boss_die_2: 15020016
+      Tikke_boss_die_3: 1574908781
+      Tikke_boss_die_4: -1098631707
+      Tikke_boss_die_5: -841850496
+      Tikke_boss_die_6: -594620851
+      Tikke_boss_die_7: -222615976
+      Tikke_boss_die_8: -475521500
+      Tikke_boss_die_9: -76655982
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
