@@ -2200,15 +2200,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 30161032952410431, guid: b5b211cf6428a594cb53d60277401e3f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 68652828140307227, guid: b5b211cf6428a594cb53d60277401e3f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400816871577130021, guid: b5b211cf6428a594cb53d60277401e3f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 956210502305243550, guid: b5b211cf6428a594cb53d60277401e3f,
         type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 943109865}
+    - target: {fileID: 1897032214099066323, guid: b5b211cf6428a594cb53d60277401e3f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2723888730888766278, guid: b5b211cf6428a594cb53d60277401e3f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3233344509627381764, guid: b5b211cf6428a594cb53d60277401e3f,
         type: 3}
       propertyPath: m_Name
       value: Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233344509627381764, guid: b5b211cf6428a594cb53d60277401e3f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3658597031116645462, guid: b5b211cf6428a594cb53d60277401e3f,
         type: 3}
@@ -2220,6 +2250,22 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1739989339}
+    - target: {fileID: 3873172375900571451, guid: b5b211cf6428a594cb53d60277401e3f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873172375900571451, guid: b5b211cf6428a594cb53d60277401e3f,
+        type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 8e23b0dfce93a294cb2063edc2412025,
+        type: 2}
+    - target: {fileID: 4347607308307126182, guid: b5b211cf6428a594cb53d60277401e3f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4527090250791759656, guid: b5b211cf6428a594cb53d60277401e3f,
         type: 3}
       propertyPath: m_Mesh
@@ -2280,11 +2326,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6365679871003371325, guid: b5b211cf6428a594cb53d60277401e3f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6630372026752535133, guid: b5b211cf6428a594cb53d60277401e3f,
         type: 3}
       propertyPath: m_PolyMesh.m_Mesh
       value: 
       objectReference: {fileID: 1739989339}
+    - target: {fileID: 7578729112465719974, guid: b5b211cf6428a594cb53d60277401e3f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841088582516926505, guid: b5b211cf6428a594cb53d60277401e3f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230968917000331834, guid: b5b211cf6428a594cb53d60277401e3f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590289692570933603, guid: b5b211cf6428a594cb53d60277401e3f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079675332477298830, guid: b5b211cf6428a594cb53d60277401e3f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9155176394447426945, guid: b5b211cf6428a594cb53d60277401e3f,
         type: 3}
       propertyPath: m_PolyMesh.m_Mesh

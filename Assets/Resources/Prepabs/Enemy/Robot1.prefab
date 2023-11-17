@@ -24,14 +24,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789348413539010264}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3780025812530457157}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &5859823497588425493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e16276cf37741448a27d0362f599c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewAngle: 120
-  viewDistance: 10
+  viewAngle: 180
+  viewDistance: 5
   targetMask:
     serializedVersion: 2
     m_Bits: 8
@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: 4220827454381137361}
   - component: {fileID: 5896069433971110798}
   - component: {fileID: 4223203545839096973}
+  - component: {fileID: 676636669667038679}
   - component: {fileID: 4434994273174895324}
   m_Layer: 0
   m_Name: Robot1
@@ -84,7 +85,7 @@ Transform:
   - {fileID: 8520716055563743001}
   - {fileID: 435115748650044645}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4220827454381137361
 SpriteRenderer:
@@ -182,6 +183,33 @@ CapsuleCollider:
   m_Height: 1.797868
   m_Direction: 1
   m_Center: {x: -0.1709075, y: 0.91456556, z: 0}
+--- !u!54 &676636669667038679
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560928829184511800}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!114 &4434994273174895324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,8 +223,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isdo_something: 0
-  EnemyHP: 0
+  EnemyHP: 5
   isfilp: 0
+  leftbackattack: 0
+  rightbackattack: 0
   generator: {fileID: 0}
   generatorRange: 0
   animator: {fileID: 0}
@@ -207,8 +237,10 @@ MonoBehaviour:
   target_Transform: {fileID: 0}
   playersprite: {fileID: 0}
   WayPoints: []
-  AttackDistance: 1.5
-  hitEffectPrepab: {fileID: 0}
+  AttackDistance: 1
+  hitEffectPrepab: {fileID: 3489913565660959836, guid: e5dc5210606e4e34daf1eb466d7de0d9,
+    type: 3}
+  status: 0
 --- !u!1 &7694853470347067426
 GameObject:
   m_ObjectHideFlags: 0

@@ -50,9 +50,11 @@ public class LevelManager : MonoBehaviour
     public bool isLevel1Clear;
     public bool isLevel2Clear;
 
+    #region 일반 몬스터 그룹
+    public List<Enemy_Test2> normal_enemy_list;
+    #endregion
     #region 발전기 그룹
     public List<Generator> subtera_generator_list;
-
     #endregion
     private bool isLevel2ClearCheck()
     {
@@ -122,6 +124,15 @@ public class LevelManager : MonoBehaviour
             return a.transform.GetSiblingIndex().CompareTo(b.transform.GetSiblingIndex());
         });
         subtera_generator_list = new List<Generator>(subtera_generator_list_var);
+    }
+    public void FindEnemy()
+    {
+        var normal_enemy_list_var = FindObjectsByType<Enemy_Test2>(FindObjectsSortMode.None);
+        Array.Sort(normal_enemy_list_var, (a,b) =>
+        {
+            return a.transform.GetSiblingIndex().CompareTo(b.transform.GetSiblingIndex());
+        });
+        normal_enemy_list = new List<Enemy_Test2>(normal_enemy_list_var);
     }
     private void Clearcheckpoint()
     {   

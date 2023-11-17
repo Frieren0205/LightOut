@@ -260,7 +260,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687e0692ff50f55409234b5aafc1255f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GeneratorHP: 10
+  GeneratorHP: 15
   test: {fileID: 0}
   chinemachineManager: {fileID: 0}
   isEmergency: 0
+  Generator_num: 0

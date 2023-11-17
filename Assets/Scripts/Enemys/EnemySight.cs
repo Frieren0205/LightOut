@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,11 +27,10 @@ public class EnemySight : MonoBehaviour
     private LayerMask targetMask; // 타겟의 레이어 마스크(플레이어)
 
     private Enemy_Test2 enemy; //AI 본체 스크립트
-
-    // Start is called before the first frame update
+     // Start is called before the first frame update
     void Start()
     {
-        enemy = FindObjectOfType<Enemy_Test2>().GetComponent<Enemy_Test2>();
+        enemy = this.gameObject.GetComponentInParent<Enemy_Test2>();
     }
 
     // Update is called once per frame
@@ -41,7 +41,7 @@ public class EnemySight : MonoBehaviour
 
     private Vector3 BoundaryAngle(float _angle)
     {
-        _angle += transform.eulerAngles.y +90;
+        _angle += transform.eulerAngles.y;
         return new Vector3(Mathf.Sin(_angle * Mathf.Deg2Rad), 0f, Mathf.Cos(_angle * Mathf.Deg2Rad));
     }
 
@@ -54,7 +54,10 @@ public class EnemySight : MonoBehaviour
         Debug.DrawRay(transform.position + transform.up, _rightBoundary, Color.cyan);
 
         Collider[] _target = Physics.OverlapSphere(transform.position, viewDistance, targetMask);
-        
+        if(_target.Length == 0)
+        {
+            enemy.OnMoveStop();
+        }
         for (int i = 0; i < _target.Length; i++)
         {
             Transform _targetTf = _target[i].transform;
@@ -73,11 +76,10 @@ public class EnemySight : MonoBehaviour
                             Debug.DrawRay(transform.position + transform.up, _direction, Color.blue);
                             enemy.UpdateFollwingPath();
                         }
-                        else if(_hit.transform.name != "Player")
+                        else
                         {
                             enemy.OnMoveStop();
                         }
-
                     }
                 }
             }

@@ -578,6 +578,11 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7842855061424454310, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8982327301126554064, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
         type: 3}
       propertyPath: m_IsActive
@@ -1052,6 +1057,8 @@ MonoBehaviour:
   isdo_something: 0
   EnemyHP: 0
   isfilp: 0
+  leftbackattack: 0
+  rightbackattack: 0
   generator: {fileID: 0}
   generatorRange: 15
   animator: {fileID: 0}
@@ -1064,6 +1071,7 @@ MonoBehaviour:
   WayPoints: []
   AttackDistance: 1.5
   hitEffectPrepab: {fileID: 0}
+  status: 0
 --- !u!1 &885797096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,6 +1171,8 @@ MonoBehaviour:
   isdo_something: 0
   EnemyHP: 0
   isfilp: 0
+  leftbackattack: 0
+  rightbackattack: 0
   generator: {fileID: 0}
   generatorRange: 0
   animator: {fileID: 0}
@@ -1175,6 +1185,7 @@ MonoBehaviour:
   WayPoints: []
   AttackDistance: 1.5
   hitEffectPrepab: {fileID: 0}
+  status: 0
 --- !u!95 &885797101
 Animator:
   serializedVersion: 5
@@ -3124,7 +3135,7 @@ PrefabInstance:
     - target: {fileID: 3780025812530457157, guid: 766f76c411ee82f48aeab521335d2e10,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.6
+      value: -7.48
       objectReference: {fileID: 0}
     - target: {fileID: 3780025812530457157, guid: 766f76c411ee82f48aeab521335d2e10,
         type: 3}
@@ -3134,7 +3145,7 @@ PrefabInstance:
     - target: {fileID: 3780025812530457157, guid: 766f76c411ee82f48aeab521335d2e10,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.79
+      value: 5.94
       objectReference: {fileID: 0}
     - target: {fileID: 3780025812530457157, guid: 766f76c411ee82f48aeab521335d2e10,
         type: 3}
@@ -3170,11 +3181,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4434994273174895324, guid: 766f76c411ee82f48aeab521335d2e10,
-        type: 3}
-      propertyPath: EnemyHP
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

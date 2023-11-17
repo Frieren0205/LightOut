@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Diagnostics;
+using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.UIElements.Experimental;
 using Random = UnityEngine.Random;
 
 public class Enemy_Test2 : MonoBehaviour
@@ -23,9 +26,12 @@ public class Enemy_Test2 : MonoBehaviour
     bool ishitable = true;
     public bool isfilp;
 
-    bool leftbackattack;
-    bool rightbackattack;
-
+    #region
+    [SerializeField]
+    private bool leftbackattack;
+    [SerializeField]
+    private bool rightbackattack;
+    #endregion
     bool isplayerdead = false;
     private Rigidbody Rb;
 
@@ -60,6 +66,9 @@ public class Enemy_Test2 : MonoBehaviour
     private float AttackDistance = 1.5f;
 
     public GameObject hitEffectPrepab;
+
+    public NavMeshPathStatus status;
+
     void Start()
     {
         path = new NavMeshPath();
@@ -107,14 +116,14 @@ public class Enemy_Test2 : MonoBehaviour
 
         // 왼쪽을 보고 있을때의 백어택 조건은, 플레이어의 위치가 더 커야함
         // 따라서 오른쪽 백어택 조건은, 왼쪽을 보고있을때의 플레이어의 좌표값이 더 클 경우다.
-        leftbackattack = isfilp && this.transform.position.x > target_Transform.position.x;
-        rightbackattack = !isfilp && target_Transform.position.x > this.transform.position.x;
+        leftbackattack = (transform.localScale.x == 1 && target_Transform.position.x >= this.transform.position.x)|| (transform.localScale.x < 1 && target_Transform.position.x > this.transform.position.x);
+        rightbackattack = transform.localScale.x < 1 && target_Transform.position.x < this.transform.position.x || (transform.localScale.x == 1 && target_Transform.position.x < this.transform.position.x);
     }
 
     void FixedUpdate()
     {
         isplayerdead = GameManager.Instance.isPlayerDead;
-        isdo_something = !isattakable || !ishitable;
+        CheckingBackAttack();
         if(isplayerdead)
         {
             StopAllCoroutines();
@@ -127,16 +136,23 @@ public class Enemy_Test2 : MonoBehaviour
         {
             OnMoveStop();
         }
-        if(state == State.Chase && !isplayerdead)
+        if(!isdo_something && state == State.Chase && !isplayerdead)
         {
+            flipCheck();
             MovementSpeed = 2;
-            
         }
+        status = path.status;
+    }
+    private void Update() {
+        isdo_something = !isattakable || !ishitable;
     }
     public void UpdateFollwingPath()
     {
         if(state != State.Dead)
-        this.UpdateFollwingPath_Navigate();
+       {
+            this.UpdateFollwingPath_Navigate();
+            flipCheck();
+       }
     }
     bool IsWayPointArrived(Vector3 currentWayPoint)
     {
@@ -153,9 +169,8 @@ public class Enemy_Test2 : MonoBehaviour
             // 경로 재계산
             // bool playerisflip = playersprite.transform.localScale == new Vector3(-1,1,1);
             // Debug.Log(playerisflip);
-            Attackpoint = new Vector3(target_Transform.position.x+1,target_Transform.position.y,target_Transform.position.z);
+            Attackpoint = new Vector3(target_Transform.position.x, target_Transform.position.y, target_Transform.position.z);
             NavMesh.CalculatePath(transform.position, Attackpoint, NavMesh.AllAreas, path);
-
             // 각 코너까지의 라인을 디버깅하여 그림
             for(int i = 0; i < path.corners.Length -1; i++)
             {
@@ -164,7 +179,7 @@ public class Enemy_Test2 : MonoBehaviour
             if(path.status == NavMeshPathStatus.PathComplete)
             {
                 WayPoints = path.corners;
-                state = State.Chase;
+                state = (!isdo_something) ? State.Chase : State.hit;
             }
             else if(path.status == NavMeshPathStatus.PathPartial) 
             {
@@ -172,7 +187,7 @@ public class Enemy_Test2 : MonoBehaviour
                 WayPoints = null;
                 currentWayPointIndex = 0;
             }
-            else 
+            else
                 WayPoints = null;
                 currentWayPointIndex = 0;
        }
@@ -198,23 +213,26 @@ public class Enemy_Test2 : MonoBehaviour
     public void UpdateFollwingPath_Navigate_OnMove()
     {
         //TODO 웨이포인트로 움직이는 로직
-        if(!isdo_something && state == State.Chase && state != State.Dead || !isplayerdead)
+        if((!isdo_something && state == State.Chase) || (state != State.Dead || !isplayerdead))
         {
-            animator.SetBool("Move",true);
-            isfilp = target_Transform.position.x > this.transform.position.x;
-            if(isfilp)
-            {
-                SpriteObject.transform.localScale = new Vector3(1,1,1);
-            }
-            else
-                SpriteObject.transform.localScale = new Vector3(-1,1,1);
-            transform.position = Vector3.MoveTowards(transform.position, WayPoints[currentWayPointIndex], MovementSpeed * Time.deltaTime);
+            animator.SetBool("Move",true);    
+            if(!isdo_something)transform.position = Vector3.MoveTowards(transform.position, WayPoints[currentWayPointIndex], MovementSpeed * Time.deltaTime);
             if(Math.Round(Vector3.Distance(transform.position, Attackpoint),2) <= AttackDistance)
             {
                 state = State.Attak;
                 OnAttack();
             }
         }
+    }
+    public void flipCheck()
+    {
+        isfilp = target_Transform.position.x < this.transform.position.x;
+        if(isfilp)
+        {
+            SpriteObject.transform.localScale = new Vector3(-1,1,1);
+        }
+        else
+            SpriteObject.transform.localScale = new Vector3(1,1,1);
     }
     public void OnAttack()
     {
@@ -260,15 +278,19 @@ public class Enemy_Test2 : MonoBehaviour
         EnemyHP -= 1;
         var Hit_vfx_clone = Instantiate(hitEffectPrepab, position, Quaternion.identity);
         animator.SetTrigger("isHit");
-        if(isfilp)
+        // 플레이어는 스프라이트를 분리해서 로컬스케일로 좌우를 구분하니, 스프라이트의 로컬스케일을 기준으로 삼아서 반대방향으로 계산하게 함
+        Vector3 player_normal_vec3 = new Vector3(playersprite.transform.localScale.x,1,0);
+        Rb.AddForce(player_normal_vec3 * 5,ForceMode.Impulse);
+        if(rightbackattack)
         {
-            Rb.AddForce(Vector3.left * 5,ForceMode.Impulse);
+            rightbackattack = false;
+            this.transform.localScale = new Vector3(-1,1,1);
         }
-        else
+        else if(leftbackattack)
         {
-            Rb.AddForce(Vector3.right * 5, ForceMode.Impulse);
+            leftbackattack = false;
+            this.transform.localScale = new Vector3(1,1,1);
         }
-        Rb.AddForce(Vector3.up * 5, ForceMode.Impulse);
         yield return new WaitForSeconds(0.25f);
         ishitable = true;
         Destroy(Hit_vfx_clone, 1f);
