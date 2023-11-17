@@ -541,7 +541,7 @@ PrefabInstance:
     - target: {fileID: 7076600421284282587, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7462923427847992815, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
         type: 3}
@@ -598,6 +598,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d65641bb46b6a354d9ee1fa4244caae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &617060529 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 322665828032267532, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
+    type: 3}
+  m_PrefabInstance: {fileID: 182718334}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c5ef37998e11d47abd1190e432a47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &617060531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 814948015241077360, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
+    type: 3}
+  m_PrefabInstance: {fileID: 182718334}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1223db03c19a3874ca8e2b5165a613e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &617060532 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 708951981776036724, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
+    type: 3}
+  m_PrefabInstance: {fileID: 182718334}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b571c6ba82de93746adbee71871e622b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &618083757
@@ -2392,6 +2428,21 @@ PrefabInstance:
       propertyPath: isGrounded
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4183615275893863729, guid: 59ef4050b108e5f4b9763dee768a3723,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 617060532}
+    - target: {fileID: 4183615275893863729, guid: 59ef4050b108e5f4b9763dee768a3723,
+        type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 617060531}
+    - target: {fileID: 4183615275893863729, guid: 59ef4050b108e5f4b9763dee768a3723,
+        type: 3}
+      propertyPath: interactionManager
+      value: 
+      objectReference: {fileID: 617060529}
     - target: {fileID: 5055680194429579816, guid: 59ef4050b108e5f4b9763dee768a3723,
         type: 3}
       propertyPath: m_IsActive
@@ -2555,7 +2606,7 @@ PrefabInstance:
     - target: {fileID: 8731548563580095230, guid: 59ef4050b108e5f4b9763dee768a3723,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8731548563580095230, guid: 59ef4050b108e5f4b9763dee768a3723,
         type: 3}
@@ -2881,6 +2932,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Security
       objectReference: {fileID: 0}
+    - target: {fileID: 6902928947549927002, guid: 57e62fc331a8f98419261172db25c769,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3115,6 +3171,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4434994273174895324, guid: 766f76c411ee82f48aeab521335d2e10,
+        type: 3}
+      propertyPath: EnemyHP
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3187,6 +3248,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Robot2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571334965390483150, guid: 0911237bd6337a24184599a238c9e02a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -2006,7 +2006,7 @@ MonoBehaviour:
   - minPosition: 10
     maxPosition: -30
   - minPosition: 0
-    maxPosition: 0
+    maxPosition: -5
   - minPosition: -12
     maxPosition: -18
   isLevel1Clear: 0
@@ -2530,7 +2530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8244889509341221078
 RectTransform:
   m_ObjectHideFlags: 0

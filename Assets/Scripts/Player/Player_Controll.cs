@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using Yarn.Unity;
 
@@ -23,7 +24,7 @@ public class Player_Controll : MonoBehaviour
     [SerializeField]
     private Vector3 MoveDirection;
 
-
+    public bool isStay;
     private RaycastHit slopehit;
     public int maxslope = 50;
     public bool onSlope()
@@ -146,6 +147,7 @@ public class Player_Controll : MonoBehaviour
         if(!interactionManager.gameManager.isPause && !isPlayerDead)
         {
             bool hascontrol = (MoveDirection != Vector3.zero);
+            isStay = !hascontrol;
             OnSlope();
             if(hascontrol && !isHit && CanAttack)
             {
@@ -254,9 +256,8 @@ public class Player_Controll : MonoBehaviour
         Ray ray = new Ray(this.transform.position + rayposition, new Vector3(0,-raydistance, 0));
         Debug.DrawRay(this.transform.position + rayposition, new Vector3(0,-raydistance, 0));
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit, raydistance))
+        if(Physics.Raycast(ray, out hit, raydistance) && hit.transform.tag == "Ground")
         {
-            
             animator.SetBool("isGrounded",true);
             isGrounded = true;
         }
@@ -355,12 +356,26 @@ public class Player_Controll : MonoBehaviour
         }
     }
 
+    [YarnCommand("OnInteraction_Security")]
+    private void OnInteraction_Security()
+    {
+        StartCoroutine(UIManager.Instance.castfadeout());
+        Invoke("OnInteraction_teleport", 1.5f);
+    }
+    [YarnCommand("Yarn_Jump")]
+    private void Yarn_Jump()
+    {
+        animator.SetTrigger("isJump");
+        animator.SetBool("isGrounded", false);
+        rb.AddForce(Vector3.up * JumpPower,ForceMode.Impulse);
+        isGrounded = false;
+    }
     private void OnInteraction_teleport()
     {
+        StartCoroutine(UIManager.Instance.castfadein());
         transform.position = interactionPoint.transformVec3;
         LevelManager.Instance.CameraAreasUpdate();
         gameManager.isPause = false;
-        StartCoroutine(UIManager.Instance.castfadein());
     }
     // 컬라이더 관련 시작!!!
     private void OnCollisionEnter(Collision other) // 몬스터에게 가까이 붙어도 데미지 판정이 들어가도록
@@ -369,11 +384,11 @@ public class Player_Controll : MonoBehaviour
         {
             CalculateHit("EnemyAttack");
         }
-        if(other.gameObject.tag == "Ground")
-        {
-            isGrounded = true;
-            animator.SetBool("isGrounded",true);
-        }
+        // if(other.gameObject.tag == "Ground")
+        // {
+        //     isGrounded = true;
+        //     animator.SetBool("isGrounded",true);
+        // }
     }
     private void OnTriggerEnter(Collider other) 
     {

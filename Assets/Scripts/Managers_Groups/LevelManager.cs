@@ -181,6 +181,9 @@ public class LevelManager : MonoBehaviour
             }
             case Level.In_Tera:
             {
+                cameraLimitedAreas = GameObject.Find("InTera_Camera_Area").GetComponent<BoxCollider>();
+                confiner = FindFirstObjectByType<CinemachineConfiner>();
+                confiner.m_BoundingVolume = cameraLimitedAreas;
                 break;
             }
             case Level.Boss_Battle:

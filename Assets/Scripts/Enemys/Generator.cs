@@ -18,6 +18,8 @@ public class Generator : MonoBehaviour
     private SpriteRenderer sprender;
     private bool isHit = false;
     public bool isEmergency = false;
+
+    public int Generator_num;
     // Start is called before the first frame update
     private void OnEnable() 
     {
@@ -71,7 +73,7 @@ public class Generator : MonoBehaviour
         // yield return new WaitForSecondsRealtime(8);
         // chinemachineManager.playableDirector.enabled = false;
         // test.TurnOff();
-        LevelManager.Instance.subtera_generator_list.RemoveAt(0);
+        LevelManager.Instance.subtera_generator_list.RemoveAt(Generator_num);
         Destroy(this.gameObject);
         //Debug.Log("파괴");
     }

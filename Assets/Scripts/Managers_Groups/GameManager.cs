@@ -139,12 +139,22 @@ public class GameManager : MonoBehaviour
                 LevelManager.Instance.CameraAreasUpdate();
                 break;
             }
-            // case 4:
-            // {
-            //     levelManager.level = LevelManager.Level.In_Tera;
-            //     break;
-            // }
             case 4:
+            {
+                levelManager.level = LevelManager.Level.In_Tera;
+                if(!player)
+                    player = SpawnManager.Instance.SpawnPlayer(SpawnManager.Instance.spawnpoints[2]);
+                    levelManager.player = player;
+                    player.levelManager = levelManager;
+                    player.gameObject.transform.position = SpawnManager.Instance.spawnpoints[2].spawnpositionVec3;
+                    playerinit();
+                    LevelManager.Instance.LevelSetting(LevelManager.Level.In_Tera);
+                    LevelSetting();
+                    LevelManager.Instance.CameraAreasUpdate();
+                    LevelManager.Instance.CameraAreasUpdate();
+                break;
+            }
+            case 5:
             {
                 levelManager.level = LevelManager.Level.Boss_Battle;
                 levelManager.player = player;
@@ -182,6 +192,7 @@ public class GameManager : MonoBehaviour
             }
             case LevelManager.Level.In_Tera:
             {
+                player.playerHP.volume = GameObject.Find("In_Tera_Volume").GetComponent<Volume>();
                 break;
             }
             case LevelManager.Level.Boss_Battle:

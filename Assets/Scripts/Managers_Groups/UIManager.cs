@@ -108,7 +108,7 @@ public class UIManager : MonoBehaviour
         fadeimg.gameObject.SetActive(true);
         fadeimg.DOFade(1, 1);
         yield return new WaitForSeconds(1.1f);
-        fadeimg.gameObject.SetActive(false);
+        // fadeimg.gameObject.SetActive(false);
     }
     public IEnumerator castfadein()
     {

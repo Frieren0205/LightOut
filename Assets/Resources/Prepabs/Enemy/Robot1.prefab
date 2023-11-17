@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: 4220827454381137361}
   - component: {fileID: 5896069433971110798}
   - component: {fileID: 4223203545839096973}
+  - component: {fileID: 4434994273174895324}
   m_Layer: 0
   m_Name: Robot1
   m_TagString: Untagged
@@ -181,6 +182,33 @@ CapsuleCollider:
   m_Height: 1.797868
   m_Direction: 1
   m_Center: {x: -0.1709075, y: 0.91456556, z: 0}
+--- !u!114 &4434994273174895324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560928829184511800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8fcba01d9866374dba4d2081dee6bdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isdo_something: 0
+  EnemyHP: 0
+  isfilp: 0
+  generator: {fileID: 0}
+  generatorRange: 0
+  animator: {fileID: 0}
+  SpriteObject: {fileID: 1560928829184511800}
+  state: 0
+  MovementSpeed: 1
+  currentWayPointIndex: 0
+  target_Transform: {fileID: 0}
+  playersprite: {fileID: 0}
+  WayPoints: []
+  AttackDistance: 1.5
+  hitEffectPrepab: {fileID: 0}
 --- !u!1 &7694853470347067426
 GameObject:
   m_ObjectHideFlags: 0

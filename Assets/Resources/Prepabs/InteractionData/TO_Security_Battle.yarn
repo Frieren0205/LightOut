@@ -1,0 +1,7 @@
+﻿title: TO_Security_Battle
+tags:
+---
+<<SpriteSwitch illust Null>> <<EnableSet CutScenefront>> <<SpriteSwitch CutScenefront 2_1>>
+: 
+<<Yarn_Jump Player>> <<OnInteraction_Security Player>>
+===
