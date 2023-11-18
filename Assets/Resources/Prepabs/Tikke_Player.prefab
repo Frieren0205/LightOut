@@ -759,6 +759,7 @@ MonoBehaviour:
   JumpPower: 10
   rb: {fileID: 6429005941708711513}
   MoveDirection: {x: 0, y: 0, z: 0}
+  isStay: 0
   maxslope: 55
   MoveSpeed: 5
   isflip: 0
@@ -777,7 +778,8 @@ MonoBehaviour:
   interactionPoint: {fileID: 0}
   CanInteractionIcon: {fileID: 1335765093068834452}
   CanAttack: 1
-  isInteractionEnd: 0
+  hit_vfx_prepab: {fileID: 3489913565660959836, guid: fcf2806a0f900c44a9748b3a13b13fe4,
+    type: 3}
 --- !u!114 &5259514440353871498
 MonoBehaviour:
   m_ObjectHideFlags: 0

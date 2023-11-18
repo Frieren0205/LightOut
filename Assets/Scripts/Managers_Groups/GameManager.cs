@@ -168,8 +168,15 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    public void Player_respawn()
+    {
+        UIManager.Instance.DisableGameover();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        playerinit();
+    }
     private void playerinit()
     {
+        isPause = false;
         player.CanInteraction = true;
         player.interactionPoint = null;
         player.CanInteractionIcon.SetActive(false);

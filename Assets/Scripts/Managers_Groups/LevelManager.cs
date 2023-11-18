@@ -97,6 +97,7 @@ public class LevelManager : MonoBehaviour
             player.maxLimit = limitiedPositions[1].maxPosition;
             
             FindGenerator();
+            FindEnemy();
         }
         if(level == Level.In_Tera)
         {

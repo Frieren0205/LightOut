@@ -70,7 +70,10 @@ public class UIManager : MonoBehaviour
     {
         GameoverWindows.SetActive(true);
         //TODO : 게임오버 연출 어떻게 할지
-
+    }
+    public void DisableGameover()
+    {
+        GameoverWindows.SetActive(false);
     }
     public void toTitleScene()
     {

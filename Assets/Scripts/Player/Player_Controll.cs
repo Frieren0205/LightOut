@@ -100,8 +100,10 @@ public class Player_Controll : MonoBehaviour
     [SerializeField]
     bool CanAttack = true;
 
-    [SerializeField]
-    private bool isInteractionEnd;
+    // [SerializeField]
+    // private bool isInteractionEnd;
+
+    public GameObject hit_vfx_prepab;
 
     public int Movement()
     {
@@ -380,9 +382,10 @@ public class Player_Controll : MonoBehaviour
     // 컬라이더 관련 시작!!!
     private void OnCollisionEnter(Collision other) // 몬스터에게 가까이 붙어도 데미지 판정이 들어가도록
     {
+        var hit_vector = other.contacts[0].point;
         if(other.collider.GetComponent<Enemy_Test2>() && !isHit && CanHit)
         {
-            CalculateHit("EnemyAttack");
+            CalculateHit("EnemyAttack",hit_vector);
         }
         // if(other.gameObject.tag == "Ground")
         // {
@@ -392,13 +395,14 @@ public class Player_Controll : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other) 
     {
+        var hit_vector = other.ClosestPoint(transform.position);
         if(other.gameObject.tag == "EnemyAttack" && !isHit && CanHit)
         {
-            CalculateHit("EnemyAttack");
+            CalculateHit("EnemyAttack", hit_vector);
         }
         if(other.gameObject.tag == "ArmHammer" && !isHit && CanHit)
         {
-            CalculateHit("ArmHammer");
+            CalculateHit("ArmHammer", hit_vector);
         }
         if(other.gameObject.tag == "Warp_Damage" && !isHit && CanHit)
         {
@@ -410,22 +414,22 @@ public class Player_Controll : MonoBehaviour
         isGrounded = false;
         animator.SetBool("isGrounded",false);*/
     }
-    private void OnCollisionStay(Collision other) // 히트 후 몬스터한테 비비고 있어도 데미지 판정이 들어가도록 Stay도 사용
-    {
-        if(other.collider.tag == "EnemyAttack" && !isHit && CanHit)
-        {
-            BackattackCheck(other.gameObject);
-            CalculateHit("EnemyAttack");
-        }
-        if(other.collider.tag == "ArmHammer" && !isHit && CanHit)
-        {
-            CalculateHit("ArmHammer");
-        }
-    }
+    // private void OnCollisionStay(Collision other) // 히트 후 몬스터한테 비비고 있어도 데미지 판정이 들어가도록 Stay도 사용
+    // {
+    //     if(other.collider.tag == "EnemyAttack" && !isHit && CanHit)
+    //     {
+    //         BackattackCheck(other.gameObject);
+    //         CalculateHit("EnemyAttack");
+    //     }
+    //     if(other.collider.tag == "ArmHammer" && !isHit && CanHit)
+    //     {
+    //         CalculateHit("ArmHammer");
+    //     }
+    // }
     // 컬라이더 관련 끝
 
 
-    private void CalculateHit(string str)
+    private void CalculateHit(string str , Vector3 hit_pos)
     {
         switch(str)
         {
@@ -446,7 +450,7 @@ public class Player_Controll : MonoBehaviour
         if(isflip)  rb.AddForce(Vector3.left * 2.5f, ForceMode.Impulse);
         else if(!isflip) rb.AddForce(Vector3.right * 2.5f, ForceMode.Impulse);
         rb.AddForce(Vector3.up * 7.5f, ForceMode.Impulse);
-        StartCoroutine(OnHit());
+        StartCoroutine(OnHit(hit_pos));
         StartCoroutine(Hitable());
     }
     private void BackattackCheck(GameObject gameObject)
@@ -484,13 +488,19 @@ public class Player_Controll : MonoBehaviour
             Rotation = Quaternion.Euler(0,0,-Angle);
             rb.AddForce(Rotation * Vector3.up * 20f, ForceMode.Impulse);
         }
-        StartCoroutine(OnHit());
+        StartCoroutine(OnHit(Vector3.zero));
         StartCoroutine(Hitable());
     }
-    IEnumerator OnHit()
+    IEnumerator OnHit(Vector3 hit_pos)
     {
         isHit = true;
+        if(hit_pos != Vector3.zero)
+        {
+            GameObject hit_vfx_clone = Instantiate(hit_vfx_prepab, hit_pos, Quaternion.identity);
+            Destroy(hit_vfx_clone, 1f);
+        }
         yield return new WaitForSecondsRealtime(0.5f);
+        
         isHit = false;
     }
     IEnumerator Hitable()

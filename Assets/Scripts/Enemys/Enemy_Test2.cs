@@ -259,7 +259,7 @@ public class Enemy_Test2 : MonoBehaviour
     {
         if(other.gameObject.name == "Attack_Col" && ishitable)
         {
-            var hit_vector = other.ClosestPoint(transform.position) + new Vector3(Random.Range(-0.5f,0.5f),Random.Range(-0.2f,0.2f),-0.1f);
+            var hit_vector = other.ClosestPoint(transform.position) + new Vector3(Random.Range(-0.5f,0.5f),Random.Range(-0.2f,1f),-0.1f);
             StartCoroutine(hitroutine(hit_vector));
         }
     }
