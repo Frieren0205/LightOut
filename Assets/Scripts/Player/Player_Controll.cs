@@ -387,11 +387,11 @@ public class Player_Controll : MonoBehaviour
         {
             CalculateHit("EnemyAttack",hit_vector);
         }
-        // if(other.gameObject.tag == "Ground")
-        // {
-        //     isGrounded = true;
-        //     animator.SetBool("isGrounded",true);
-        // }
+        if(other.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
+            animator.SetBool("isGrounded",true);
+        }
     }
     private void OnTriggerEnter(Collider other) 
     {
