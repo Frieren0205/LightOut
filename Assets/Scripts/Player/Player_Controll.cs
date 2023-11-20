@@ -375,9 +375,9 @@ public class Player_Controll : MonoBehaviour
     private void OnInteraction_teleport()
     {
         StartCoroutine(UIManager.Instance.castfadein());
+        levelManager.cameraLimitedAreas = interactionPoint.NextCameraConfiner;
+        levelManager.CameraAreasUpdate();
         transform.position = interactionPoint.transformVec3;
-        LevelManager.Instance.cameraLimitedAreas = interactionPoint.NextCameraConfiner;
-        LevelManager.Instance.CameraAreasUpdate();
         gameManager.isPause = false;
     }
     // 컬라이더 관련 시작!!!
