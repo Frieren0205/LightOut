@@ -376,6 +376,7 @@ public class Player_Controll : MonoBehaviour
     {
         StartCoroutine(UIManager.Instance.castfadein());
         transform.position = interactionPoint.transformVec3;
+        LevelManager.Instance.cameraLimitedAreas = interactionPoint.NextCameraConfiner;
         LevelManager.Instance.CameraAreasUpdate();
         gameManager.isPause = false;
     }
@@ -479,15 +480,15 @@ public class Player_Controll : MonoBehaviour
         // if(isflip)  rb.AddForce(Vector3.left * 7.5f, ForceMode.Impulse);
         // else if(!isflip) rb.AddForce(Vector3.right * 7.5f, ForceMode.Impulse);
 
-        float Angle = 15;
-        Quaternion Rotation = Quaternion.Euler(0,0,Angle);
         if(isflip)
-            rb.AddForce(Rotation * Vector3.up * 20f, ForceMode.Impulse);
+        {
+            rb.AddForce(Vector3.left * 5, ForceMode.Impulse);
+        }
         else if(!isflip) 
         {
-            Rotation = Quaternion.Euler(0,0,-Angle);
-            rb.AddForce(Rotation * Vector3.up * 20f, ForceMode.Impulse);
+            rb.AddForce(Vector3.right * 5, ForceMode.Impulse);
         }
+        rb.AddForce(Vector3.up * 20f, ForceMode.Impulse);
         StartCoroutine(OnHit(Vector3.zero));
         StartCoroutine(Hitable());
     }

@@ -2005,12 +2005,13 @@ MonoBehaviour:
     maxPosition: -10.4
   - minPosition: 10
     maxPosition: -30
-  - minPosition: 0
-    maxPosition: -5
+  - minPosition: 8
+    maxPosition: -10
   - minPosition: -12
     maxPosition: -18
   isLevel1Clear: 0
   isLevel2Clear: 0
+  normal_enemy_list: []
   subtera_generator_list: []
   level2ClearCheckPoints: 000000
   isLevel3Clear: 0

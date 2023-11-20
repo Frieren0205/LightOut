@@ -178,23 +178,15 @@ public class LevelManager : MonoBehaviour
             }
             case Level.Sub_Tera:
             {
-                cameraLimitedAreas = GameObject.Find("SubTera_Camera_Area").GetComponent<BoxCollider>();
-                if(level2ClearCheckPoints[0])
-                {
-                    cameraLimitedAreas = GameObject.Find("SubTera_Camera_Area_2").GetComponent<BoxCollider>();
-                }
-                else if(level2ClearCheckPoints[1])
-                {
-                    
-                }
                 confiner = FindFirstObjectByType<CinemachineConfiner>();
+                if(confiner.m_BoundingVolume == null) cameraLimitedAreas = GameObject.Find("SubTera_Camera_Area").GetComponent<BoxCollider>();
                 confiner.m_BoundingVolume = cameraLimitedAreas;
                 break;
             }
             case Level.In_Tera:
             {
-                cameraLimitedAreas = GameObject.Find("InTera_Camera_Area").GetComponent<BoxCollider>();
                 confiner = FindFirstObjectByType<CinemachineConfiner>();
+                if(confiner.m_BoundingVolume == null) cameraLimitedAreas = GameObject.Find("InTera_Camera_Area").GetComponent<BoxCollider>();
                 confiner.m_BoundingVolume = cameraLimitedAreas;
                 break;
             }

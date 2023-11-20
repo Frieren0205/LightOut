@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class InteractionPoint : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class InteractionPoint : MonoBehaviour
     public string indexString;
     [Header("가려고 하는 위치 벡터값")]
     public Vector3 transformVec3;
+    [Header("다음 카메라 영역 콜라이더")]
+    public BoxCollider NextCameraConfiner;
     // 참조
     // interactionManager -> DialogueEvent()
     // Player_Controll -> OnInteraction()
