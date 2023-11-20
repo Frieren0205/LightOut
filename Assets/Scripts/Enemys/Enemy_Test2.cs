@@ -3,9 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Diagnostics;
-using UnityEngine.InputSystem.EnhancedTouch;
-using UnityEngine.UIElements.Experimental;
 using Random = UnityEngine.Random;
 
 public class Enemy_Test2 : MonoBehaviour
