@@ -36,6 +36,36 @@ public class InteractionManager : MonoBehaviour
             StartCoroutine(advancedInput_set());
         }
     }
+    public void if_UnderGround_Clear()
+    {
+        if(SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            runner.startNode = "if_Complete_Underground";
+            runner.StartDialogue(runner.startNode);
+            player.CanInteraction = false;
+            gameManager.isPause = true;
+            StartCoroutine(advancedInput_set());
+        }
+    }
+    public void if_Clear_Dialogue(string Clear_logue)
+    {
+        runner.startNode = Clear_logue;
+        runner.StartDialogue(runner.startNode);
+        player.CanInteraction = false;
+        gameManager.isPause = true;
+        StartCoroutine(advancedInput_set());
+    }
+    public void if_SubTera_Clear()
+    {
+        if(SceneManager.GetActiveScene().buildIndex == 3 && LevelManager.Instance.isLevel2Clear)
+        {
+            runner.startNode = "if_Level2_AllClear";
+            runner.StartDialogue(runner.startNode);
+            player.CanInteraction = false;
+            gameManager.isPause = true;
+            StartCoroutine(advancedInput_set());
+        }
+    }
     public void BossApear()
     {
         if(SceneManager.GetActiveScene().buildIndex == 4)
@@ -45,6 +75,15 @@ public class InteractionManager : MonoBehaviour
             player.CanInteraction = false;
             gameManager.isPause = true;
         }
+    }
+
+    public void if_Generator_Destory()
+    {
+        runner.startNode = "if_Generator_Destroy";
+        runner.StartDialogue(runner.startNode);
+        player.CanInteraction = false;
+        gameManager.isPause = true;
+        StartCoroutine(advancedInput_set());
     }
     public void PopUpUI()
     {

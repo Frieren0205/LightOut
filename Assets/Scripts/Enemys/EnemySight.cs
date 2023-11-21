@@ -36,7 +36,10 @@ public class EnemySight : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        View();
+        if(GameManager.Instance.isPause == false)
+        {
+            View();
+        }
     }
 
     private Vector3 BoundaryAngle(float _angle)

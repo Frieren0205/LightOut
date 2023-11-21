@@ -138,7 +138,7 @@ Transform:
   - {fileID: 8118369277266764377}
   - {fileID: 1148951535698567038}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3618395140047581147
 SpriteRenderer:
@@ -281,7 +281,8 @@ MonoBehaviour:
   leftbackattack: 0
   rightbackattack: 0
   generator: {fileID: 0}
-  generatorRange: 0
+  Generators: []
+  generatorRange: 20
   animator: {fileID: 925779543263685256}
   SpriteObject: {fileID: 7571334965390483150}
   state: 0
@@ -290,7 +291,7 @@ MonoBehaviour:
   target_Transform: {fileID: 0}
   playersprite: {fileID: 0}
   WayPoints: []
-  AttackDistance: 1
+  AttackDistance: 0.75
   hitEffectPrepab: {fileID: 3489913565660959836, guid: e5dc5210606e4e34daf1eb466d7de0d9,
     type: 3}
   status: 0

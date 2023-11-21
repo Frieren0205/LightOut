@@ -37,9 +37,11 @@ public class Enemy_Test2 : MonoBehaviour
     [SerializeField]
     // 발전기 지키기 메소드 연결
     private Generator generator;
+    [SerializeField]
     private List<Generator> Generators;
     [SerializeField]
     private int generatorRange; // 발전기 인식 범위
+    [SerializeField]
     private float shortDis;
     public Animator animator; // 적 스프라이트 애니메이터
     public GameObject SpriteObject; // 분리한 스프라이트 오브젝트
@@ -75,16 +77,21 @@ public class Enemy_Test2 : MonoBehaviour
         Rb = this.gameObject.GetComponent<Rigidbody>();
         playersprite =  target_Transform.GetComponentInChildren<Animator>().gameObject;
         state = State.idle;
-       // FindGenerator();
+        FindGenerator();
     }
 
     public void FindGenerator()
     {
-        Generators = new List<Generator>(GameObject.FindObjectsOfType<Generator>());
-        shortDis = Vector3.Distance(gameObject.transform.position, Generators[0].transform.position);
+        var Generator_list_var = FindObjectsByType<Generator>(FindObjectsSortMode.None);
+        Array.Sort(Generator_list_var, (a,b) =>
+        {
+            return a.transform.GetSiblingIndex().CompareTo(b.transform.GetSiblingIndex());
+        });
+        Generators = new List<Generator>(Generator_list_var);
+        shortDis = 10;
         if(shortDis <= generatorRange)
         {
-            generator = Generators[0];
+            // generator = Generators[0];
 
             foreach (Generator minGenerator in Generators)
             {
@@ -102,6 +109,7 @@ public class Enemy_Test2 : MonoBehaviour
         else
             generator = null;
     }
+
     private void CheckingBackAttack()
     {
         // 왼쪽 오른쪽 백어택을 구분해야함
@@ -121,19 +129,15 @@ public class Enemy_Test2 : MonoBehaviour
     {
         isplayerdead = GameManager.Instance.isPlayerDead;
         CheckingBackAttack();
-        if(isplayerdead)
+        if(isplayerdead || GameManager.Instance.isPause == true)
         {
             StopAllCoroutines();
         }
-        if(EnemyHP <= 0 && state != State.Dead)
-        {
-            StartCoroutine(deadroutine());
-        }
-        if(state == State.idle || isplayerdead)
+        if(state == State.idle || isplayerdead || GameManager.Instance.isPause == true)
         {
             OnMoveStop();
         }
-        if(!isdo_something && state == State.Chase && !isplayerdead)
+        if(!isdo_something && state == State.Chase && !isplayerdead && GameManager.Instance.isPause != true)
         {
             flipCheck();
             MovementSpeed = 2;
@@ -142,10 +146,14 @@ public class Enemy_Test2 : MonoBehaviour
     }
     private void Update() {
         isdo_something = !isattakable || !ishitable;
+        if((EnemyHP <= 0 && state != State.Dead) || generator.GeneratorHP == 0)
+        {
+            StartCoroutine(deadroutine());
+        }
     }
     public void UpdateFollwingPath()
     {
-        if(state != State.Dead)
+        if(state != State.Dead || isplayerdead  != true || GameManager.Instance.isPause != true)
        {
             this.UpdateFollwingPath_Navigate();
             flipCheck();
@@ -270,9 +278,10 @@ public class Enemy_Test2 : MonoBehaviour
     // }
     private IEnumerator hitroutine(Vector3 position)
     {
+        Player_Controll player = target_Transform.GetComponentInParent<Player_Controll>();
         state = State.hit;
         ishitable = false;
-        EnemyHP -= 1;
+        EnemyHP -= player.playerAttackDamage;
         var Hit_vfx_clone = Instantiate(hitEffectPrepab, position, Quaternion.identity);
         animator.SetTrigger("isHit");
         // 플레이어는 스프라이트를 분리해서 로컬스케일로 좌우를 구분하니, 스프라이트의 로컬스케일을 기준으로 삼아서 반대방향으로 계산하게 함
@@ -297,7 +306,7 @@ public class Enemy_Test2 : MonoBehaviour
         state = State.Dead;
         ishitable = false;
         animator.SetBool("isDead", true);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
         LevelManager.Instance.isLevel1Clear = true;
         Destroy(gameObject);
     }

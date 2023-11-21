@@ -1,0 +1,29 @@
+﻿title: if_Generator_Destroy
+tags:
+---
+<<SpriteSwitch illust Null>>
+ : 부숴버린 발전기의 안에서, 사용할 수 있을 것 같은 부품을 발견했다.
+ : ..... 내 몸을 업그레이드 할 수 있을 것 같은 기분이 든다.
+ : 어떻게 업그레이드 할까?
+-> 공격력 업그레이드
+    <<jump Player_ATKUP>>
+-> 이동속도 업그레이드
+    <<jump Player_SPUP>>
+-> 체력 업그레이드
+    <<jump Player_HPUP>>
+===
+title: Player_ATKUP
+---
+    : ... 칼날을 조금 더 연마했다.<br>(공격력 업그레이드 완료)
+    <<SpriteSwitch illust Null>> <<ATKUpgrade Player>>
+===
+title: Player_SPUP
+---
+    : ... 발이 조금 빨라진 것 같다.<br>(이동속도 업그레이드 완료)
+    <<SpriteSwitch illust Null>> <<SPUpgrade Player>>
+===
+title: Player_HPUP
+---
+    : ... 숨쉬기가 조금 편해졌다.<br>(체력 회복 및 최대 체력 추가)
+    <<SpriteSwitch illust Tikke_Player_normal>> <<HPUpgrade Player>>
+===

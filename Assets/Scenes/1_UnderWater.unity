@@ -208,6 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Level: 0
+  isStart: 0
 --- !u!1 &204800944
 GameObject:
   m_ObjectHideFlags: 0

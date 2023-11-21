@@ -228,7 +228,8 @@ MonoBehaviour:
   leftbackattack: 0
   rightbackattack: 0
   generator: {fileID: 0}
-  generatorRange: 0
+  Generators: []
+  generatorRange: 20
   animator: {fileID: 0}
   SpriteObject: {fileID: 1560928829184511800}
   state: 0

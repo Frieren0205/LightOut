@@ -46,6 +46,8 @@ public class Player_Controll : MonoBehaviour
     
     // [Range(5, 6.25f)] 선택지로 올릴 수 있는 수치인데 왜 일케됐지 암튼;
     public float MoveSpeed;
+    [Range(0, 1.25f)]
+    public float Adventage_Speed = 0;
     [SerializeField]
     private  bool isflip; // 좌우 반전을 위해
 
@@ -80,7 +82,7 @@ public class Player_Controll : MonoBehaviour
 
     // 전투&상호작용 조작 관련
    [Range(1,5)] // 플레이어 공격력은 초기값 1, 최대 5까지 상승 가능
-    public int playerAttackDamage;
+    public int playerAttackDamage = 1;
 
     [Range(0,3)]
     public int ComboCount = 0;
@@ -153,7 +155,7 @@ public class Player_Controll : MonoBehaviour
             OnSlope();
             if(hascontrol && !isHit && CanAttack)
             {
-                transform.Translate(new Vector3(MoveDirection.x,0,MoveDirection.z) * MoveSpeed * Time.deltaTime);
+                transform.Translate(new Vector3(MoveDirection.x,0,MoveDirection.z) * (MoveSpeed + Adventage_Speed) * Time.deltaTime);
                 if(transform.position.z > minLimit && !debugtest)
                 {
                     transform.position = new Vector3(transform.position.x, transform.position.y, minLimit);

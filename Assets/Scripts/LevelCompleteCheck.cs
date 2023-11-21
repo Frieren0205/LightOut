@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class LevelCompleteCheck : MonoBehaviour
 {
@@ -18,15 +15,20 @@ public class LevelCompleteCheck : MonoBehaviour
     public level Level;
     private InteractionPoint interactionPoint;
     private BoxCollider box;
+    [SerializeField]
+    private bool isStart = false;
     // Start is called before the first frame update
-    private void OnEnable() 
+    private void Awake() 
     {
         interactionPoint = this.GetComponent<InteractionPoint>();
         box = this.GetComponent<BoxCollider>();
         box.enabled = false;
         interactionPoint.enabled = false;
     }
-
+    void OnEnable()
+    {
+        isStart = false;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -38,6 +40,10 @@ public class LevelCompleteCheck : MonoBehaviour
                 {
                     box.enabled = true;
                     interactionPoint.enabled = true;
+                    if(isStart == false)
+                    {
+                        StartCoroutine(if_Dialouge_Start("if_Complete_Underground"));
+                    }
                 }
                 break;
             }
@@ -78,5 +84,18 @@ public class LevelCompleteCheck : MonoBehaviour
                 break;
             }
         }
+    }
+    IEnumerator if_interaction_Start()
+    {
+        isStart = true;
+        GameManager.Instance.interactionManager.if_UnderGround_Clear();
+        yield return new WaitForEndOfFrame();
+    }
+
+    IEnumerator if_Dialouge_Start(string logue_name)
+    {
+        isStart = true;
+        GameManager.Instance.interactionManager.if_Clear_Dialogue(logue_name);
+        yield return new WaitForEndOfFrame();
     }
 }

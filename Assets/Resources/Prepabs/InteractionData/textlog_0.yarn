@@ -15,18 +15,4 @@
 -> 체력 업그레이드
     <<jump Player_HPUP>>
 ===
-title: Player_ATKUP
----
-    티케: 공격력 업그레이드 완료
-    <<SpriteSwitch illust Player_Anger>> <<ATKUpgrade Player>>
-===
-title: Player_SPUP
----
-    티케: 이동속도 업그레이드 완료
-    <<SpriteSwitch illust Player_Sad>> <<SPUpgrade Player>>
-===
-title: Player_HPUP
----
-    <<SpriteSwitch illust Player_Sad>> <<HPUpgrade Player>>
-    티케: 체력 업그레이드 완료
-===
+

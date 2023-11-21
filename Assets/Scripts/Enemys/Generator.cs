@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.Playables;
-using System.Linq;
+using System;
 
 public class Generator : MonoBehaviour
 {
@@ -20,6 +19,7 @@ public class Generator : MonoBehaviour
     public bool isEmergency = false;
 
     public int Generator_num;
+
     // Start is called before the first frame update
     private void OnEnable() 
     {
@@ -67,13 +67,15 @@ public class Generator : MonoBehaviour
 
     IEnumerator OnTerminate()
     {
+      
         col.enabled = false;
-        yield return new WaitForSeconds(1.25f); // 파괴 애니메이션 길이만큼 딜레이
+        yield return new WaitForSeconds(1.25f); // 파괴 애니메이션 길이만큼 딜레이 
         // chinemachineManager.playableDirector.Play();
         // yield return new WaitForSecondsRealtime(8);
         // chinemachineManager.playableDirector.enabled = false;
         // test.TurnOff();
-        LevelManager.Instance.subtera_generator_list.RemoveAt(Generator_num);
+        LevelManager.Instance.generator_list.RemoveAt(LevelManager.Instance.generator_list.IndexOf(this.gameObject.GetComponent<Generator>()));
+        GameManager.Instance.interactionManager.if_Generator_Destory();
         Destroy(this.gameObject);
         //Debug.Log("파괴");
     }

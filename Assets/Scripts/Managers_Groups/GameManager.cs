@@ -96,7 +96,11 @@ public class GameManager : MonoBehaviour
         isPause = false;
         UIManager.Instance.isPause = false;
         interactionManager.advanceInput.enabled = false;
-        if(player != null) player.CanInteractionIcon.SetActive(false);
+        if(player != null)
+        {
+            player.CanInteractionIcon.SetActive(false);
+            player.CanInteraction = true;
+        }
     }
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)

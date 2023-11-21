@@ -54,7 +54,7 @@ public class LevelManager : MonoBehaviour
     public List<Enemy_Test2> normal_enemy_list;
     #endregion
     #region 발전기 그룹
-    public List<Generator> subtera_generator_list;
+    public List<Generator> generator_list;
     #endregion
     private bool isLevel2ClearCheck()
     {
@@ -124,7 +124,7 @@ public class LevelManager : MonoBehaviour
             // 발전기 오름차순으로 재정렬
             return a.transform.GetSiblingIndex().CompareTo(b.transform.GetSiblingIndex());
         });
-        subtera_generator_list = new List<Generator>(subtera_generator_list_var);
+        generator_list = new List<Generator>(subtera_generator_list_var);
     }
     public void FindEnemy()
     {
@@ -137,16 +137,16 @@ public class LevelManager : MonoBehaviour
     }
     private void Clearcheckpoint()
     {   
-        if(subtera_generator_list.Count == 6)
+        if(generator_list.Count == 6)
         {
             level2ClearCheckPoints[0] = true;
         }
-        else if(subtera_generator_list.Count == 3)
+        else if(generator_list.Count == 3)
         {
             level2ClearCheckPoints[0] = true;
             level2ClearCheckPoints[1] = true;
         }
-        else if(subtera_generator_list.Count == 0 || !subtera_generator_list.Any())
+        else if(generator_list.Count == 0 || !generator_list.Any())
         {
             level2ClearCheckPoints[0] = true;
             level2ClearCheckPoints[1] = true;
