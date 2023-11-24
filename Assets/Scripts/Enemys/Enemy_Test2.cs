@@ -77,22 +77,13 @@ public class Enemy_Test2 : MonoBehaviour
         Rb = this.gameObject.GetComponent<Rigidbody>();
         playersprite =  target_Transform.GetComponentInChildren<Animator>().gameObject;
         state = State.idle;
-        FindGenerator();
     }
-
     public void FindGenerator()
     {
-        var Generator_list_var = FindObjectsByType<Generator>(FindObjectsSortMode.None);
-        Array.Sort(Generator_list_var, (a,b) =>
-        {
-            return a.transform.GetSiblingIndex().CompareTo(b.transform.GetSiblingIndex());
-        });
-        Generators = new List<Generator>(Generator_list_var);
+        Generators = LevelManager.Instance.generator_list;
         shortDis = 10;
         if(shortDis <= generatorRange)
         {
-            // generator = Generators[0];
-
             foreach (Generator minGenerator in Generators)
             {
                 float Distance = Vector3.Distance(gameObject.transform.position, minGenerator.transform.position);
@@ -129,6 +120,7 @@ public class Enemy_Test2 : MonoBehaviour
     {
         isplayerdead = GameManager.Instance.isPlayerDead;
         CheckingBackAttack();
+        FindGenerator();
         if(isplayerdead || GameManager.Instance.isPause == true)
         {
             StopAllCoroutines();
@@ -144,9 +136,10 @@ public class Enemy_Test2 : MonoBehaviour
         }
         status = path.status;
     }
-    private void Update() {
-        isdo_something = !isattakable || !ishitable;
-        if((EnemyHP <= 0 && state != State.Dead) || generator.GeneratorHP == 0)
+    private void Update() 
+    {
+        if(EnemyHP > 0 && state != State.Dead) isdo_something = !isattakable || !ishitable;
+        if((EnemyHP <= 0 && state != State.Dead) || (generator != null && generator.GeneratorHP == 0))
         {
             StartCoroutine(deadroutine());
         }
@@ -307,7 +300,7 @@ public class Enemy_Test2 : MonoBehaviour
         ishitable = false;
         animator.SetBool("isDead", true);
         yield return new WaitForSeconds(1f);
-        LevelManager.Instance.isLevel1Clear = true;
+        LevelManager.Instance.normal_enemy_list.RemoveAt(LevelManager.Instance.normal_enemy_list.IndexOf(this.gameObject.GetComponent<Enemy_Test2>()));
         Destroy(gameObject);
     }
     // public void OnEmergency()

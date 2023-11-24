@@ -17,8 +17,7 @@ public class Generator : MonoBehaviour
     private SpriteRenderer sprender;
     private bool isHit = false;
     public bool isEmergency = false;
-
-    public int Generator_num;
+    public bool isLevelUP_Point = false;
 
     // Start is called before the first frame update
     private void OnEnable() 
@@ -75,7 +74,7 @@ public class Generator : MonoBehaviour
         // chinemachineManager.playableDirector.enabled = false;
         // test.TurnOff();
         LevelManager.Instance.generator_list.RemoveAt(LevelManager.Instance.generator_list.IndexOf(this.gameObject.GetComponent<Generator>()));
-        GameManager.Instance.interactionManager.if_Generator_Destory();
+        if(isLevelUP_Point == true) GameManager.Instance.interactionManager.if_Generator_Destory();
         Destroy(this.gameObject);
         //Debug.Log("파괴");
     }

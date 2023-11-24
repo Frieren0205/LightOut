@@ -5,20 +5,27 @@ using UnityEngine;
 
 public class EnemySight : MonoBehaviour 
 {
-    static EnemySight _instance;
-    public static EnemySight Instance
-    {
-        get{
-            if(_instance)
-            {
-                GameObject container = FindFirstObjectByType<EnemySight>().gameObject;
-                _instance = container.GetComponent<EnemySight>();
-            }
-            return _instance;
-        }
-    }
+    // static EnemySight _instance;
+    // public static EnemySight Instance
+    // {
+    //     get{
+    //         if(_instance)
+    //         {
+    //             GameObject container = FindFirstObjectByType<EnemySight>().gameObject;
+    //             _instance = container.GetComponent<EnemySight>();
+    //         }
+    //         return _instance;
+    //     }
+    // }
     //TODO AI의 "시야"만 구현
 
+    public enum EnemyType
+    {
+        normal,
+        Security,
+        Boss
+    }
+    public EnemyType enemyType;
     [SerializeField]
     [Range(0f, 360f)]private float viewAngle; //시야의 각도
     [SerializeField]
@@ -27,10 +34,24 @@ public class EnemySight : MonoBehaviour
     private LayerMask targetMask; // 타겟의 레이어 마스크(플레이어)
 
     private Enemy_Test2 enemy; //AI 본체 스크립트
+    private Enemy_Security security;
      // Start is called before the first frame update
     void Start()
     {
-        enemy = this.gameObject.GetComponentInParent<Enemy_Test2>();
+        switch(enemyType)
+        {
+            case EnemyType.normal:
+            {
+                enemy = this.gameObject.GetComponentInParent<Enemy_Test2>();
+                break;
+            }
+            case EnemyType.Security:
+            {
+                security = this.gameObject.GetComponentInParent<Enemy_Security>();
+                break;
+            }
+
+        }
     }
 
     // Update is called once per frame
@@ -38,7 +59,18 @@ public class EnemySight : MonoBehaviour
     {
         if(GameManager.Instance.isPause == false)
         {
-            View();
+            switch(enemyType)
+            {
+                case EnemyType.normal:
+                {
+                    Enemy_Normal_View();
+                    break;
+                }
+                case EnemyType.Security:
+                {
+                    break;
+                }
+            }
         }
     }
 
@@ -48,7 +80,7 @@ public class EnemySight : MonoBehaviour
         return new Vector3(Mathf.Sin(_angle * Mathf.Deg2Rad), 0f, Mathf.Cos(_angle * Mathf.Deg2Rad));
     }
 
-    private void View()
+    private void Enemy_Normal_View()
     {
         Vector3 _leftBoundary = BoundaryAngle(-viewAngle * 0.5f);  // z 축 기준으로 시야 각도의 절반 각도만큼 왼쪽으로 회전한 방향 (시야각의 왼쪽 경계선)
         Vector3 _rightBoundary = BoundaryAngle(viewAngle * 0.5f);  // z 축 기준으로 시야 각도의 절반 각도만큼 오른쪽으로 회전한 방향 (시야각의 오른쪽 경계선)

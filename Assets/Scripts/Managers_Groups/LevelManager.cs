@@ -52,6 +52,7 @@ public class LevelManager : MonoBehaviour
 
     #region 일반 몬스터 그룹
     public List<Enemy_Test2> normal_enemy_list;
+    public Enemy_Security enemy_Security;
     #endregion
     #region 발전기 그룹
     public List<Generator> generator_list;
@@ -81,7 +82,6 @@ public class LevelManager : MonoBehaviour
     }
     private void Update() 
     {
-        isLevel2Clear = isLevel2ClearCheck();
         Clearcheckpoint();
     }
     public void LevelSetting(Level level)
@@ -90,6 +90,8 @@ public class LevelManager : MonoBehaviour
         {
             player.minLimit = limitiedPositions[0].minPosition;
             player.maxLimit = limitiedPositions[0].maxPosition;
+            FindEnemy();
+
         }
         if(level == Level.Sub_Tera)
         {
@@ -103,6 +105,9 @@ public class LevelManager : MonoBehaviour
         {
             player.minLimit = limitiedPositions[2].minPosition;
             player.maxLimit = limitiedPositions[2].maxPosition;
+
+            FindGenerator();
+            FindEnemy();
         }
         if(level == Level.Boss_Battle)
         {
@@ -136,28 +141,50 @@ public class LevelManager : MonoBehaviour
         normal_enemy_list = new List<Enemy_Test2>(normal_enemy_list_var);
     }
     private void Clearcheckpoint()
-    {   
-        if(generator_list.Count == 6)
+    {
+        switch(level)
         {
-            level2ClearCheckPoints[0] = true;
+            case Level.Underground:
+            {
+                
+                if(normal_enemy_list.Any() == false)
+                {
+                    isLevel1Clear = true;
+                }
+                else
+                {
+                    isLevel1Clear = false;
+                }
+                break;
+            }
+            case Level.Sub_Tera:
+            {
+                isLevel2Clear = isLevel2ClearCheck();
+                if(generator_list.Count == 6)
+                {
+                    level2ClearCheckPoints[0] = true;
+                }
+                else if(generator_list.Count == 3)
+                {
+                    level2ClearCheckPoints[0] = true;
+                    level2ClearCheckPoints[1] = true;
+                }
+                else if((generator_list.Count == 0 || !generator_list.Any()) || enemy_Security == null )
+                {
+                    level2ClearCheckPoints[0] = true;
+                    level2ClearCheckPoints[1] = true;
+                    level2ClearCheckPoints[2] = true;
+                }
+                else
+                {
+                    level2ClearCheckPoints[0] = false;
+                    level2ClearCheckPoints[1] = false;
+                    level2ClearCheckPoints[2] = false;
+                }
+                break;
+            }
         }
-        else if(generator_list.Count == 3)
-        {
-            level2ClearCheckPoints[0] = true;
-            level2ClearCheckPoints[1] = true;
-        }
-        else if(generator_list.Count == 0 || !generator_list.Any())
-        {
-            level2ClearCheckPoints[0] = true;
-            level2ClearCheckPoints[1] = true;
-            level2ClearCheckPoints[2] = true;
-        }
-        else
-        {
-            level2ClearCheckPoints[0] = false;
-            level2ClearCheckPoints[1] = false;
-            level2ClearCheckPoints[2] = false;
-        }
+
 
     }
     public void CameraTrackingUpdate()

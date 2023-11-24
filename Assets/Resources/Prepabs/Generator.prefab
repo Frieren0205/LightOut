@@ -264,4 +264,4 @@ MonoBehaviour:
   test: {fileID: 0}
   chinemachineManager: {fileID: 0}
   isEmergency: 0
-  Generator_num: 0
+  isLevelUP_Point: 0

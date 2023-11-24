@@ -20,5 +20,13 @@ public class EnemyManager : MonoBehaviour
     }
 
     public List<Generator> generators;
-
+    public void FindingGenerator()
+    {
+        var Generator_list_var = FindObjectsByType<Generator>(FindObjectsSortMode.None);
+        Array.Sort(Generator_list_var, (a,b) =>
+        {
+            return a.transform.GetSiblingIndex().CompareTo(b.transform.GetSiblingIndex());
+        });
+        generators = new List<Generator>(Generator_list_var);
+    }
 }

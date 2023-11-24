@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e16276cf37741448a27d0362f599c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 1
   viewAngle: 360
   viewDistance: 10
   targetMask:
@@ -247,3 +248,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938f221926f3b6d47a51cc062ff31f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SecurityHP: 0
+  isflip: 0
