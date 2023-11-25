@@ -248,5 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938f221926f3b6d47a51cc062ff31f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SecurityHP: 0
+  target: {fileID: 0}
+  AttackDistance: 1.5
   isflip: 0
+  SecurityHP: 0

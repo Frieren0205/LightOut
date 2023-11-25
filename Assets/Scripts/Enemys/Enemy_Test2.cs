@@ -23,7 +23,7 @@ public class Enemy_Test2 : MonoBehaviour
     bool ishitable = true;
     public bool isfilp;
 
-    #region
+    #region 백어택 관련
     [SerializeField]
     private bool leftbackattack;
     [SerializeField]
@@ -66,7 +66,6 @@ public class Enemy_Test2 : MonoBehaviour
 
     public GameObject hitEffectPrepab;
 
-    public NavMeshPathStatus status;
 
     void Start()
     {
@@ -134,7 +133,6 @@ public class Enemy_Test2 : MonoBehaviour
             flipCheck();
             MovementSpeed = 2;
         }
-        status = path.status;
     }
     private void Update() 
     {
