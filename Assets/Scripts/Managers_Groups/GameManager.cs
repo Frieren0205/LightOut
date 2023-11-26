@@ -33,7 +33,11 @@ public class GameManager : MonoBehaviour
     public bool isGameClear = false;
     [SerializeField]
     private Player_Controll player;
+
+    public Player_Controll[] player_list;
     // Start is called before the first frame update
+
+    private bool[] isfirstplay = new bool[4];
     private void Awake() 
     {
         var managerinstance = FindObjectsOfType<GameManager>();
@@ -107,6 +111,7 @@ public class GameManager : MonoBehaviour
     {
         OnSwitchLevel();
         StartCoroutine(UIManager.Instance.castfadein());
+        player_duplicate_check();
     }
 
     private void OnSwitchLevel()
@@ -117,22 +122,30 @@ public class GameManager : MonoBehaviour
             {
                 levelManager.level = LevelManager.Level.Underground;
                 if(!player)
-                player = SpawnManager.Instance.SpawnPlayer(SpawnManager.Instance.spawnpoints[0]);
-                LevelManager.Instance.player = player;
-                player.levelManager = levelManager;
-                player.gameObject.transform.position = SpawnManager.Instance.spawnpoints[0].spawnpositionVec3;
-                playerinit();
-                LevelManager.Instance.LevelSetting(LevelManager.Level.Underground);
-                LevelSetting();
-                LevelManager.Instance.CameraAreasUpdate();
-                interactionManager.After_Prologue();
+                {
+                    player = SpawnManager.Instance.SpawnPlayer(SpawnManager.Instance.spawnpoints[0]);
+                }
+                    LevelManager.Instance.player = player;
+                    player.levelManager = levelManager;
+                    player.gameObject.transform.position = SpawnManager.Instance.spawnpoints[0].spawnpositionVec3;
+                    playerinit();
+                    LevelManager.Instance.LevelSetting(LevelManager.Level.Underground);
+                    LevelSetting();
+                    LevelManager.Instance.CameraAreasUpdate();
+                    if(isfirstplay[0] == false)
+                    {
+                        interactionManager.After_Prologue();
+                        isfirstplay[0] = true;
+                    }
                 break;
             }
             case 3:
             {
                 levelManager.level = LevelManager.Level.Sub_Tera;
                 if(!player)
+                {
                     player = SpawnManager.Instance.SpawnPlayer(SpawnManager.Instance.spawnpoints[1]);
+                }
                 levelManager.player = player;
                 player.levelManager = levelManager;
                 player.gameObject.transform.position = SpawnManager.Instance.spawnpoints[1].spawnpositionVec3;
@@ -141,6 +154,10 @@ public class GameManager : MonoBehaviour
                 LevelSetting();
                 LevelManager.Instance.CameraTrackingUpdate();
                 LevelManager.Instance.CameraAreasUpdate();
+                if(isfirstplay[1] == false)
+                {
+                    isfirstplay[1] = true;
+                }
                 break;
             }
             case 4:
@@ -156,6 +173,10 @@ public class GameManager : MonoBehaviour
                     LevelSetting();
                     LevelManager.Instance.CameraAreasUpdate();
                     LevelManager.Instance.CameraAreasUpdate();
+                    if(isfirstplay[2] == false)
+                    {
+                        isfirstplay[2] = true;
+                    }
                 break;
             }
             case 5:
@@ -168,6 +189,10 @@ public class GameManager : MonoBehaviour
                 LevelSetting();
                 LevelManager.Instance.CameraTrackingUpdate();
                 LevelManager.Instance.CameraAreasUpdate();
+                if(isfirstplay[3] == false)
+                {
+                    isfirstplay[3] = true;
+                }
                 break;
             }
         }
@@ -178,9 +203,23 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         playerinit();
     }
+    private void player_duplicate_check()
+    {
+        var playerlist = FindObjectsOfType<Player_Controll>();
+        player_list = playerlist;
+        if(playerlist.Length > 1)
+        {
+            Debug.Log("플레이어 재지정");
+            player = playerlist[0];
+            Destroy(playerlist[1].gameObject);
+        }
+        else
+            return;
+    }
     private void playerinit()
     {
         isPause = false;
+        isPlayerDead = false;
         player.CanInteraction = true;
         player.interactionPoint = null;
         player.CanInteractionIcon.SetActive(false);

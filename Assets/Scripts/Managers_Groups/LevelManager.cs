@@ -171,7 +171,7 @@ public class LevelManager : MonoBehaviour
                     level2ClearCheckPoints[0] = true;
                     level2ClearCheckPoints[1] = true;
                 }
-                else if(generator_list.Count == 0 || !generator_list.Any() || enemy_Security == null )
+                else if(generator_list.Count == 0 && !generator_list.Any() && enemy_Security == null )
                 {
                     level2ClearCheckPoints[0] = true;
                     level2ClearCheckPoints[1] = true;

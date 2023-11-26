@@ -63,12 +63,18 @@ public class EnemySight : MonoBehaviour
             {
                 case EnemyType.normal:
                 {
-                    Enemy_Normal_View();
+                    if(enemy.state != Enemy_Test2.State.Dead)
+                    {
+                        Enemy_Normal_View();
+                    }
                     break;
                 }
                 case EnemyType.Security:
                 {
-                    Enemy_Security_View();
+                    if(security.state != Enemy_Security.State.Dead)
+                    {
+                        Enemy_Security_View();
+                    }
                     break;
                 }
             }

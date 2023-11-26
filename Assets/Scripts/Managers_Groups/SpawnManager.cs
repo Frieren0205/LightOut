@@ -35,6 +35,7 @@ public class SpawnManager : MonoBehaviour
     public Spawnpoint[] spawnpoints;
     public Player_Controll SpawnPlayer(Spawnpoint spawnpoint)
     {
+        Debug.Log("플레이어 생성");
         var playerobject = Instantiate(player_Prepab,spawnpoint.spawnpositionVec3, Quaternion.identity);
         playerobject.gameObject.name = "Player";
         DontDestroyOnLoad(playerobject);

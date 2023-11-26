@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 public class Enemy_Security : MonoBehaviour
 {
 
-    private enum State
+    public enum State
     {
         idle,
         hit,
@@ -16,10 +17,13 @@ public class Enemy_Security : MonoBehaviour
         Emergency,
         Dead
     }
-    private State state;
+    public State state;
+    [SerializeField]
     private bool isdo_something;
     private bool isplayerdead = false;
+    [SerializeField]
     private bool Attackable = true;
+    [SerializeField]
     private bool hitable = true;
 
     #region 백어택
@@ -42,7 +46,12 @@ public class Enemy_Security : MonoBehaviour
     private Vector3[] WayPoints;
 
     [SerializeField]
+    private int attack_count = 0;
+
+    [SerializeField]
     private float AttackDistance = 1.5f;
+    [SerializeField]
+    private float BashDistance = 5f;
 
     public bool isflip;
     
@@ -70,29 +79,43 @@ public class Enemy_Security : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(SecurityHP <= 0 && state != State.Dead)
+        {
+            StartCoroutine(deadroutine());
+        }
         isplayerdead = GameManager.Instance.isPlayerDead;
         CheckingBackAttack();
+        isdo_something = Checking_Do_Something();
         if(isplayerdead || GameManager.Instance.isPause == true)
         {
             StopAllCoroutines();
         }
         if(state == State.idle || isplayerdead || GameManager.Instance.isPause == true)
         {
-            
+            Moving_Stop();
         }
         if(!isdo_something && state == State.Chase && !isplayerdead && GameManager.Instance.isPause != true)
         {
-
+            flipCheck();
+            MovementSpeed = 2;
         }
     }
-
+    private bool Checking_Do_Something()
+    {
+        if((!Attackable && hitable) || (Attackable && !hitable))
+        {
+            return true;
+        }
+        else 
+            return false;
+    }
     private bool IsWayPointArrived(Vector3 currentWayPoint)
     {
         return Vector3.Distance(transform.position, currentWayPoint) <= WayPointsArrivalDistance;
     }
     public void UpdateFollwingPath()
     {
-        if(state != State.Dead || isplayerdead != true || GameManager.Instance.isPause != true)
+        if((state != State.Dead || isplayerdead != true || GameManager.Instance.isPause != true) && !isdo_something)
         {
             UpdateFollwingPath_Navigate();
             flipCheck();
@@ -101,7 +124,7 @@ public class Enemy_Security : MonoBehaviour
     public void UpdateFollwingPath_Navigate()
     {
         PathRefreshTime += Time.deltaTime;
-        if(PathRefreshTime >= 0.25f)
+        if(PathRefreshTime >= 0.00025f)
         {
             PathRefreshTime = 0.0f;
             attack_point = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z);
@@ -146,11 +169,17 @@ public class Enemy_Security : MonoBehaviour
 
     private void UpdateFollwingPath_Navigate_OnMove()
     {
-        if((!isdo_something && state == State.Chase) || (state != State.Dead || !isplayerdead))
+        if((!isdo_something && state == State.Chase) && (state != State.Dead || !isplayerdead))
         {
             animator.SetBool("isMove", true);
-            if(!isdo_something)transform.position = Vector3.MoveTowards(transform.position, WayPoints[currentWayPointIndex], MovementSpeed * Time.deltaTime);
-            if(Math.Round(Vector3.Distance(transform.position, attack_point), 2) <= AttackDistance)
+            if(!isdo_something && Attackable)transform.position = Vector3.MoveTowards(transform.position, WayPoints[currentWayPointIndex], MovementSpeed * Time.deltaTime);
+            
+            if(Math.Round(Vector3.Distance(transform.position, attack_point), 2) <= BashDistance  && attack_count >= 5)
+            {
+                state = State.Attack;
+                OnBash();
+            }
+            else if(Math.Round(Vector3.Distance(transform.position, attack_point), 2) <= AttackDistance)
             {
                 state = State.Attack;
                 OnAttack();
@@ -168,9 +197,39 @@ public class Enemy_Security : MonoBehaviour
         }
     }
 
+    private void OnBash()
+    {
+        MovementSpeed = 0;
+        animator.SetBool("isMove", false);
+        if(Attackable && !isdo_something)
+        {
+            StartCoroutine(BashRoutine());
+        }  
+    }
     public IEnumerator AttackRoutine()
     {
-        throw new NotImplementedException();
+        Attackable = false;
+        animator.SetTrigger("isAttack");
+        yield return new WaitForSeconds(1.5f);
+        Attackable = true;
+        attack_count += 1;
+    }
+    public IEnumerator BashRoutine()
+    {
+        Attackable = false;
+        animator.SetBool("isSpecial", true);
+        animator.SetTrigger("isAttack");
+        yield return new WaitForSeconds(0.3f);
+        if(isflip == false)
+        {
+            DOTween.To(() => transform.position.x, x => transform.position = new Vector3(x, transform.position.y, transform.position.z), (transform.position.x + 5),0.7f);
+        }
+        else
+            DOTween.To(() => transform.position.x, x => transform.position = new Vector3(x, transform.position.y, transform.position.z), (transform.position.x - 5),0.7f);
+        yield return new WaitForSeconds(1f);
+        Attackable = true;
+        animator.SetBool("isSpecial", false);
+        attack_count = 0;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -178,12 +237,16 @@ public class Enemy_Security : MonoBehaviour
         if(other.gameObject.name == "Attack_Col" && hitable)
         {
             var hit_vector = other.ClosestPoint(transform.position) + new Vector3(Random.Range(-0.5f,0.5f),Random.Range(-0.2f,1f),-0.1f);
+            StartCoroutine(hitroutine(hit_vector));
         }    
     }
 
     private IEnumerator hitroutine(Vector3 position)
     {
+        StopCoroutine(BashRoutine());
+        StopCoroutine(AttackRoutine());
         state = State.hit;
+        attack_count += 1;
         hitable = false;
         SecurityHP -= target.playerAttackDamage;
         var Hit_vfx_clone = Instantiate(HitEffectPrepab, position, Quaternion.identity);
@@ -207,10 +270,11 @@ public class Enemy_Security : MonoBehaviour
 
     private IEnumerator deadroutine()
     {
+        StopCoroutine(AttackRoutine());
         state = State.Dead;
         hitable = false;
         animator.SetTrigger("isDead");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
     public void Moving_Stop()

@@ -29,7 +29,7 @@ public class Enemy_Test2 : MonoBehaviour
     [SerializeField]
     private bool rightbackattack;
     #endregion
-    bool isplayerdead = false;
+    public bool isplayerdead = false;
     private Rigidbody Rb;
 
     // 적 스크립트 구조 관련

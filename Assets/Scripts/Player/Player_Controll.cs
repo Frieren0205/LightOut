@@ -125,7 +125,10 @@ public class Player_Controll : MonoBehaviour
         {
             gameManager = FindFirstObjectByType<GameManager>().GetComponent<GameManager>();
         }
+
     }
+
+
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -390,6 +393,10 @@ public class Player_Controll : MonoBehaviour
         {
             CalculateHit("EnemyAttack",hit_vector);
         }
+        if(other.gameObject.tag == "Warp_Damage" && !isHit && CanHit)
+        {
+            WarpDamage();
+        }
         if(other.gameObject.tag == "Ground")
         {
             isGrounded = true;
@@ -471,6 +478,7 @@ public class Player_Controll : MonoBehaviour
         GameManager.Instance.isPlayerDead = true;
         yield return new WaitForSeconds(2.5f);
         UIManager.Instance.OnGameover();
+        Destroy(this.gameObject);
         //TODO : 게임오버 UI 팝업
     }
     private void WarpDamage()
@@ -490,7 +498,7 @@ public class Player_Controll : MonoBehaviour
         {
             rb.AddForce(Vector3.right * 5, ForceMode.Impulse);
         }
-        rb.AddForce(Vector3.up * 20f, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * 7.5f, ForceMode.Impulse);
         StartCoroutine(OnHit(Vector3.zero));
         StartCoroutine(Hitable());
     }
@@ -499,7 +507,7 @@ public class Player_Controll : MonoBehaviour
         isHit = true;
         if(hit_pos != Vector3.zero)
         {
-            GameObject hit_vfx_clone = Instantiate(hit_vfx_prepab, hit_pos, Quaternion.identity);
+            GameObject hit_vfx_clone = Instantiate(hit_vfx_prepab, hit_pos + new Vector3(0,0.5f,0), Quaternion.identity);
             Destroy(hit_vfx_clone, 1f);
         }
         yield return new WaitForSecondsRealtime(0.5f);

@@ -75,7 +75,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6257502584869839609}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.642, y: 1.1, z: 0}
+  m_LocalPosition: {x: 0.997, y: 0.964, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 945693638981964301}
   - component: {fileID: 9032625912032340854}
   - component: {fileID: 4063449899510730381}
+  - component: {fileID: 1189848035408619333}
   m_Layer: 0
   m_Name: Security
   m_TagString: Untagged
@@ -248,7 +249,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938f221926f3b6d47a51cc062ff31f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
+  isdo_something: 0
+  Attackable: 1
+  hitable: 1
   target: {fileID: 0}
+  attack_count: 0
   AttackDistance: 1.5
+  BashDistance: 5
   isflip: 0
   SecurityHP: 0
+  HitEffectPrepab: {fileID: 3489913565660959836, guid: e5dc5210606e4e34daf1eb466d7de0d9,
+    type: 3}
+--- !u!54 &1189848035408619333
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6902928947549927002}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
