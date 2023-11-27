@@ -25,6 +25,10 @@ public class InteractionManager : MonoBehaviour
     public  LineView lineView => FindFirstObjectByType<LineView>();
 
     // int count = 0;
+    public void if_interaction_start()
+    {
+        GameManager.Instance.isPause = true;
+    }
     public void After_Prologue()
     {
         if(SceneManager.GetActiveScene().buildIndex == 2)
@@ -68,15 +72,24 @@ public class InteractionManager : MonoBehaviour
     }
     public void BossApear()
     {
-        if(SceneManager.GetActiveScene().buildIndex == 4)
+        if(SceneManager.GetActiveScene().buildIndex == 5)
         {
             runner.startNode = "if_Player_meet_Boss";
             runner.StartDialogue(runner.startNode);
             player.CanInteraction = false;
             gameManager.isPause = true;
+            StartCoroutine(advancedInput_set());
+
         }
     }
-
+    public void if_Boss_Clear()
+    {
+        runner.startNode = "if_Boss_Clear";
+        runner.StartDialogue(runner.startNode);
+        player.CanInteraction = false;
+        gameManager.isPause = true;
+        StartCoroutine(advancedInput_set());
+    }
     public void if_Generator_Destory()
     {
         runner.startNode = "if_Generator_Destroy";

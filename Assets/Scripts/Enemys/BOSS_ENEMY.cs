@@ -5,9 +5,18 @@ using UnityEngine;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
 using Cinemachine;
+using UnityEngine.AI;
 
 public class BOSS_ENEMY : MonoBehaviour
 {
+    public enum State
+    {
+        idle,
+        Chase,
+        Attack,
+        Dead
+    }
+    public State state;
     [Header("보스 체력"), Range(0,20)]
     public int Boss_HP;
     [Serializable]
@@ -44,6 +53,10 @@ public class BOSS_ENEMY : MonoBehaviour
 
     private bool ismelee_attack;
     private bool isrange_attack;
+
+    private bool isdo_something;
+    private bool attackable = true;
+
     public bool isArm_Hammer;
     public bool canRandom;
 
@@ -51,7 +64,7 @@ public class BOSS_ENEMY : MonoBehaviour
 
     private List<GameObject> range_obj_list = new List<GameObject>();
     public  List<bool> attack_bool_list = new List<bool>();
-
+    [SerializeField]
     private Player_Controll player;
     private static float toPlayerAngle(Vector3 vstart, Vector3 vEnd)
     {
@@ -59,9 +72,24 @@ public class BOSS_ENEMY : MonoBehaviour
     }
     public float Angle;
 
+    
+    private NavMeshPath path;
+    private float WayPointsArrivalDistance = 1.5f;
+    private bool isplayerdead = false;
 
-    private void OnEnable() 
+    private float PathRefreshTime = 0.0f;
+    private Vector3 attack_point;
+    [SerializeField]
+    private Vector3[] WayPoints;
+    [SerializeField]
+    private int currentWayPointIndex;
+    [SerializeField]
+    private int MovementSpeed = 2;
+    public int AttackDistance;
+
+    private void Start() 
     {
+        path = new NavMeshPath();
         animator = this.gameObject.GetComponent<Animator>();
         rb = this.gameObject.GetComponent<Rigidbody>();
 
@@ -78,13 +106,19 @@ public class BOSS_ENEMY : MonoBehaviour
         if(Boss_HP <= 0)
         {
             LevelManager.Instance.isbossdead = true;
-            GameManager.Instance.isGameClear = true;
             StartCoroutine(deadroutine());
+        }
+        if(state == State.idle || isplayerdead || GameManager.Instance.isPause == true)
+        {
+            OnMoveStop();
         }
         if(!GameManager.Instance.isPlayerDead && !LevelManager.Instance.isbossdead && !GameManager.Instance.isPause)
         {
             Rotatetoplayer();
-            BattleRoutine();
+        }
+        if(!isdo_something && state == State.Chase && !isplayerdead && GameManager.Instance.isPause != true)
+        {
+            MovementSpeed = 2;
         }
         else if(GameManager.Instance.isPlayerDead)
         {
@@ -96,7 +130,82 @@ public class BOSS_ENEMY : MonoBehaviour
         // }
 
     }
-        // 플레이어와의 위치 차이에 따라 좌우 회전 (백어택 불가능)
+    private bool IsWayPointArrived(Vector3 currentWayPoint)
+    {
+        return Vector3.Distance(transform.position, currentWayPoint) <= WayPointsArrivalDistance;
+    }
+    public void UpdateFollwingPath()
+    {
+        if((state != State.Dead || isplayerdead != true || GameManager.Instance.isPause != true) && !isdo_something)
+        {
+            UpdateFollwingPath_Navigate();
+        }
+    }
+
+    private void UpdateFollwingPath_Navigate()
+    {
+        PathRefreshTime += Time.deltaTime;
+        if(PathRefreshTime >= 0.00025f)
+        {
+            PathRefreshTime = 0.0f;
+            attack_point = new Vector3(player.transform.position.x,player.transform.position.y,player.transform.position.z);
+            NavMesh.CalculatePath(transform.position, attack_point, NavMesh.AllAreas, path);
+            for(int i = 0; i < path.corners.Length-1; i++)
+            {
+                Debug.DrawLine(path.corners[i], path.corners[i+1], Color.blue);
+            }
+            if(path.status == NavMeshPathStatus.PathComplete)
+            {
+                WayPoints = path.corners;
+                state = (!isdo_something) ? State.Chase : State.Attack;
+            }
+            else if(path.status == NavMeshPathStatus.PathPartial)
+            {
+                OnMoveStop();
+                WayPoints = null;
+                currentWayPointIndex = 0;
+            }
+            else
+                WayPoints = null;
+                currentWayPointIndex = 0;
+        }
+        if(WayPoints != null && currentWayPointIndex < path.corners.Length)
+        {
+            Vector3 currentWayPoint = WayPoints[currentWayPointIndex];
+            if(IsWayPointArrived(currentWayPoint))
+            {
+                currentWayPointIndex++;
+                if(currentWayPointIndex >= path.corners.Length)
+                {
+                    currentWayPointIndex = 0;   
+                }
+                else
+                    currentWayPoint = WayPoints[currentWayPointIndex];
+                UpdateFollwingPath_Navigate_OnMove();
+            }
+        }
+    }
+
+    private void UpdateFollwingPath_Navigate_OnMove()
+    {
+        if((!isdo_something && state == State.Chase) || state != State.Dead || !isplayerdead)
+        {
+            animator.SetBool("isMove", true);
+            if(!isdo_something && attackable && state == State.Chase)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, WayPoints[currentWayPointIndex], MovementSpeed * Time.deltaTime);
+                Debug.DrawLine(transform.position, attack_point, Color.white);
+            }
+            if(Math.Round(Vector3.Distance(transform.position, attack_point), 2) <= AttackDistance)
+            {
+                state = State.Attack;
+                OnMoveStop();
+                BattleRoutine();
+            }
+        }
+    }
+
+    // 플레이어와의 위치 차이에 따라 좌우 회전 (백어택 불가능)
     private void Rotatetoplayer()
     {
         if(!isaction_running)
@@ -121,6 +230,12 @@ public class BOSS_ENEMY : MonoBehaviour
             StartCoroutine(hitroutine());
         }
     }
+    public void OnMoveStop()
+    {
+        MovementSpeed = 0;
+        state = State.idle;
+        animator.SetBool("isMove", false);
+    }
     private IEnumerator hitroutine()
     {
         ishitable = false;
@@ -140,44 +255,52 @@ public class BOSS_ENEMY : MonoBehaviour
     }
     private IEnumerator deadroutine()
     {
-        yield return new WaitForSeconds(1);
-        Destroy(this.gameObject);
-        GameManager.Instance.NextSceneLoad();
+        animator.SetTrigger("isDead");
+        yield return new WaitForSecondsRealtime(1);
+        // Destroy(this.gameObject);
+        if(GameManager.Instance.isGameClear == false)
+        {
+            GameManager.Instance.interactionManager.if_Boss_Clear();
+            GameManager.Instance.isGameClear = true;
+
+        }
+        // GameManager.Instance.NextSceneLoad();
     }
     private void BattleRoutine()
     {
         if(canRandom && !ismelee_attack && !isrange_attack) // 랜덤 패턴을 할 수 있고, 근&원거리 공격 전부 하고있지 않을때.
         {
+            animator.SetBool("isMove",false);
             StartCoroutine(Random_Call());
         }
     }
     IEnumerator Random_Call()
     {
         canRandom = false;
-        // for(int i = 0; i < 5; i++)
-        // {
-        //     attack_bool_list.Add(false);
-        //     attack_bool_list.Add(false);
-        // }
-        // attack_bool_list[Random.Range(0,10)] = true;
-        // int index = attack_bool_list.FindIndex(a => a == true);
-        // if(index % 2 == 1)
-        // {
-        //     Debug.Log("Start melee attack");
-        //     ismelee_attack = true;
-        //     yield return StartCoroutine(meleeAttackroutine());
-        // }
-        // else if(index % 2 == 0 && index != 0)
-        // {
-        //     Debug.Log("Start range attack");
-        //     isrange_attack = true;
-        //     yield return StartCoroutine(rangeAttackroutine());
-        // }
-        // else
-        // {
+        for(int i = 0; i < 5; i++)
+        {
+            attack_bool_list.Add(false);
+            attack_bool_list.Add(false);
+        }
+        attack_bool_list[Random.Range(0,10)] = true;
+        int index = attack_bool_list.FindIndex(a => a == true);
+        if(index % 2 == 1)
+        {
+            Debug.Log("Start melee attack");
+            ismelee_attack = true;
+            yield return StartCoroutine(meleeAttackroutine());
+        }
+        else if(index % 2 == 0 && index != 0)
+        {
+            Debug.Log("Start range attack");
+            isrange_attack = true;
+            yield return StartCoroutine(rangeAttackroutine());
+        }
+        else
+        {
             isArm_Hammer = true;
             yield return StartCoroutine(armhammerroutine());
-        // }
+        }
         yield return new WaitForSeconds(3);
         canRandom = true;
         attack_bool_list.Clear();
@@ -185,6 +308,7 @@ public class BOSS_ENEMY : MonoBehaviour
     IEnumerator meleeAttackroutine()
     {
         attackState = AttackState.Melee;
+        attackable = false;
         AttackPatternChange();
         animator.SetTrigger("ismelee_attack");
         yield return new WaitForSeconds(0.1f);
@@ -203,10 +327,12 @@ public class BOSS_ENEMY : MonoBehaviour
         else
             DOTween.To(() => transform.position.x, x => transform.position = new Vector3(x,transform.position.y,transform.position.z), (transform.position.x + -0.25f),0.05f);
         ismelee_attack = false;
+        attackable = true;
     }
     IEnumerator rangeAttackroutine()
     {
         attackState = AttackState.Range;
+        attackable = false;
         AttackPatternChange();
         animator.SetTrigger("isrange_attack");
         rb.velocity = Vector3.zero;
@@ -229,10 +355,13 @@ public class BOSS_ENEMY : MonoBehaviour
         }
         range_obj_list.Clear();
         isrange_attack = false;
+        attackable = true;
     }
     IEnumerator armhammerroutine()
     {
         attackState = AttackState.Arm_Hammer;
+        attackable = false;
+
         AttackPatternChange();
         animator.SetTrigger("isSummonArm");
         yield return new WaitForSeconds(0.5f);
@@ -243,7 +372,7 @@ public class BOSS_ENEMY : MonoBehaviour
         Destroy(attackpoint.gameObject);
         Destroy(cloneArm);
         attackpoint = null;
-        Debug.Log("스폰된 로봇 암 파괴");
+        attackable = true;
     }
     private void AttackPatternChange()
     {
@@ -277,3 +406,4 @@ public class BOSS_ENEMY : MonoBehaviour
         target.transform.DOShakePosition(1.5f,new Vector3(5,1,0));
     }
 }
+

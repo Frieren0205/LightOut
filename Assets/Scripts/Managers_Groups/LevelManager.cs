@@ -49,6 +49,7 @@ public class LevelManager : MonoBehaviour
     [Header("레벨 클리어 조건 달성여부")]
     public bool isLevel1Clear;
     public bool isLevel2Clear;
+    public bool isLevel3Clear;
 
     #region 일반 몬스터 그룹
     public List<Enemy_Test2> normal_enemy_list;
@@ -70,7 +71,16 @@ public class LevelManager : MonoBehaviour
     }
 
     public bool[] level2ClearCheckPoints;
-    public bool isLevel3Clear;
+    private bool isLevel3ClearCheck()
+    {
+        if(level3ClearCheckPoints[0] && level3ClearCheckPoints[1])
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+    public bool[] level3ClearCheckPoints;
     #endregion
     private CinemachineVirtualCamera cinevirtualcam;
     private CinemachineConfiner confiner;
@@ -182,6 +192,25 @@ public class LevelManager : MonoBehaviour
                     level2ClearCheckPoints[0] = false;
                     level2ClearCheckPoints[1] = false;
                     level2ClearCheckPoints[2] = false;
+                }
+                break;
+            }
+            case Level.In_Tera:
+            {
+                isLevel3Clear = isLevel3ClearCheck();
+                if(generator_list.Count == 0 && !generator_list.Any() && normal_enemy_list.Any())
+                {
+                    level3ClearCheckPoints[0] = true;
+                }
+                else if(level3ClearCheckPoints[0] && !normal_enemy_list.Any())
+                {
+                    level3ClearCheckPoints[0] = true;
+                    level3ClearCheckPoints[1] = true;
+                }
+                else
+                {
+                    level3ClearCheckPoints[0] = false;
+                    level3ClearCheckPoints[1] = false;
                 }
                 break;
             }

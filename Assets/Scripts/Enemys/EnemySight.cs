@@ -22,13 +22,11 @@ public class EnemySight : MonoBehaviour
     public enum EnemyType
     {
         normal,
-        Security,
-        Boss
+        Security
     }
     public EnemyType enemyType;
     [SerializeField]
     [Range(0f, 360f)]private float viewAngle; //시야의 각도
-    [SerializeField]
     public float viewDistance; // 시야 거리
     [SerializeField]
     private LayerMask targetMask; // 타겟의 레이어 마스크(플레이어)

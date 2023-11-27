@@ -10,7 +10,8 @@ public class LevelCompleteCheck : MonoBehaviour
         Sub_Tera_1,
         Sub_Tera_2,
         Sub_Tera_3,
-        In_Tera
+        In_Tera_1,
+        In_Tera_2
     }
     public level Level;
     private InteractionPoint interactionPoint;
@@ -74,12 +75,25 @@ public class LevelCompleteCheck : MonoBehaviour
                 }
                 break;
             }
-            case level.In_Tera:
+            case level.In_Tera_1:
+            {
+                if(LevelManager.Instance.level3ClearCheckPoints[0] == true)
+                {
+                    box.enabled = true;
+                    interactionPoint.enabled = true;
+                }
+                break;
+            }
+            case level.In_Tera_2:
             {
                 if(LevelManager.Instance.isLevel3Clear)
                 {
                     box.enabled = true;
                     interactionPoint.enabled = true;
+                    if(isStart == false)
+                    {
+                        StartCoroutine(if_Dialouge_Start("if_Level3_AllClear"));
+                    }
                 }
                 break;
             }

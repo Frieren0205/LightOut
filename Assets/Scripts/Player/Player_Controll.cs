@@ -389,7 +389,7 @@ public class Player_Controll : MonoBehaviour
     private void OnCollisionEnter(Collision other) // 몬스터에게 가까이 붙어도 데미지 판정이 들어가도록
     {
         var hit_vector = other.contacts[0].point;
-        if(other.collider.GetComponent<Enemy_Test2>() && !isHit && CanHit)
+        if(other.collider.GetComponent<Enemy_Test2>() || other.collider.GetComponent<BOSS_ENEMY>()&& !isHit && CanHit)
         {
             CalculateHit("EnemyAttack",hit_vector);
         }

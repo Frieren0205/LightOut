@@ -1271,7 +1271,19 @@ MonoBehaviour:
   verboseLogging: 1
   onNodeStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 322665828032267532}
+        m_TargetAssemblyTypeName: InteractionManager, Assembly-CSharp
+        m_MethodName: if_interaction_start
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onNodeComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -1281,6 +1293,18 @@ MonoBehaviour:
       - m_Target: {fileID: 708951981776036724}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: PauseStateReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 708951981776036724}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: GameClearCheck
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2166,11 +2190,12 @@ MonoBehaviour:
     maxPosition: -18
   isLevel1Clear: 0
   isLevel2Clear: 0
+  isLevel3Clear: 0
   normal_enemy_list: []
   enemy_Security: {fileID: 0}
   generator_list: []
   level2ClearCheckPoints: 000000
-  isLevel3Clear: 0
+  level3ClearCheckPoints: 0000
   cameraLimitedAreas: {fileID: 0}
 --- !u!114 &7250827595877547305
 MonoBehaviour:

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e16276cf37741448a27d0362f599c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 0
   viewAngle: 360
   viewDistance: 10
   targetMask:
@@ -149,8 +150,8 @@ Light:
   m_Color: {r: 0.78144, g: 1, b: 0.7798742, a: 1}
   m_Intensity: 0.19
   m_Range: 1.56
-  m_SpotAngle: 61.246273
-  m_InnerSpotAngle: 53.048344
+  m_SpotAngle: 28.165129
+  m_InnerSpotAngle: 19.967201
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -257,7 +258,7 @@ Transform:
   - {fileID: 4106880132268344241}
   - {fileID: 6508119454455965850}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3906269770554964897
 SpriteRenderer:
@@ -376,8 +377,11 @@ MonoBehaviour:
   isfilp: 0
   leftbackattack: 0
   rightbackattack: 0
+  isplayerdead: 0
   generator: {fileID: 0}
+  Generators: []
   generatorRange: 15
+  shortDis: 0
   animator: {fileID: 2617225794341691720}
   SpriteObject: {fileID: 9182553256755892305}
   state: 0
@@ -389,7 +393,6 @@ MonoBehaviour:
   AttackDistance: 1
   hitEffectPrepab: {fileID: 3489913565660959836, guid: e5dc5210606e4e34daf1eb466d7de0d9,
     type: 3}
-  status: 0
 --- !u!95 &2617225794341691720
 Animator:
   serializedVersion: 5

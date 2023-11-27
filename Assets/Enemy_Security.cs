@@ -154,14 +154,12 @@ public class Enemy_Security : MonoBehaviour
             if(IsWayPointArrived(currentWayPoint))
             {
                 currentWayPointIndex++;
+                if(currentWayPointIndex >= path.corners.Length)
                 {
-                    if(currentWayPointIndex >= path.corners.Length)
-                    {
-                        currentWayPointIndex = 0;   
-                    }
-                    else
-                        currentWayPoint = WayPoints[currentWayPointIndex];
+                    currentWayPointIndex = 0;   
                 }
+                else
+                    currentWayPoint = WayPoints[currentWayPointIndex];
                 UpdateFollwingPath_Navigate_OnMove();
             }
         }

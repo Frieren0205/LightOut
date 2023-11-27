@@ -106,6 +106,15 @@ public class GameManager : MonoBehaviour
             player.CanInteraction = true;
         }
     }
+    public void GameClearCheck()
+    {
+        if(isGameClear)
+        {
+            Destroy(player.gameObject);
+            Destroy(FindFirstObjectByType<BOSS_ENEMY>().gameObject);
+            NextSceneLoad();
+        }
+    }
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
@@ -165,10 +174,10 @@ public class GameManager : MonoBehaviour
                 levelManager.level = LevelManager.Level.In_Tera;
                 if(!player)
                     player = SpawnManager.Instance.SpawnPlayer(SpawnManager.Instance.spawnpoints[2]);
+                    playerinit();
                     levelManager.player = player;
                     player.levelManager = levelManager;
                     player.gameObject.transform.position = SpawnManager.Instance.spawnpoints[2].spawnpositionVec3;
-                    playerinit();
                     LevelManager.Instance.LevelSetting(LevelManager.Level.In_Tera);
                     LevelSetting();
                     LevelManager.Instance.CameraAreasUpdate();
@@ -182,17 +191,21 @@ public class GameManager : MonoBehaviour
             case 5:
             {
                 levelManager.level = LevelManager.Level.Boss_Battle;
-                levelManager.player = player;
-                player.gameObject.transform.position = SpawnManager.Instance.spawnpoints[3].spawnpositionVec3;
-                playerinit();
-                LevelManager.Instance.LevelSetting(LevelManager.Level.Boss_Battle);
-                LevelSetting();
-                LevelManager.Instance.CameraTrackingUpdate();
-                LevelManager.Instance.CameraAreasUpdate();
-                if(isfirstplay[3] == false)
-                {
-                    isfirstplay[3] = true;
-                }
+                if(!player)
+                    player = SpawnManager.Instance.SpawnPlayer(SpawnManager.Instance.spawnpoints[3]);
+                    // playerinit();
+                    levelManager.player = player;
+                    player.levelManager = levelManager;
+                    player.gameObject.transform.position = SpawnManager.Instance.spawnpoints[3].spawnpositionVec3;
+                    LevelManager.Instance.LevelSetting(LevelManager.Level.Boss_Battle);
+                    LevelSetting();
+                    LevelManager.Instance.CameraTrackingUpdate();
+                    LevelManager.Instance.CameraAreasUpdate();
+                    if(isfirstplay[3] == false)
+                    {
+                        interactionManager.BossApear();
+                        isfirstplay[3] = true;
+                    }
                 break;
             }
         }

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e16276cf37741448a27d0362f599c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 0
   viewAngle: 180
   viewDistance: 5
   targetMask:
@@ -107,7 +108,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4876b025276667b42924e708a8e12628, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -227,9 +228,11 @@ MonoBehaviour:
   isfilp: 0
   leftbackattack: 0
   rightbackattack: 0
+  isplayerdead: 0
   generator: {fileID: 0}
   Generators: []
   generatorRange: 20
+  shortDis: 0
   animator: {fileID: 0}
   SpriteObject: {fileID: 1560928829184511800}
   state: 0
@@ -241,7 +244,6 @@ MonoBehaviour:
   AttackDistance: 1
   hitEffectPrepab: {fileID: 3489913565660959836, guid: e5dc5210606e4e34daf1eb466d7de0d9,
     type: 3}
-  status: 0
 --- !u!1 &7694853470347067426
 GameObject:
   m_ObjectHideFlags: 0

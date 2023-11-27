@@ -124,6 +124,10 @@ public class Enemy_Test2 : MonoBehaviour
         {
             StopAllCoroutines();
         }
+        if((EnemyHP <= 0 && state != State.Dead) || (generator != null && generator.GeneratorHP == 0))
+        {
+            StartCoroutine(deadroutine());
+        }
         if(state == State.idle || isplayerdead || GameManager.Instance.isPause == true)
         {
             OnMoveStop();
@@ -137,10 +141,7 @@ public class Enemy_Test2 : MonoBehaviour
     private void Update() 
     {
         if(EnemyHP > 0 && state != State.Dead) isdo_something = !isattakable || !ishitable;
-        if((EnemyHP <= 0 && state != State.Dead) || (generator != null && generator.GeneratorHP == 0))
-        {
-            StartCoroutine(deadroutine());
-        }
+
     }
     public void UpdateFollwingPath()
     {
@@ -209,7 +210,7 @@ public class Enemy_Test2 : MonoBehaviour
     public void UpdateFollwingPath_Navigate_OnMove()
     {
         //TODO 웨이포인트로 움직이는 로직
-        if((!isdo_something && state == State.Chase) || (state != State.Dead || !isplayerdead))
+        if((!isdo_something && state == State.Chase) || state != State.Dead || !isplayerdead)
         {
             animator.SetBool("Move",true);    
             if(!isdo_something)transform.position = Vector3.MoveTowards(transform.position, WayPoints[currentWayPointIndex], MovementSpeed * Time.deltaTime);
@@ -296,7 +297,8 @@ public class Enemy_Test2 : MonoBehaviour
     {
         state = State.Dead;
         ishitable = false;
-        animator.SetBool("isDead", true);
+        animator.SetBool("Move", false);
+        animator.SetTrigger("isDead");
         yield return new WaitForSeconds(1f);
         LevelManager.Instance.normal_enemy_list.RemoveAt(LevelManager.Instance.normal_enemy_list.IndexOf(this.gameObject.GetComponent<Enemy_Test2>()));
         Destroy(gameObject);
