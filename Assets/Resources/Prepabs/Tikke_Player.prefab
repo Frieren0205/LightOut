@@ -342,7 +342,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 4
+  m_Intensity: 2
   m_Range: 1.89
   m_SpotAngle: 110.635315
   m_InnerSpotAngle: 58.885616
@@ -762,6 +762,7 @@ MonoBehaviour:
   isStay: 0
   maxslope: 55
   MoveSpeed: 5
+  Adventage_Speed: 0
   isflip: 0
   minLimit: 0
   maxLimit: 0

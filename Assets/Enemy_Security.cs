@@ -67,9 +67,11 @@ public class Enemy_Security : MonoBehaviour
         rb = this.gameObject.GetComponent<Rigidbody>();
         Sight = this.gameObject.GetComponentInChildren<EnemySight>();
         Sight.enemyType = EnemySight.EnemyType.Security;
+        state = State.idle;
+    }
+    private void Start() {
         target = FindFirstObjectByType<Player_Controll>();
         playersprite = target.GetComponentInChildren<Animator>().gameObject;
-        state = State.idle;
     }
     private void CheckingBackAttack()
     {

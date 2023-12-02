@@ -23,6 +23,6 @@ public class StatUpgrade : MonoBehaviour
     [YarnCommand("SPUpgrade")]
     public void SPupgrade()
     {
-        this.gameObject.GetComponent<Player_Controll>().Adventage_Speed += 0.25f;
+        this.gameObject.GetComponent<Player_Controll>().Adventage_Speed += 0.5f;
     }
 }

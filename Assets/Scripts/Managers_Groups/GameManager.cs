@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
                     LevelManager.Instance.player = player;
                     player.levelManager = levelManager;
                     player.gameObject.transform.position = SpawnManager.Instance.spawnpoints[0].spawnpositionVec3;
-                    playerinit();
+                    // playerinit();
                     LevelManager.Instance.LevelSetting(LevelManager.Level.Underground);
                     LevelSetting();
                     LevelManager.Instance.CameraAreasUpdate();
@@ -165,6 +165,7 @@ public class GameManager : MonoBehaviour
                 LevelManager.Instance.CameraAreasUpdate();
                 if(isfirstplay[1] == false)
                 {
+                    interactionManager.if_Enter_Subtera();
                     isfirstplay[1] = true;
                 }
                 break;

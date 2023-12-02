@@ -51,6 +51,17 @@ public class InteractionManager : MonoBehaviour
             StartCoroutine(advancedInput_set());
         }
     }
+    public void if_Enter_Subtera()
+    {
+        if(SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            runner.startNode = "if_Enter_SubTera";
+            runner.StartDialogue(runner.startNode);
+            player.CanInteraction = false;
+            gameManager.isPause = true;
+            StartCoroutine(advancedInput_set());
+        }
+    }
     public void if_Clear_Dialogue(string Clear_logue)
     {
         runner.startNode = Clear_logue;

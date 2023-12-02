@@ -46,7 +46,7 @@ public class Player_Controll : MonoBehaviour
     
     // [Range(5, 6.25f)] 선택지로 올릴 수 있는 수치인데 왜 일케됐지 암튼;
     public float MoveSpeed;
-    [Range(0, 1.25f)]
+    // [Range(0, 1.25f)]
     public float Adventage_Speed = 0;
     [SerializeField]
     private  bool isflip; // 좌우 반전을 위해
@@ -517,7 +517,7 @@ public class Player_Controll : MonoBehaviour
     IEnumerator Hitable()
     {
         CanHit = false;
-        yield return new WaitForSecondsRealtime(1.25f);
+        yield return new WaitForSecondsRealtime(3f);
         CanHit = true;
     }
 }
