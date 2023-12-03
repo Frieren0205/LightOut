@@ -240,7 +240,7 @@ public class BOSS_ENEMY : MonoBehaviour
     {
         ishitable = false;
         Boss_HP -= 1;
-        // animator.SetTrigger("isHit");
+        animator.SetTrigger("ishit");
         if(positonstate == positonState.right)
         {
             rb.AddForce(Vector3.left * 5,ForceMode.Impulse);
@@ -361,7 +361,7 @@ public class BOSS_ENEMY : MonoBehaviour
     {
         attackState = AttackState.Arm_Hammer;
         attackable = false;
-
+        ishitable = false;
         AttackPatternChange();
         animator.SetTrigger("isSummonArm");
         yield return new WaitForSeconds(0.5f);
@@ -373,6 +373,7 @@ public class BOSS_ENEMY : MonoBehaviour
         Destroy(cloneArm);
         attackpoint = null;
         attackable = true;
+        ishitable = true;
     }
     private void AttackPatternChange()
     {

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8520716055563743001}
   - component: {fileID: 5859823497588425493}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 0
   viewAngle: 180
-  viewDistance: 5
+  viewDistance: 10
   targetMask:
     serializedVersion: 2
     m_Bits: 8
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 4223203545839096973}
   - component: {fileID: 676636669667038679}
   - component: {fileID: 4434994273174895324}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Robot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ Transform:
   - {fileID: 8520716055563743001}
   - {fileID: 435115748650044645}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4220827454381137361
 SpriteRenderer:
@@ -254,7 +254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 435115748650044645}
   - component: {fileID: 5052408918808312684}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Robot1_Attack_Col
   m_TagString: EnemyAttack
   m_Icon: {fileID: 0}

@@ -5537,7 +5537,7 @@ PrefabInstance:
     - target: {fileID: 6069933627597326481, guid: a019fae5da577b145b3d2d4769fd644c,
         type: 3}
       propertyPath: GeneratorHP
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7972631314418208247, guid: a019fae5da577b145b3d2d4769fd644c,
         type: 3}
@@ -5709,7 +5709,7 @@ PrefabInstance:
     - target: {fileID: 6069933627597326481, guid: a019fae5da577b145b3d2d4769fd644c,
         type: 3}
       propertyPath: GeneratorHP
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7972631314418208247, guid: a019fae5da577b145b3d2d4769fd644c,
         type: 3}
@@ -11124,8 +11124,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 73.52802, y: 2.1378932, z: 7.919729}
-  m_Center: {x: 38.867374, y: -3.246341, z: -7.007412}
+  m_Size: {x: 72.610344, y: 2.1378932, z: 7.919729}
+  m_Center: {x: 38.408535, y: -3.246341, z: -7.007412}
 --- !u!4 &1534345849
 Transform:
   m_ObjectHideFlags: 0
@@ -15261,7 +15261,7 @@ PrefabInstance:
     - target: {fileID: 6069933627597326481, guid: a019fae5da577b145b3d2d4769fd644c,
         type: 3}
       propertyPath: GeneratorHP
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7972631314418208247, guid: a019fae5da577b145b3d2d4769fd644c,
         type: 3}

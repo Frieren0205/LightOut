@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1046339209462485668}
   - component: {fileID: 7020952513663416394}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: boss_attack_col
   m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6531319844899821015}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: boos_range_atk_point
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -93,11 +93,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9051395334493718781}
-  - component: {fileID: 9152959828325236219}
   - component: {fileID: 6375222958109944330}
   - component: {fileID: 7820972062721406773}
   - component: {fileID: 7596826333697978227}
-  m_Layer: 0
+  - component: {fileID: 8777762488487276763}
+  m_Layer: 6
   m_Name: Tikke_boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,27 +123,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &9152959828325236219
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2721435134973116295}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ade2a79652e23764092fe2b565f6d378, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!54 &6375222958109944330
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -206,7 +185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb544e58597809344867c590b34d0486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Boss_HP: 20
+  state: 0
+  Boss_HP: 10
   attackPattenlist:
   - pattername: "\uADFC\uAC70\uB9AC \uACF5\uACA9"
     attackmode: 0
@@ -227,7 +207,33 @@ MonoBehaviour:
   isArm_Hammer: 0
   canRandom: 0
   attack_bool_list: 
+  player: {fileID: 0}
   Angle: 0
+  WayPoints: []
+  currentWayPointIndex: 0
+  MovementSpeed: 2
+  AttackDistance: 0
+--- !u!95 &8777762488487276763
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2721435134973116295}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ade2a79652e23764092fe2b565f6d378, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5030158350649139217
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6280122274157392564}
   - component: {fileID: 7974313522873282252}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5058779413075563299}
   - component: {fileID: 96691055180360994}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,3 +362,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d5ebedabc24b74ba40dbe46e679a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  viewAngle: 0
+  viewDistance: 0
+  target_layermask:
+    serializedVersion: 2
+    m_Bits: 0

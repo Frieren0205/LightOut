@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5372821251959178599}
   - component: {fileID: 83326752323055233}
   - component: {fileID: 4149435331455824029}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 7972631314418208247}
   - component: {fileID: 7751751613989288149}
   - component: {fileID: 6069933627597326481}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,8 +260,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687e0692ff50f55409234b5aafc1255f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GeneratorHP: 15
+  GeneratorHP: 5
   test: {fileID: 0}
   chinemachineManager: {fileID: 0}
+  original_generator_sprite: {fileID: 21300000, guid: bbcadcf87a8078242b6f133d6c7e084b,
+    type: 3}
+  damage_generator_sprite: {fileID: 21300000, guid: 39264d604903f95449a9d79f48a0e35c,
+    type: 3}
   isEmergency: 0
   isLevelUP_Point: 0

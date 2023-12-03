@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3547023731516134300}
   - component: {fileID: 7290949588130590110}
   - component: {fileID: 7745886297894037766}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: boss_range_atk_obj
   m_TagString: EnemyAttack
   m_Icon: {fileID: 0}

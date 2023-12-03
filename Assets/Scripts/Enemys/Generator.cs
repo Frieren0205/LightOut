@@ -15,6 +15,8 @@ public class Generator : MonoBehaviour
     public ChinemachineManager chinemachineManager;
     private DOTweenAnimation doanimation;
     private SpriteRenderer sprender;
+    public Sprite original_generator_sprite;
+    public Sprite damage_generator_sprite;
     private bool isHit = false;
     public bool isEmergency = false;
     public bool isLevelUP_Point = false;
@@ -29,7 +31,7 @@ public class Generator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(GeneratorHP <= 5)
+       if(GeneratorHP <= 2)
        {
             isEmergency = true;
        }
@@ -43,7 +45,6 @@ public class Generator : MonoBehaviour
     {
         if(other.gameObject.tag == "PlayerAttack" && !isHit)
         {
-            Debug.Log("피격 인식");
             GeneratorHP -= 1;
             OnHit();
         }
@@ -58,10 +59,19 @@ public class Generator : MonoBehaviour
     {
         isHit = true;
         sprender.color = new Color(0.4f,0.4f,0.4f,1);
+        sprender.sprite = damage_generator_sprite;
         doanimation.DORestart();
         yield return new WaitForSecondsRealtime(1.25f);
         isHit = false;
         sprender.color = new Color(1,1,1,1);
+        if(isEmergency)
+        {
+            sprender.sprite = damage_generator_sprite;
+        }
+        else
+        {
+            sprender.sprite = original_generator_sprite;
+        }
     }
 
     IEnumerator OnTerminate()

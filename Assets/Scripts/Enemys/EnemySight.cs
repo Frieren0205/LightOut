@@ -33,7 +33,7 @@ public class EnemySight : MonoBehaviour
 
     private Enemy_Test2 enemy; //AI 본체 스크립트
     private Enemy_Security security;
-     // Start is called before the first frame update
+    private int layer_mask;
     void Start()
     {
         switch(enemyType)
@@ -55,6 +55,7 @@ public class EnemySight : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        layer_mask = (-1) -(1 << LayerMask.NameToLayer("Generator"));
         if(GameManager.Instance.isPause == false)
         {
             switch(enemyType)
@@ -109,7 +110,7 @@ public class EnemySight : MonoBehaviour
                 if (_angle < viewAngle * 0.5f)
                 {
                     RaycastHit _hit;
-                    if(Physics.Raycast(transform.position + transform.up, _direction, out _hit, viewDistance))
+                    if(Physics.Raycast(transform.position + transform.up, _direction, out _hit, viewDistance, layer_mask))
                     {
                         if (_hit.transform.name == "Player")
                         {

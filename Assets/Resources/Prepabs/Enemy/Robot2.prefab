@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8118369277266764377}
   - component: {fileID: 7757252902063217922}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1148951535698567038}
   - component: {fileID: 1400973320409753365}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Robot2_Attack_Col
   m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 8731215104049852323}
   - component: {fileID: 1460153055186645482}
   - component: {fileID: 1953963622269647723}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Robot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

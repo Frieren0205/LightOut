@@ -1775,11 +1775,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7596826333697978227, guid: 0e6b0104722b941409a789358bf93d2e,
         type: 3}
-      propertyPath: Boss_HP
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7596826333697978227, guid: 0e6b0104722b941409a789358bf93d2e,
-        type: 3}
       propertyPath: MovementSpeed
       value: 2
       objectReference: {fileID: 0}

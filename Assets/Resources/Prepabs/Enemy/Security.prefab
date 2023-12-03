@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1263768201975857344}
   - component: {fileID: 2389244558523629352}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6485849037373529845}
   - component: {fileID: 6989897247997983527}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Security_Attack_Col
   m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 9032625912032340854}
   - component: {fileID: 4063449899510730381}
   - component: {fileID: 1189848035408619333}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Security
   m_TagString: Untagged
   m_Icon: {fileID: 0}

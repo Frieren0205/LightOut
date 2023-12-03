@@ -389,7 +389,7 @@ public class Player_Controll : MonoBehaviour
     private void OnCollisionEnter(Collision other) // 몬스터에게 가까이 붙어도 데미지 판정이 들어가도록
     {
         var hit_vector = other.contacts[0].point;
-        if(other.collider.GetComponent<Enemy_Test2>() || other.collider.GetComponent<BOSS_ENEMY>()&& !isHit && CanHit)
+        if(((other.collider.GetComponent<Enemy_Test2>() && other.collider.GetComponent<Enemy_Test2>().state != Enemy_Test2.State.Dead)|| (other.collider.GetComponent<BOSS_ENEMY>() && other.collider.gameObject.GetComponent<BOSS_ENEMY>().state != BOSS_ENEMY.State.Dead))&& !isHit && CanHit)
         {
             CalculateHit("EnemyAttack",hit_vector);
         }
@@ -454,6 +454,7 @@ public class Player_Controll : MonoBehaviour
                 break;
             }      
         }
+        Physics.IgnoreLayerCollision(3,6, true);
         animator.SetBool("isGrounded", false);
         animator.SetTrigger("isHit");
         Debug.Log(isbackattack);
@@ -511,7 +512,7 @@ public class Player_Controll : MonoBehaviour
             Destroy(hit_vfx_clone, 1f);
         }
         yield return new WaitForSecondsRealtime(0.5f);
-        
+        Physics.IgnoreLayerCollision(3,6, false);
         isHit = false;
     }
     IEnumerator Hitable()
