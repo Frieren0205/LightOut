@@ -62,6 +62,31 @@ public class InteractionManager : MonoBehaviour
             StartCoroutine(advancedInput_set());
         }
     }
+
+    public void if_Player_meet_Security()
+    {
+        if(SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            runner.startNode = "if_Player_meet_Security";
+            runner.StartDialogue(runner.startNode);
+            player.CanInteraction = false;
+            gameManager.isPause = true;
+            StartCoroutine(advancedInput_set());
+        }
+    }
+
+    public void if_Enter_In_tera()
+    {
+        if(SceneManager.GetActiveScene().buildIndex == 4)
+        {
+            runner.startNode = "if_Player_in_INTERA";
+            runner.StartDialogue(runner.startNode);
+            player.CanInteraction = false;
+            gameManager.isPause = true;
+            StartCoroutine(advancedInput_set());
+        }
+    }
+
     public void if_Clear_Dialogue(string Clear_logue)
     {
         runner.startNode = Clear_logue;

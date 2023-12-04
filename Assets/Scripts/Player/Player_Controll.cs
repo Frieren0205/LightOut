@@ -305,7 +305,7 @@ public class Player_Controll : MonoBehaviour
 
     public void OnAttack()
     {
-        if(CanAttack)
+        if(CanAttack && !gameManager.isPause)
         {
             animator.SetTrigger("isAttack");
             StartCoroutine(AttackTimer());
@@ -367,7 +367,16 @@ public class Player_Controll : MonoBehaviour
     private void OnInteraction_Security()
     {
         StartCoroutine(UIManager.Instance.castfadeout());
-        Invoke("OnInteraction_teleport", 1.5f);
+        Invoke("OnInteraction_teleport_Security", 1.5f);
+    }
+    private void OnInteraction_teleport_Security()
+    {
+        StartCoroutine(UIManager.Instance.castfadein());
+        levelManager.cameraLimitedAreas = interactionPoint.NextCameraConfiner;
+        levelManager.CameraAreasUpdate();
+        transform.position = interactionPoint.transformVec3;
+        gameManager.isPause = false;
+        interactionManager.if_Player_meet_Security();
     }
     [YarnCommand("Yarn_Jump")]
     private void Yarn_Jump()
@@ -401,6 +410,13 @@ public class Player_Controll : MonoBehaviour
         {
             isGrounded = true;
             animator.SetBool("isGrounded",true);
+        }
+    }
+    void OnCollisionStay(Collision other)
+    {
+        if(other.gameObject.tag == "Warp_Damage" && !isHit && CanHit)
+        {
+            WarpDamage();
         }
     }
     private void OnTriggerEnter(Collider other) 
@@ -445,11 +461,19 @@ public class Player_Controll : MonoBehaviour
         {
             case "EnemyAttack":
             {
-                playerHP.HP_Point -= 1;
+                if(playerHP.shieldpoint > 0)
+                {
+                    playerHP.shieldpoint -= 1;
+                }
+                else
+                {
+                    playerHP.HP_Point -= 1;
+                }
                 break;
             }
             case "ArmHammer":
             {
+                playerHP.shieldpoint = 0;
                 playerHP.HP_Point = 0;
                 break;
             }      

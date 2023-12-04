@@ -55,7 +55,7 @@ public class EnemySight : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        layer_mask = (-1) -(1 << LayerMask.NameToLayer("Generator"));
+        layer_mask = (-1) -(1 << LayerMask.NameToLayer("Generator") | 1 << LayerMask.NameToLayer("Enemy"));
         if(GameManager.Instance.isPause == false)
         {
             switch(enemyType)

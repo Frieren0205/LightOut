@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  Boss_HP: 10
+  Boss_HP: 15
   attackPattenlist:
   - pattername: "\uADFC\uAC70\uB9AC \uACF5\uACA9"
     attackmode: 0

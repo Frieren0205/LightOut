@@ -2,7 +2,9 @@
 tags:
 ---
 
-<<DisableSet CutScenefront>> <<SpriteSwitch CutScenefront Null>> <<SpriteSwitch illust Tikke_Player_sup>>
+<<EnableSet CutScenefront>> <<SpriteSwitch CutScenefront 3_2>> <<SpriteSwitch illust Tikke_Player_sup>>
+    :
+<<DisableSet CutScenefront>> <<SpriteSwitch CutScenefront Null>>
 티케 : 대체 이게 어떻게 된 일이지?
 티케 : 내 얼굴이 왜 여기 붙어있는 거야?
 티케 : 나도 모르는데다 가지고 있지도 않은 사진을 어떻게 이 연구소가 가지고 있는 거지?

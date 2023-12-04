@@ -1,11 +1,10 @@
 ﻿title: if_Player_in_INTERA
 tags:
 ---
-<<EnableSet CutScenefront>> <<SpriteSwitch CutScenefront 3_1>>
-    : 
-<<DisableSet CutScenefront>> <<SpriteSwitch illust Tikke_Player_normal>>
     티케 : .....여기가 인 테라구나.
+<<EnableSet CutScenefront>> <<SpriteSwitch CutScenefront 3_1>>
     티케 : 아주 밝고.... 따듯해.
+<<DisableSet CutScenefront>> <<SpriteSwitch illust Tikke_Player_normal>>
     티케 : 인공 태양이라는 게 대단하긴 한가 보네.
     티케 : 우리에게 빛을 비춰주지는 않았지만.
     티케 : 나는 여태까지 세상이 이렇게까지 밝은 곳인지 처음 알았어.

@@ -79,7 +79,7 @@ public class Enemy_Security : MonoBehaviour
         rightbackattack = (transform.localScale.x < 1 && target.transform.position.x < this.transform.position.x) || (transform.localScale.x == 1 && target.transform.position.x < this.transform.position.x);
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(SecurityHP <= 0 && state != State.Dead)
         {
@@ -237,14 +237,14 @@ public class Enemy_Security : MonoBehaviour
         if(other.gameObject.name == "Attack_Col" && hitable)
         {
             var hit_vector = other.ClosestPoint(transform.position) + new Vector3(Random.Range(-0.5f,0.5f),Random.Range(-0.2f,1f),-0.1f);
+            StopCoroutine(BashRoutine());
+            StopCoroutine(AttackRoutine());
             StartCoroutine(hitroutine(hit_vector));
         }    
     }
 
     private IEnumerator hitroutine(Vector3 position)
     {
-        StopCoroutine(BashRoutine());
-        StopCoroutine(AttackRoutine());
         state = State.hit;
         attack_count += 1;
         hitable = false;
@@ -263,7 +263,7 @@ public class Enemy_Security : MonoBehaviour
             leftbackattack = false;
             this.transform.localScale = new Vector3(1,1,1);
         }
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.5f);
         hitable = true;
         Destroy(Hit_vfx_clone, 1f);
     }
@@ -271,9 +271,9 @@ public class Enemy_Security : MonoBehaviour
     private IEnumerator deadroutine()
     {
         StopCoroutine(AttackRoutine());
+        animator.SetTrigger("isDead");
         state = State.Dead;
         hitable = false;
-        animator.SetTrigger("isDead");
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }

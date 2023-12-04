@@ -9,8 +9,9 @@ public class PlayerHP : MonoBehaviour
     [Range(0,2)]
     public int shieldpoint;
     public Sprite[] HP_sprites;
+    public Sprite[] Shield_sprite;
     public Image HPImage;
-
+    public Image Shield_IMG;
     public Volume volume;
     public VolumeProfile isNormalVolume;
     public VolumeProfile isDangerousVolume;
@@ -29,6 +30,10 @@ public class PlayerHP : MonoBehaviour
     public void OnValueChanged()
     {
         HPImage.sprite = HP_sprites[HP_Point];
+        if(shieldpoint >= 0)
+        {
+            Shield_IMG.sprite = Shield_sprite[shieldpoint];
+        }
         if(HP_Point <= 1)
         {
             volume.profile = isDangerousVolume;

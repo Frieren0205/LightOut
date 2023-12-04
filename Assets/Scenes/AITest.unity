@@ -674,7 +674,7 @@ PrefabInstance:
     - target: {fileID: 7076600421284282587, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7462923427847992815, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
         type: 3}
@@ -1255,8 +1255,11 @@ MonoBehaviour:
   isfilp: 0
   leftbackattack: 0
   rightbackattack: 0
+  isplayerdead: 0
   generator: {fileID: 0}
+  Generators: []
   generatorRange: 15
+  shortDis: 0
   animator: {fileID: 0}
   SpriteObject: {fileID: 18596020}
   state: 0
@@ -1267,7 +1270,6 @@ MonoBehaviour:
   WayPoints: []
   AttackDistance: 1.5
   hitEffectPrepab: {fileID: 0}
-  status: 0
 --- !u!1 &885797096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1369,8 +1371,11 @@ MonoBehaviour:
   isfilp: 0
   leftbackattack: 0
   rightbackattack: 0
+  isplayerdead: 0
   generator: {fileID: 0}
+  Generators: []
   generatorRange: 0
+  shortDis: 0
   animator: {fileID: 0}
   SpriteObject: {fileID: 0}
   state: 0
@@ -1381,7 +1386,6 @@ MonoBehaviour:
   WayPoints: []
   AttackDistance: 1.5
   hitEffectPrepab: {fileID: 0}
-  status: 0
 --- !u!95 &885797101
 Animator:
   serializedVersion: 5
@@ -2305,6 +2309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e16276cf37741448a27d0362f599c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 0
   viewAngle: 190
   viewDistance: 10
   targetMask:
@@ -2813,7 +2818,7 @@ PrefabInstance:
     - target: {fileID: 8731548563580095230, guid: 59ef4050b108e5f4b9763dee768a3723,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8731548563580095230, guid: 59ef4050b108e5f4b9763dee768a3723,
         type: 3}
@@ -3217,6 +3222,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RAT_Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 9182553256755892305, guid: 9f20b9be9dca78544a8afd5e449c9710,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3455,6 +3465,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Robot2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571334965390483150, guid: 0911237bd6337a24184599a238c9e02a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7757252902063217922, guid: 0911237bd6337a24184599a238c9e02a,
         type: 3}

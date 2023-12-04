@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3368664083316922496}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -9.313226e-10, y: -9.313226e-10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -131,7 +131,7 @@ MonoBehaviour:
   targetGO: {fileID: 0}
   tweenTargetIsTargetGO: 1
   delay: 0
-  duration: 1.25
+  duration: 1
   easeType: 6
   easeCurve:
     serializedVersion: 2
@@ -174,7 +174,7 @@ MonoBehaviour:
   autoPlay: 0
   useTargetAsV3: 0
   endValueFloat: 0
-  endValueV3: {x: 0.25, y: 0.1, z: 0}
+  endValueV3: {x: 0.05, y: 0.05, z: 0}
   endValueV2: {x: 0, y: 0}
   endValueColor: {r: 1, g: 1, b: 1, a: 1}
   endValueString: 
@@ -188,7 +188,7 @@ MonoBehaviour:
   optionalBool0: 0
   optionalBool1: 1
   optionalFloat0: 1
-  optionalInt0: 20
+  optionalInt0: 8
   optionalRotationMode: 0
   optionalScrambleMode: 0
   optionalShakeRandomnessMode: 0
@@ -225,7 +225,7 @@ Transform:
   m_Children:
   - {fileID: 5372821251959178599}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &7751751613989288149
 BoxCollider:

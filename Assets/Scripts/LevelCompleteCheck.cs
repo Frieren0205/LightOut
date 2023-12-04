@@ -72,6 +72,10 @@ public class LevelCompleteCheck : MonoBehaviour
                 {
                     box.enabled = true;
                     interactionPoint.enabled = true;
+                    if(isStart == false)
+                    {
+                        StartCoroutine(if_Dialouge_Start("if_Level2_AllClear"));
+                    }
                 }
                 break;
             }

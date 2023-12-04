@@ -801,7 +801,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f3942b540196ec9478e763ee268ff5d1, type: 3}
   - {fileID: 21300000, guid: f6b29d7eecd63b7489e3da4be6232c41, type: 3}
   - {fileID: 21300000, guid: 465bdcfd59154324fa5e234221a9279a, type: 3}
+  Shield_sprite:
+  - {fileID: 21300000, guid: 74d068cffd6015948ae5ec122881a466, type: 3}
+  - {fileID: 21300000, guid: add1bc013c372f54fb3dbb11f091ba64, type: 3}
+  - {fileID: 21300000, guid: 697a3a742f128bd459b7a3fa9b1e2d1a, type: 3}
+  - {fileID: 21300000, guid: 9bd2b08602587b64bb47a848f27a0b38, type: 3}
+  - {fileID: 21300000, guid: e68440956304b0648be3f0607b3d52ba, type: 3}
   HPImage: {fileID: 2760316710451935932}
+  Shield_IMG: {fileID: 2829827417484271740}
   volume: {fileID: 0}
   isNormalVolume: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
   isDangerousVolume: {fileID: 11400000, guid: 83ff3aef4611b4749a27059c394dc77f, type: 2}
@@ -1073,6 +1080,18 @@ PrefabInstance:
 --- !u!114 &2760316710451935932 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 566507597738277042, guid: 8f93362fedbbe05488a3d7a6f617ecc8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2419064965675614734}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2829827417484271740 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 493055991932232306, guid: 8f93362fedbbe05488a3d7a6f617ecc8,
     type: 3}
   m_PrefabInstance: {fileID: 2419064965675614734}
   m_PrefabAsset: {fileID: 0}

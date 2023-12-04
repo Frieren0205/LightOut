@@ -184,21 +184,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 253748153037906300, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
-        type: 3}
-      propertyPath: startNode
-      value: if_Boss_Clear
-      objectReference: {fileID: 0}
-    - target: {fileID: 253748153037906300, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
-        type: 3}
-      propertyPath: startAutomatically
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 708951981776036724, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3623951827173249111, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
         type: 3}
       propertyPath: m_RootOrder
@@ -263,11 +248,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7842855061424454310, guid: aa25e788cfd5b9243a0d29a2b30fa01f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

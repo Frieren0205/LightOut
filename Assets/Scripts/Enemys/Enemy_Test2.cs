@@ -19,8 +19,8 @@ public class Enemy_Test2 : MonoBehaviour
     public bool isdo_something;
     [Range(0,5)]
     public int EnemyHP;
-    bool isattakable = true;
-    bool ishitable = true;
+    public bool isattakable = true;
+    public bool ishitable = true;
     public bool isfilp;
 
     #region 백어택 관련
@@ -120,6 +120,8 @@ public class Enemy_Test2 : MonoBehaviour
         isplayerdead = GameManager.Instance.isPlayerDead;
         CheckingBackAttack();
         FindGenerator();
+        if(EnemyHP > 0 && state != State.Dead) isdo_something = !isattakable || !ishitable;
+
         if(isplayerdead || GameManager.Instance.isPause == true)
         {
             StopAllCoroutines();
@@ -137,11 +139,6 @@ public class Enemy_Test2 : MonoBehaviour
             flipCheck();
             MovementSpeed = 2;
         }
-    }
-    private void Update() 
-    {
-        if(EnemyHP > 0 && state != State.Dead) isdo_something = !isattakable || !ishitable;
-
     }
     public void UpdateFollwingPath()
     {
@@ -257,6 +254,7 @@ public class Enemy_Test2 : MonoBehaviour
         if(other.gameObject.name == "Attack_Col" && ishitable)
         {
             var hit_vector = other.ClosestPoint(transform.position) + new Vector3(Random.Range(-0.5f,0.5f),Random.Range(-0.2f,1f),-0.1f);
+            StopAllCoroutines();
             StartCoroutine(hitroutine(hit_vector));
         }
     }
@@ -289,8 +287,12 @@ public class Enemy_Test2 : MonoBehaviour
             leftbackattack = false;
             this.transform.localScale = new Vector3(1,1,1);
         }
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.5f);
         ishitable = true;
+        if(isattakable == false)
+        {
+            isattakable = true;
+        }
         Destroy(Hit_vfx_clone, 1f);
     }
     private IEnumerator deadroutine()

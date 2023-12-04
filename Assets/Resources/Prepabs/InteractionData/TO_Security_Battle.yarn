@@ -1,6 +1,8 @@
 ﻿title: TO_Security_Battle
 tags:
 ---
+<<SpriteSwitch illust Tikke_Player_normal>>
+티케 : 여기서 뛰어내려야겠어. <br>이 정도면 무리가 가지 않을 정도니까, 충분히 할 수 있어.
 <<SpriteSwitch illust Null>> <<EnableSet CutScenefront>> <<SpriteSwitch CutScenefront 2_1>>
 : 
 <<Yarn_Jump Player>> <<OnInteraction_Security Player>> <<DisableSet CutScenefront>> <<SpriteSwitch CutScenefront Null>>

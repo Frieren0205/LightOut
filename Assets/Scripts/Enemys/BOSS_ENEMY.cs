@@ -55,12 +55,12 @@ public class BOSS_ENEMY : MonoBehaviour
     private bool isrange_attack;
 
     private bool isdo_something;
-    private bool attackable = true;
+    public bool attackable = true;
 
     public bool isArm_Hammer;
     public bool canRandom;
 
-    private bool ishitable = true;
+    public bool ishitable = true;
 
     private List<GameObject> range_obj_list = new List<GameObject>();
     public  List<bool> attack_bool_list = new List<bool>();
@@ -103,6 +103,7 @@ public class BOSS_ENEMY : MonoBehaviour
     }
     private void FixedUpdate() 
     {
+        isdo_something = !ishitable || !attackable;
         if(Boss_HP <= 0)
         {
             LevelManager.Instance.isbossdead = true;
@@ -188,19 +189,20 @@ public class BOSS_ENEMY : MonoBehaviour
 
     private void UpdateFollwingPath_Navigate_OnMove()
     {
-        if((!isdo_something && state == State.Chase) || state != State.Dead || !isplayerdead)
+        if((!isdo_something) || state != State.Dead || !isplayerdead)
         {
             animator.SetBool("isMove", true);
-            if(!isdo_something && attackable && state == State.Chase)
+            state = State.Chase;
+            if(!isdo_something && state == State.Chase)
             {
                 transform.position = Vector3.MoveTowards(transform.position, WayPoints[currentWayPointIndex], MovementSpeed * Time.deltaTime);
                 Debug.DrawLine(transform.position, attack_point, Color.white);
             }
-            if(Math.Round(Vector3.Distance(transform.position, attack_point), 2) <= AttackDistance)
+            if(Math.Round(Vector3.Distance(transform.position, attack_point), 2) <= AttackDistance && attackable)
             {
                 state = State.Attack;
                 OnMoveStop();
-                BattleRoutine();
+                StartCoroutine(Random_Call());
             }
         }
     }
@@ -250,7 +252,7 @@ public class BOSS_ENEMY : MonoBehaviour
             rb.AddForce(Vector3.right * 5, ForceMode.Impulse);
         }
         rb.AddForce(Vector3.up * 5, ForceMode.Impulse);
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.5f);
         ishitable = true;
     }
     private IEnumerator deadroutine()
@@ -284,19 +286,19 @@ public class BOSS_ENEMY : MonoBehaviour
         }
         attack_bool_list[Random.Range(0,10)] = true;
         int index = attack_bool_list.FindIndex(a => a == true);
-        if(index % 2 == 1)
+        if(index % 2 == 1 && index != 0) // 홀수
         {
             Debug.Log("Start melee attack");
             ismelee_attack = true;
             yield return StartCoroutine(meleeAttackroutine());
         }
-        else if(index % 2 == 0 && index != 0)
+        else if(index % 2 == 0 && index != 0) // 짝수
         {
             Debug.Log("Start range attack");
             isrange_attack = true;
             yield return StartCoroutine(rangeAttackroutine());
         }
-        else
+        else if(index % 3 == 0) // 3의 배수
         {
             isArm_Hammer = true;
             yield return StartCoroutine(armhammerroutine());
@@ -309,6 +311,7 @@ public class BOSS_ENEMY : MonoBehaviour
     {
         attackState = AttackState.Melee;
         attackable = false;
+        ishitable = false;
         AttackPatternChange();
         animator.SetTrigger("ismelee_attack");
         yield return new WaitForSeconds(0.1f);
@@ -327,12 +330,15 @@ public class BOSS_ENEMY : MonoBehaviour
         else
             DOTween.To(() => transform.position.x, x => transform.position = new Vector3(x,transform.position.y,transform.position.z), (transform.position.x + -0.25f),0.05f);
         ismelee_attack = false;
+        ishitable = true;
+        yield return new WaitForSeconds(1);
         attackable = true;
     }
     IEnumerator rangeAttackroutine()
     {
         attackState = AttackState.Range;
         attackable = false;
+        ishitable = false;
         AttackPatternChange();
         animator.SetTrigger("isrange_attack");
         rb.velocity = Vector3.zero;
@@ -355,6 +361,8 @@ public class BOSS_ENEMY : MonoBehaviour
         }
         range_obj_list.Clear();
         isrange_attack = false;
+        ishitable = true;
+        yield return new WaitForSeconds(3);
         attackable = true;
     }
     IEnumerator armhammerroutine()
@@ -368,12 +376,12 @@ public class BOSS_ENEMY : MonoBehaviour
         GameObject cloneArm = Instantiate(attackobject, attackpoint.transform);
         yield return new WaitForSeconds(2);
         ImpactShake();
+        attackable = true;
+        ishitable = true;
         yield return new WaitForSeconds(4.5f);
         Destroy(attackpoint.gameObject);
         Destroy(cloneArm);
         attackpoint = null;
-        attackable = true;
-        ishitable = true;
     }
     private void AttackPatternChange()
     {

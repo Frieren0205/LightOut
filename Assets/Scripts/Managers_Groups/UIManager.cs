@@ -59,7 +59,10 @@ public class UIManager : MonoBehaviour
             StartCoroutine(callbacktime());
             Time.timeScale = 1;
             isPause = false;
-            GameManager.Instance.isPause = false;
+            if(GameManager.Instance.interactionManager.runner.Dialogue.IsActive == false)
+            {
+                GameManager.Instance.isPause = false;
+            }
         }
     }
     public void OnSetting()

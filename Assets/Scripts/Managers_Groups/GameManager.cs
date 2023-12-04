@@ -185,6 +185,7 @@ public class GameManager : MonoBehaviour
                     LevelManager.Instance.CameraAreasUpdate();
                     if(isfirstplay[2] == false)
                     {
+                        interactionManager.if_Enter_In_tera();
                         isfirstplay[2] = true;
                     }
                 break;
@@ -194,7 +195,7 @@ public class GameManager : MonoBehaviour
                 levelManager.level = LevelManager.Level.Boss_Battle;
                 if(!player)
                     player = SpawnManager.Instance.SpawnPlayer(SpawnManager.Instance.spawnpoints[3]);
-                    // playerinit();
+                    playerinit();
                     levelManager.player = player;
                     player.levelManager = levelManager;
                     player.gameObject.transform.position = SpawnManager.Instance.spawnpoints[3].spawnpositionVec3;
@@ -232,11 +233,15 @@ public class GameManager : MonoBehaviour
     }
     private void playerinit()
     {
-        isPause = false;
-        isPlayerDead = false;
-        player.CanInteraction = true;
-        player.interactionPoint = null;
-        player.CanInteractionIcon.SetActive(false);
+        if(interactionManager.runner.Dialogue.IsActive == false)
+        {
+            isPause = false;
+            isPlayerDead = false;
+            player.CanInteraction = true;
+            player.interactionPoint = null;
+            player.CanInteractionIcon.SetActive(false);
+        }
+
     }
     private void LevelSetting()
     {
